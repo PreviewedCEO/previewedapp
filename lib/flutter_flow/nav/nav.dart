@@ -91,16 +91,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               appStateNotifier.loggedIn ? NavBarPage() : LoginWidget(),
         ),
         FFRoute(
-          name: 'Login',
-          path: '/login',
-          builder: (context, params) => LoginWidget(),
-        ),
-        FFRoute(
-          name: 'Register',
-          path: '/register',
-          builder: (context, params) => RegisterWidget(),
-        ),
-        FFRoute(
           name: 'CreateProfile',
           path: '/createProfile',
           builder: (context, params) => CreateProfileWidget(),
@@ -121,11 +111,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => OnboardingWidget(),
         ),
         FFRoute(
-          name: 'MAINHome',
-          path: '/mAINHome',
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'MAINHome')
-              : MAINHomeWidget(),
+          name: 'JobPosts',
+          path: '/jobPosts',
+          builder: (context, params) => JobPostsWidget(),
         ),
         FFRoute(
           name: 'SEARCH_Jobs',
@@ -133,18 +121,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => SEARCHJobsWidget(),
         ),
         FFRoute(
-          name: 'MAINSavedJobs',
-          path: '/mAINSavedJobs',
+          name: 'MAINAppliedJobs',
+          path: '/mAINAppliedJobs',
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'MAINSavedJobs')
-              : MAINSavedJobsWidget(),
-        ),
-        FFRoute(
-          name: 'MAIN_Candidates',
-          path: '/mAINCandidates',
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'MAIN_Candidates')
-              : MAINCandidatesWidget(),
+              ? NavBarPage(initialPage: 'MAINAppliedJobs')
+              : MAINAppliedJobsWidget(
+                  isCompany: params.getParam('isCompany', ParamType.bool),
+                ),
         ),
         FFRoute(
           name: 'SEARCH_Candidates',
@@ -224,15 +207,20 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'editProfile',
           path: '/editProfile',
+          asyncParams: {
+            'candidates': getDoc(['candidates'], CandidatesRecord.fromSnapshot),
+          },
           builder: (context, params) => EditProfileWidget(
-            userProfile: params.getParam(
-                'userProfile', ParamType.DocumentReference, false, ['users']),
+            candidates: params.getParam('candidates', ParamType.Document),
           ),
         ),
         FFRoute(
           name: 'createJob',
           path: '/createJob',
-          builder: (context, params) => CreateJobWidget(),
+          builder: (context, params) => CreateJobWidget(
+            companyName: params.getParam('companyName',
+                ParamType.DocumentReference, false, ['companies']),
+          ),
         ),
         FFRoute(
           name: 'candidateDetails',
@@ -264,6 +252,31 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'HomePage_OLD',
           path: '/homePageOLD',
           builder: (context, params) => HomePageOLDWidget(),
+        ),
+        FFRoute(
+          name: 'Login',
+          path: '/login',
+          builder: (context, params) => LoginWidget(
+            isCompany: params.getParam('isCompany', ParamType.bool),
+          ),
+        ),
+        FFRoute(
+          name: 'MAIN_Candidates_Jobs',
+          path: '/mAINCandidatesJobs',
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'MAIN_Candidates_Jobs')
+              : MAINCandidatesJobsWidget(
+                  isCompany: params.getParam('isCompany', ParamType.bool),
+                ),
+        ),
+        FFRoute(
+          name: 'MAINSavedJobs',
+          path: '/mAINSavedJobs',
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'MAINSavedJobs')
+              : MAINSavedJobsWidget(
+                  isCompany: params.getParam('isCompany', ParamType.bool),
+                ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],

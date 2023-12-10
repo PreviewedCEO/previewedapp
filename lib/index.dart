@@ -1,19 +1,15 @@
 // Export pages
-export '/pages/login/login_widget.dart' show LoginWidget;
-export '/pages/register/register_widget.dart' show RegisterWidget;
 export '/pages/create_profile/create_profile_widget.dart'
     show CreateProfileWidget;
 export '/pages/company_profile/company_profile_widget.dart'
     show CompanyProfileWidget;
 export '/pages/add_work_exp/add_work_exp_widget.dart' show AddWorkExpWidget;
 export '/pages/onboarding/onboarding_widget.dart' show OnboardingWidget;
-export '/pages/m_a_i_n_home/m_a_i_n_home_widget.dart' show MAINHomeWidget;
+export '/pages/job_posts/job_posts_widget.dart' show JobPostsWidget;
 export '/pages/s_e_a_r_c_h_jobs/s_e_a_r_c_h_jobs_widget.dart'
     show SEARCHJobsWidget;
-export '/pages/m_a_i_n_saved_jobs/m_a_i_n_saved_jobs_widget.dart'
-    show MAINSavedJobsWidget;
-export '/pages/m_a_i_n_candidates/m_a_i_n_candidates_widget.dart'
-    show MAINCandidatesWidget;
+export '/pages/m_a_i_n_applied_jobs/m_a_i_n_applied_jobs_widget.dart'
+    show MAINAppliedJobsWidget;
 export '/pages/s_e_a_r_c_h_candidates/s_e_a_r_c_h_candidates_widget.dart'
     show SEARCHCandidatesWidget;
 export '/pages/m_a_i_n_my_profile/m_a_i_n_my_profile_widget.dart'
@@ -41,3 +37,8 @@ export '/pages/company_details/company_details_widget.dart'
     show CompanyDetailsWidget;
 export '/pages/home_page_o_l_d/home_page_o_l_d_widget.dart'
     show HomePageOLDWidget;
+export '/pages/login/login_widget.dart' show LoginWidget;
+export '/pages/m_a_i_n_candidates_jobs/m_a_i_n_candidates_jobs_widget.dart'
+    show MAINCandidatesJobsWidget;
+export '/pages/m_a_i_n_saved_jobs/m_a_i_n_saved_jobs_widget.dart'
+    show MAINSavedJobsWidget;

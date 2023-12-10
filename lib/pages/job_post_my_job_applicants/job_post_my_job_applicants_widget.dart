@@ -56,6 +56,8 @@ class _JobPostMyJobApplicantsWidgetState
       );
     }
 
+    context.watch<FFAppState>();
+
     return StreamBuilder<JobPostsRecord>(
       stream: JobPostsRecord.getDocument(widget.jobPostDetails!),
       builder: (context, snapshot) {
@@ -529,12 +531,8 @@ class _JobPostMyJobApplicantsWidgetState
                                                             ),
                                                             child:
                                                                 Image.network(
-                                                              valueOrDefault<
-                                                                  String>(
-                                                                containerUsersRecord
-                                                                    .photoUrl,
-                                                                'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/health-ai-mj6puy/assets/hu4vs0lstizz/UI_avatar_2@3x.png',
-                                                              ),
+                                                              containerUsersRecord
+                                                                  .photoUrl,
                                                               fit: BoxFit
                                                                   .fitHeight,
                                                             ),
@@ -565,53 +563,6 @@ class _JobPostMyJobApplicantsWidgetState
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .titleMedium,
-                                                              ),
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            4.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                child: Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  children: [
-                                                                    Text(
-                                                                      containerUsersRecord
-                                                                          .positionTitle,
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodySmall,
-                                                                    ),
-                                                                    Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          4.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                      child:
-                                                                          Text(
-                                                                        '\$${containerUsersRecord.salary}k'
-                                                                            .maybeHandleOverflow(
-                                                                          maxChars:
-                                                                              16,
-                                                                          replacement:
-                                                                              '…',
-                                                                        ),
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodySmall
-                                                                            .override(
-                                                                              fontFamily: 'Outfit',
-                                                                              color: FlutterFlowTheme.of(context).primary,
-                                                                              fontSize: 12.0,
-                                                                            ),
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
                                                               ),
                                                             ],
                                                           ),

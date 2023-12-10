@@ -65,6 +65,8 @@ class _CompanyProfileWidgetState extends State<CompanyProfileWidget> {
       );
     }
 
+    context.watch<FFAppState>();
+
     return YoutubeFullScreenWrapper(
       child: Scaffold(
         key: scaffoldKey,
@@ -713,96 +715,133 @@ class _CompanyProfileWidgetState extends State<CompanyProfileWidget> {
                             thickness: 1.0,
                             color: FlutterFlowTheme.of(context).lineColor,
                           ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 12.0, 0.0, 0.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                if (responsiveVisibility(
-                                  context: context,
-                                  desktop: false,
-                                ))
-                                  FFButtonWidget(
-                                    onPressed: () {
-                                      print('Button pressed ...');
-                                    },
-                                    text: 'Skip for Now',
-                                    options: FFButtonOptions(
-                                      width: 130.0,
-                                      height: 50.0,
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 0.0),
-                                      iconPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
-                                              0.0, 0.0, 0.0, 0.0),
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium,
-                                      elevation: 2.0,
-                                      borderSide: BorderSide(
-                                        color: Colors.transparent,
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(12.0),
-                                    ),
-                                  ),
-                                if (responsiveVisibility(
-                                  context: context,
-                                  desktop: false,
-                                ))
-                                  FFButtonWidget(
-                                    onPressed: () async {
-                                      await CompaniesRecord.collection
-                                          .doc()
-                                          .set(createCompaniesRecordData(
-                                            companyName: _model
-                                                .companyNameController.text,
-                                            companyHero:
-                                                _model.uploadedFileUrl1,
-                                            companyLogo:
-                                                _model.uploadedFileUrl2,
-                                            companyDescription: _model
-                                                .descriptionController.text,
-                                            companyCity:
-                                                _model.locationController.text,
-                                            companySize:
-                                                _model.companySizeValue,
-                                            companyWebSite:
-                                                _model.websiteController.text,
-                                            employees: currentUserReference,
-                                          ));
-
-                                      context.pushNamed('Onboarding');
-                                    },
-                                    text: 'Continue',
-                                    options: FFButtonOptions(
-                                      width: 130.0,
-                                      height: 50.0,
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 0.0),
-                                      iconPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
-                                              0.0, 0.0, 0.0, 0.0),
-                                      color: Color(0xFF00015B),
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Outfit',
-                                            color: FlutterFlowTheme.of(context)
-                                                .tertiary,
+                          Opacity(
+                            opacity: 0.6,
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 1.0, 0.0, 0.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  if (responsiveVisibility(
+                                    context: context,
+                                    desktop: false,
+                                  ))
+                                    Align(
+                                      alignment:
+                                          AlignmentDirectional(0.00, -1.00),
+                                      child: FFButtonWidget(
+                                        onPressed: () {
+                                          print('Button pressed ...');
+                                        },
+                                        text: 'Skip for Now',
+                                        options: FFButtonOptions(
+                                          width: 130.0,
+                                          height: 30.0,
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 0.0),
+                                          iconPadding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 0.0),
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryBackground,
+                                          textStyle: FlutterFlowTheme.of(
+                                                  context)
+                                              .titleSmall
+                                              .override(
+                                                fontFamily: 'Outfit',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .darkText,
+                                              ),
+                                          elevation: 2.0,
+                                          borderSide: BorderSide(
+                                            color: Colors.transparent,
+                                            width: 1.0,
                                           ),
-                                      elevation: 2.0,
-                                      borderSide: BorderSide(
-                                        color: Colors.transparent,
-                                        width: 1.0,
+                                          borderRadius:
+                                              BorderRadius.circular(12.0),
+                                        ),
                                       ),
-                                      borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                  ),
-                              ],
+                                  if (responsiveVisibility(
+                                    context: context,
+                                    desktop: false,
+                                  ))
+                                    Flexible(
+                                      child: Opacity(
+                                        opacity: 0.8,
+                                        child: FFButtonWidget(
+                                          onPressed: () async {
+                                            await CompaniesRecord.collection
+                                                .doc()
+                                                .set(createCompaniesRecordData(
+                                                  companyName: _model
+                                                      .companyNameController
+                                                      .text,
+                                                  companyHero:
+                                                      _model.uploadedFileUrl1,
+                                                  companyLogo:
+                                                      _model.uploadedFileUrl2,
+                                                  companyDescription: _model
+                                                      .descriptionController
+                                                      .text,
+                                                  companyCity: _model
+                                                      .locationController.text,
+                                                  companySize:
+                                                      _model.companySizeValue,
+                                                  companyWebSite: _model
+                                                      .websiteController.text,
+                                                ));
+
+                                            context.pushNamed(
+                                              'createJob',
+                                              queryParameters: {
+                                                'companyName': serializeParam(
+                                                  currentUserDocument?.company,
+                                                  ParamType.DocumentReference,
+                                                ),
+                                              }.withoutNulls,
+                                            );
+                                          },
+                                          text: 'Continue',
+                                          options: FFButtonOptions(
+                                            width: 130.0,
+                                            height: 30.0,
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 0.0),
+                                            iconPadding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 0.0),
+                                            color: Color(0xFF00015B),
+                                            textStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      fontFamily: 'Outfit',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .tertiary,
+                                                    ),
+                                            elevation: 2.0,
+                                            borderSide: BorderSide(
+                                              color: Colors.transparent,
+                                              width: 1.0,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(122.0),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                ],
+                              ),
                             ),
                           ),
                         ],

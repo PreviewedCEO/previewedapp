@@ -49,6 +49,8 @@ class _MAINChatWidgetState extends State<MAINChatWidget> {
       );
     }
 
+    context.watch<FFAppState>();
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,

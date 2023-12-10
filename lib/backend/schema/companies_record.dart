@@ -56,11 +56,6 @@ class CompaniesRecord extends FirestoreRecord {
   String get companySize => _companySize ?? '';
   bool hasCompanySize() => _companySize != null;
 
-  // "employees" field.
-  DocumentReference? _employees;
-  DocumentReference? get employees => _employees;
-  bool hasEmployees() => _employees != null;
-
   // "companyvideo" field.
   String? _companyvideo;
   String get companyvideo => _companyvideo ?? '';
@@ -75,7 +70,6 @@ class CompaniesRecord extends FirestoreRecord {
     _companyCity = snapshotData['companyCity'] as String?;
     _companyWebSite = snapshotData['companyWebSite'] as String?;
     _companySize = snapshotData['companySize'] as String?;
-    _employees = snapshotData['employees'] as DocumentReference?;
     _companyvideo = snapshotData['companyvideo'] as String?;
   }
 
@@ -122,7 +116,6 @@ Map<String, dynamic> createCompaniesRecordData({
   String? companyCity,
   String? companyWebSite,
   String? companySize,
-  DocumentReference? employees,
   String? companyvideo,
 }) {
   final firestoreData = mapToFirestore(
@@ -135,7 +128,6 @@ Map<String, dynamic> createCompaniesRecordData({
       'companyCity': companyCity,
       'companyWebSite': companyWebSite,
       'companySize': companySize,
-      'employees': employees,
       'companyvideo': companyvideo,
     }.withoutNulls,
   );
@@ -156,7 +148,6 @@ class CompaniesRecordDocumentEquality implements Equality<CompaniesRecord> {
         e1?.companyCity == e2?.companyCity &&
         e1?.companyWebSite == e2?.companyWebSite &&
         e1?.companySize == e2?.companySize &&
-        e1?.employees == e2?.employees &&
         e1?.companyvideo == e2?.companyvideo;
   }
 
@@ -170,7 +161,6 @@ class CompaniesRecordDocumentEquality implements Equality<CompaniesRecord> {
         e?.companyCity,
         e?.companyWebSite,
         e?.companySize,
-        e?.employees,
         e?.companyvideo
       ]);
 

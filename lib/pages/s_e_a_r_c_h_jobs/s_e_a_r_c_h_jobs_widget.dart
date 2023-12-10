@@ -51,6 +51,8 @@ class _SEARCHJobsWidgetState extends State<SEARCHJobsWidget> {
       );
     }
 
+    context.watch<FFAppState>();
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -192,11 +194,8 @@ class _SEARCHJobsWidgetState extends State<SEARCHJobsWidget> {
             desktop: false,
           ))
             Expanded(
-              child: FutureBuilder<List<JobPostsRecord>>(
-                future: JobPostsRecord.search(
-                  term: _model.textController.text,
-                  useCache: true,
-                ),
+              child: StreamBuilder<List<JobPostsRecord>>(
+                stream: queryJobPostsRecord(),
                 builder: (context, snapshot) {
                   // Customize what your widget looks like when it's loading.
                   if (!snapshot.hasData) {
@@ -366,7 +365,7 @@ class _SEARCHJobsWidgetState extends State<SEARCHJobsWidget> {
                                                         ),
                                                       ),
                                                       Text(
-                                                        '\$${listViewJobPostsRecord.salary}k',
+                                                        '\$${jobPostCardJobPostsRecord.salary}',
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)

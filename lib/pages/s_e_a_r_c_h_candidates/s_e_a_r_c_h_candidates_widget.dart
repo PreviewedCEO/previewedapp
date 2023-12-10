@@ -50,6 +50,8 @@ class _SEARCHCandidatesWidgetState extends State<SEARCHCandidatesWidget> {
       );
     }
 
+    context.watch<FFAppState>();
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -345,53 +347,6 @@ class _SEARCHCandidatesWidgetState extends State<SEARCHCandidatesWidget> {
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .titleMedium,
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 4.0,
-                                                                0.0, 0.0),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        Text(
-                                                          containerUsersRecord
-                                                              .positionTitle,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodySmall,
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      4.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          child: Text(
-                                                            '\$${containerUsersRecord.salary}k'
-                                                                .maybeHandleOverflow(
-                                                              maxChars: 16,
-                                                              replacement: '…',
-                                                            ),
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodySmall
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Outfit',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
-                                                                  fontSize:
-                                                                      12.0,
-                                                                ),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
                                                   ),
                                                 ],
                                               ),

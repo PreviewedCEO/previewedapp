@@ -39,6 +39,8 @@ class CreateProfileModel extends FlutterFlowModel<CreateProfileWidget> {
   String? Function(BuildContext, String?)? textController4Validator;
   // State field(s) for salaryRange widget.
   double? salaryRangeValue;
+  // Stores action output result for [Backend Call - Create Document] action in Button widget.
+  CandidatesRecord? candidate;
 
   /// Initialization and disposal methods.
 

@@ -20,7 +20,12 @@ import 'create_job_model.dart';
 export 'create_job_model.dart';
 
 class CreateJobWidget extends StatefulWidget {
-  const CreateJobWidget({Key? key}) : super(key: key);
+  const CreateJobWidget({
+    Key? key,
+    required this.companyName,
+  }) : super(key: key);
+
+  final DocumentReference? companyName;
 
   @override
   _CreateJobWidgetState createState() => _CreateJobWidgetState();
@@ -68,6 +73,8 @@ class _CreateJobWidgetState extends State<CreateJobWidget> {
         ),
       );
     }
+
+    context.watch<FFAppState>();
 
     return Scaffold(
       key: scaffoldKey,

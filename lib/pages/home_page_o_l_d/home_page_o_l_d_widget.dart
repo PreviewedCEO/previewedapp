@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -54,6 +55,8 @@ class _HomePageOLDWidgetState extends State<HomePageOLDWidget> {
       );
     }
 
+    context.watch<FFAppState>();
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).tertiary,
@@ -61,6 +64,12 @@ class _HomePageOLDWidgetState extends State<HomePageOLDWidget> {
         onPressed: () async {
           context.pushNamed(
             'createJob',
+            queryParameters: {
+              'companyName': serializeParam(
+                currentUserDocument?.company,
+                ParamType.DocumentReference,
+              ),
+            }.withoutNulls,
             extra: <String, dynamic>{
               kTransitionInfoKey: TransitionInfo(
                 hasTransition: true,
@@ -84,6 +93,12 @@ class _HomePageOLDWidgetState extends State<HomePageOLDWidget> {
           onPressed: () async {
             context.pushNamed(
               'createJob',
+              queryParameters: {
+                'companyName': serializeParam(
+                  currentUserDocument?.company,
+                  ParamType.DocumentReference,
+                ),
+              }.withoutNulls,
               extra: <String, dynamic>{
                 kTransitionInfoKey: TransitionInfo(
                   hasTransition: true,

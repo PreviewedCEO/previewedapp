@@ -19,6 +19,8 @@ import 'package:provider/provider.dart';
 class EditProfileModel extends FlutterFlowModel<EditProfileWidget> {
   ///  State fields for stateful widgets in this page.
 
+  // Stores action output result for [Backend Call - Read Document] action in Column widget.
+  CandidatesRecord? candidateInfo;
   bool isDataUploading = false;
   FFUploadedFile uploadedLocalFile =
       FFUploadedFile(bytes: Uint8List.fromList([]));
@@ -36,17 +38,9 @@ class EditProfileModel extends FlutterFlowModel<EditProfileWidget> {
   FocusNode? textFieldFocusNode3;
   TextEditingController? textController3;
   String? Function(BuildContext, String?)? textController3Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode4;
-  TextEditingController? textController4;
-  String? Function(BuildContext, String?)? textController4Validator;
   // State field(s) for DropDown widget.
   String? dropDownValue;
   FormFieldController<String>? dropDownValueController;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode5;
-  TextEditingController? textController5;
-  String? Function(BuildContext, String?)? textController5Validator;
   // State field(s) for salaryRange widget.
   double? salaryRangeValue;
 
@@ -63,12 +57,6 @@ class EditProfileModel extends FlutterFlowModel<EditProfileWidget> {
 
     textFieldFocusNode3?.dispose();
     textController3?.dispose();
-
-    textFieldFocusNode4?.dispose();
-    textController4?.dispose();
-
-    textFieldFocusNode5?.dispose();
-    textController5?.dispose();
   }
 
   /// Action blocks are added here.

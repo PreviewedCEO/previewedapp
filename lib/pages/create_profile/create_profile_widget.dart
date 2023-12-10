@@ -66,6 +66,8 @@ class _CreateProfileWidgetState extends State<CreateProfileWidget> {
       );
     }
 
+    context.watch<FFAppState>();
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -440,7 +442,7 @@ class _CreateProfileWidgetState extends State<CreateProfileWidget> {
                               focusNode: _model.textFieldFocusNode4,
                               obscureText: false,
                               decoration: InputDecoration(
-                                labelText: 'Company',
+                                labelText: 'Skills',
                                 labelStyle:
                                     FlutterFlowTheme.of(context).titleSmall,
                                 enabledBorder: UnderlineInputBorder(
@@ -510,7 +512,7 @@ class _CreateProfileWidgetState extends State<CreateProfileWidget> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Salary',
+                          'Salary Expectations',
                           style: FlutterFlowTheme.of(context).bodyMedium,
                         ),
                       ],
@@ -560,23 +562,6 @@ class _CreateProfileWidgetState extends State<CreateProfileWidget> {
                     ),
                   ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 4.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      if (responsiveVisibility(
-                        context: context,
-                        desktop: false,
-                      ))
-                        Text(
-                          'Continue as a(n)',
-                          style: FlutterFlowTheme.of(context).titleMedium,
-                        ),
-                    ],
-                  ),
-                ),
-                Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
@@ -589,220 +574,75 @@ class _CreateProfileWidgetState extends State<CreateProfileWidget> {
                     ],
                   ),
                 ),
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    InkWell(
-                      splashColor: Colors.transparent,
-                      focusColor: Colors.transparent,
-                      hoverColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      onTap: () async {
-                        await currentUserReference!
-                            .update(createUsersRecordData(
-                          displayName: _model.textController1.text,
-                          positionTitle: _model.textController2.text,
-                          bio: _model.textController3.text,
-                          experienceLevel: _model.dropDownValue,
-                          currentCompany: _model.textController4.text,
-                          salary: _model.salaryRangeValue?.toString(),
-                        ));
-
-                        context.pushNamed('AddWorkExp');
-                      },
-                      child: Container(
-                        width: MediaQuery.sizeOf(context).width * 0.9,
-                        height: 60.0,
-                        decoration: BoxDecoration(
-                          color: FlutterFlowTheme.of(context).primaryBackground,
-                          borderRadius: BorderRadius.circular(8.0),
-                          border: Border.all(
-                            color: FlutterFlowTheme.of(context).lineColor,
-                            width: 2.0,
-                          ),
-                        ),
-                        child: Visibility(
-                          visible: responsiveVisibility(
-                            context: context,
-                            desktop: false,
-                          ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    12.0, 0.0, 12.0, 0.0),
-                                child: Icon(
-                                  Icons.person_outline,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  size: 44.0,
-                                ),
-                              ),
-                              if (responsiveVisibility(
-                                context: context,
-                                desktop: false,
-                              ))
-                                Expanded(
-                                  child: Text(
-                                    'As an Individual',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Outfit',
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                        ),
-                                  ),
-                                ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 12.0, 0.0),
-                                child: Icon(
-                                  Icons.chevron_right_rounded,
-                                  color:
-                                      FlutterFlowTheme.of(context).grayIcon400,
-                                  size: 24.0,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 12.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      InkWell(
-                        splashColor: Colors.transparent,
-                        focusColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onTap: () async {
-                          await currentUserReference!
-                              .update(createUsersRecordData(
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 44.0),
+                  child: FFButtonWidget(
+                    onPressed: () async {
+                      await authManager.refreshUser();
+
+                      var candidatesRecordReference =
+                          CandidatesRecord.collection.doc();
+                      await candidatesRecordReference
+                          .set(createCandidatesRecordData(
+                        displayName: _model.textController1.text,
+                        email: currentUserEmailVerified.toString(),
+                        photoUrl: currentUserPhoto,
+                        bio: _model.textController3.text,
+                        positionTitle: _model.textController2.text,
+                        experienceLevel: _model.dropDownValue,
+                        phoneNumber: currentPhoneNumber,
+                        expectedSalary: formatNumber(
+                          _model.salaryRangeValue,
+                          formatType: FormatType.decimal,
+                          decimalType: DecimalType.automatic,
+                        ),
+                      ));
+                      _model.candidate = CandidatesRecord.getDocumentFromData(
+                          createCandidatesRecordData(
                             displayName: _model.textController1.text,
-                            positionTitle: _model.textController2.text,
+                            email: currentUserEmailVerified.toString(),
+                            photoUrl: currentUserPhoto,
                             bio: _model.textController3.text,
+                            positionTitle: _model.textController2.text,
                             experienceLevel: _model.dropDownValue,
-                            currentCompany: _model.textController4.text,
-                            salary: _model.salaryRangeValue?.toString(),
-                          ));
+                            phoneNumber: currentPhoneNumber,
+                            expectedSalary: formatNumber(
+                              _model.salaryRangeValue,
+                              formatType: FormatType.decimal,
+                              decimalType: DecimalType.automatic,
+                            ),
+                          ),
+                          candidatesRecordReference);
 
-                          context.pushNamed('CompanyProfile');
-                        },
-                        child: Container(
-                          width: MediaQuery.sizeOf(context).width * 0.9,
-                          height: 60.0,
-                          decoration: BoxDecoration(
-                            color:
-                                FlutterFlowTheme.of(context).primaryBackground,
-                            borderRadius: BorderRadius.circular(8.0),
-                            border: Border.all(
-                              color: FlutterFlowTheme.of(context).lineColor,
-                              width: 2.0,
-                            ),
+                      await currentUserReference!.update(createUsersRecordData(
+                        candidates: _model.candidate?.reference,
+                      ));
+
+                      context.pushNamed('AddWorkExp');
+
+                      setState(() {});
+                    },
+                    text: 'Continue',
+                    options: FFButtonOptions(
+                      width: 130.0,
+                      height: 50.0,
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      iconPadding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                      textStyle: FlutterFlowTheme.of(context)
+                          .titleSmall
+                          .override(
+                            fontFamily: 'Outfit',
+                            color: FlutterFlowTheme.of(context).secondaryText,
                           ),
-                          child: Visibility(
-                            visible: responsiveVisibility(
-                              context: context,
-                              desktop: false,
-                            ),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      12.0, 0.0, 12.0, 0.0),
-                                  child: Icon(
-                                    Icons.group_outlined,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    size: 44.0,
-                                  ),
-                                ),
-                                if (responsiveVisibility(
-                                  context: context,
-                                  desktop: false,
-                                ))
-                                  Expanded(
-                                    child: Text(
-                                      'As a Company',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Outfit',
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
-                                          ),
-                                    ),
-                                  ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 12.0, 0.0),
-                                  child: Icon(
-                                    Icons.chevron_right_rounded,
-                                    color: FlutterFlowTheme.of(context)
-                                        .grayIcon400,
-                                    size: 24.0,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                      elevation: 2.0,
+                      borderSide: BorderSide(
+                        color: Colors.transparent,
+                        width: 1.0,
                       ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 44.0),
-                          child: FFButtonWidget(
-                            onPressed: () async {
-                              context.pushNamed('HomePage_OLD');
-                            },
-                            text: 'Skip for Now',
-                            options: FFButtonOptions(
-                              width: 130.0,
-                              height: 50.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Outfit',
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                  ),
-                              elevation: 2.0,
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(12.0),
-                            ),
-                          ),
-                        ),
-                      ],
+                      borderRadius: BorderRadius.circular(12.0),
                     ),
                   ),
                 ),

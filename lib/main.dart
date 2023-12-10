@@ -1,3 +1,4 @@
+import 'package:provider/provider.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -24,7 +25,13 @@ void main() async {
 
   await FlutterFlowTheme.initialize();
 
-  runApp(MyApp());
+  final appState = FFAppState(); // Initialize FFAppState
+  await appState.initializePersistedState();
+
+  runApp(ChangeNotifierProvider(
+    create: (context) => appState,
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatefulWidget {
@@ -119,7 +126,7 @@ class NavBarPage extends StatefulWidget {
 
 /// This is the private State class that goes with NavBarPage.
 class _NavBarPageState extends State<NavBarPage> {
-  String _currentPageName = 'MAINHome';
+  String _currentPageName = 'MAIN_MyProfile';
   late Widget? _currentPage;
 
   @override
@@ -132,11 +139,11 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = {
-      'MAINHome': MAINHomeWidget(),
-      'MAINSavedJobs': MAINSavedJobsWidget(),
-      'MAIN_Chat': MAINChatWidget(),
-      'MAIN_Candidates': MAINCandidatesWidget(),
       'MAIN_MyProfile': MAINMyProfileWidget(),
+      'MAINAppliedJobs': MAINAppliedJobsWidget(),
+      'MAIN_Chat': MAINChatWidget(),
+      'MAIN_Candidates_Jobs': MAINCandidatesJobsWidget(),
+      'MAINSavedJobs': MAINSavedJobsWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -157,23 +164,23 @@ class _NavBarPageState extends State<NavBarPage> {
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.work_outline,
+              Icons.person_outlined,
               size: 24.0,
             ),
             activeIcon: Icon(
-              Icons.work_outlined,
+              Icons.person_rounded,
               size: 24.0,
             ),
-            label: ' ',
+            label: '',
             tooltip: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.favorite_border,
+              Icons.done_outline,
               size: 24.0,
             ),
             activeIcon: Icon(
-              Icons.favorite_sharp,
+              Icons.done,
               size: 24.0,
             ),
             label: ' ',
@@ -193,11 +200,11 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.group_outlined,
+              Icons.recommend_outlined,
               size: 24.0,
             ),
             activeIcon: Icon(
-              Icons.group,
+              Icons.recommend_sharp,
               size: 24.0,
             ),
             label: ' ',
@@ -205,14 +212,14 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.person_outlined,
+              Icons.favorite_border_outlined,
               size: 24.0,
             ),
             activeIcon: Icon(
-              Icons.person_rounded,
+              Icons.favorite_sharp,
               size: 24.0,
             ),
-            label: '',
+            label: ' ',
             tooltip: '',
           )
         ],

@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -59,6 +60,8 @@ class _JobPostDetailsActualWidgetState
         ),
       );
     }
+
+    context.watch<FFAppState>();
 
     return StreamBuilder<JobPostsRecord>(
       stream: JobPostsRecord.getDocument(widget.jobPostDetails!),
@@ -453,83 +456,137 @@ class _JobPostDetailsActualWidgetState
                             ),
                           ),
                         ),
-                        if (!jobPostDetailsActualJobPostsRecord.myJob)
-                          Align(
-                            alignment: AlignmentDirectional(0.00, 1.00),
-                            child: Container(
-                              width: MediaQuery.sizeOf(context).width * 1.0,
-                              height: 100.0,
-                              decoration: BoxDecoration(
-                                color: Color(0xFFFFDE59),
-                              ),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 36.0),
-                                child: StreamBuilder<UsersRecord>(
-                                  stream: UsersRecord.getDocument(
-                                      jobPostDetailsActualJobPostsRecord
-                                          .postedBy!),
-                                  builder: (context, snapshot) {
-                                    // Customize what your widget looks like when it's loading.
-                                    if (!snapshot.hasData) {
-                                      return Center(
-                                        child: SizedBox(
-                                          width: 50.0,
-                                          height: 50.0,
-                                          child: SpinKitThreeBounce(
-                                            color: Color(0xFF00015B),
-                                            size: 50.0,
-                                          ),
-                                        ),
-                                      );
-                                    }
-                                    final buttonUsersRecord = snapshot.data!;
-                                    return FFButtonWidget(
-                                      onPressed: () async {
-                                        context.pushNamed(
-                                          'JobPost_submitApplication',
-                                          queryParameters: {
-                                            'jobPostDetails': serializeParam(
-                                              jobPostDetailsActualJobPostsRecord
-                                                  .reference,
-                                              ParamType.DocumentReference,
-                                            ),
-                                          }.withoutNulls,
-                                        );
-                                      },
-                                      text: 'APPLY NOW',
-                                      options: FFButtonOptions(
-                                        width: 130.0,
-                                        height: 40.0,
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 0.0, 0.0),
-                                        iconPadding:
-                                            EdgeInsetsDirectional.fromSTEB(
-                                                0.0, 0.0, 0.0, 0.0),
+                        Align(
+                          alignment: AlignmentDirectional(-0.05, 0.47),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 36.0),
+                            child: StreamBuilder<UsersRecord>(
+                              stream: UsersRecord.getDocument(
+                                  jobPostDetailsActualJobPostsRecord.postedBy!),
+                              builder: (context, snapshot) {
+                                // Customize what your widget looks like when it's loading.
+                                if (!snapshot.hasData) {
+                                  return Center(
+                                    child: SizedBox(
+                                      width: 50.0,
+                                      height: 50.0,
+                                      child: SpinKitThreeBounce(
                                         color: Color(0xFF00015B),
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .titleMedium
-                                            .override(
-                                              fontFamily: 'Outfit',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .tertiary,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                        elevation: 0.0,
-                                        borderSide: BorderSide(
-                                          color: Colors.transparent,
-                                          width: 1.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(0.0),
+                                        size: 50.0,
                                       ),
+                                    ),
+                                  );
+                                }
+                                final buttonUsersRecord = snapshot.data!;
+                                return FFButtonWidget(
+                                  onPressed: () async {
+                                    context.pushNamed(
+                                      'JobPost_submitApplication',
+                                      queryParameters: {
+                                        'jobPostDetails': serializeParam(
+                                          jobPostDetailsActualJobPostsRecord
+                                              .reference,
+                                          ParamType.DocumentReference,
+                                        ),
+                                      }.withoutNulls,
                                     );
                                   },
-                                ),
-                              ),
+                                  text: 'APPLY NOW',
+                                  options: FFButtonOptions(
+                                    width: 130.0,
+                                    height: 40.0,
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    color: Color(0xFF00015B),
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .titleMedium
+                                        .override(
+                                          fontFamily: 'Outfit',
+                                          color: FlutterFlowTheme.of(context)
+                                              .tertiary,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                    elevation: 0.0,
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                );
+                              },
                             ),
                           ),
+                        ),
+                        Align(
+                          alignment: AlignmentDirectional(-0.01, 0.68),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 36.0),
+                            child: StreamBuilder<UsersRecord>(
+                              stream: UsersRecord.getDocument(
+                                  jobPostDetailsActualJobPostsRecord.postedBy!),
+                              builder: (context, snapshot) {
+                                // Customize what your widget looks like when it's loading.
+                                if (!snapshot.hasData) {
+                                  return Center(
+                                    child: SizedBox(
+                                      width: 50.0,
+                                      height: 50.0,
+                                      child: SpinKitThreeBounce(
+                                        color: Color(0xFF00015B),
+                                        size: 50.0,
+                                      ),
+                                    ),
+                                  );
+                                }
+                                final buttonUsersRecord = snapshot.data!;
+                                return FFButtonWidget(
+                                  onPressed: () async {
+                                    await SavedJobsRecord.collection
+                                        .doc()
+                                        .set(createSavedJobsRecordData(
+                                          jobSaved:
+                                              jobPostDetailsActualJobPostsRecord
+                                                  .reference,
+                                          user: currentUserReference,
+                                          savedTime: getCurrentTimestamp,
+                                        ));
+
+                                    context.pushNamed('MAINSavedJobs');
+                                  },
+                                  text: 'SAVE FOR LATER',
+                                  options: FFButtonOptions(
+                                    width: 180.0,
+                                    height: 40.0,
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    color: Color(0xFF00015B),
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .titleMedium
+                                        .override(
+                                          fontFamily: 'Outfit',
+                                          color: FlutterFlowTheme.of(context)
+                                              .tertiary,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                    elevation: 0.0,
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),

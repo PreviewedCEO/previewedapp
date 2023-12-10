@@ -57,6 +57,8 @@ class _JobPostDetailsWidgetState extends State<JobPostDetailsWidget> {
       );
     }
 
+    context.watch<FFAppState>();
+
     return StreamBuilder<List<JobPostsRecord>>(
       stream: queryJobPostsRecord(
         singleRecord: true,

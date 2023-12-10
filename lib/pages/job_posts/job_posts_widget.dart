@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -9,25 +10,25 @@ import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'm_a_i_n_home_model.dart';
-export 'm_a_i_n_home_model.dart';
+import 'job_posts_model.dart';
+export 'job_posts_model.dart';
 
-class MAINHomeWidget extends StatefulWidget {
-  const MAINHomeWidget({Key? key}) : super(key: key);
+class JobPostsWidget extends StatefulWidget {
+  const JobPostsWidget({Key? key}) : super(key: key);
 
   @override
-  _MAINHomeWidgetState createState() => _MAINHomeWidgetState();
+  _JobPostsWidgetState createState() => _JobPostsWidgetState();
 }
 
-class _MAINHomeWidgetState extends State<MAINHomeWidget> {
-  late MAINHomeModel _model;
+class _JobPostsWidgetState extends State<JobPostsWidget> {
+  late JobPostsModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => MAINHomeModel());
+    _model = createModel(context, () => JobPostsModel());
   }
 
   @override
@@ -48,6 +49,8 @@ class _MAINHomeWidgetState extends State<MAINHomeWidget> {
       );
     }
 
+    context.watch<FFAppState>();
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -55,6 +58,12 @@ class _MAINHomeWidgetState extends State<MAINHomeWidget> {
         onPressed: () async {
           context.pushNamed(
             'createJob',
+            queryParameters: {
+              'companyName': serializeParam(
+                currentUserDocument?.company,
+                ParamType.DocumentReference,
+              ),
+            }.withoutNulls,
             extra: <String, dynamic>{
               kTransitionInfoKey: TransitionInfo(
                 hasTransition: true,
@@ -79,6 +88,12 @@ class _MAINHomeWidgetState extends State<MAINHomeWidget> {
           onPressed: () async {
             context.pushNamed(
               'createJob',
+              queryParameters: {
+                'companyName': serializeParam(
+                  currentUserDocument?.company,
+                  ParamType.DocumentReference,
+                ),
+              }.withoutNulls,
               extra: <String, dynamic>{
                 kTransitionInfoKey: TransitionInfo(
                   hasTransition: true,
@@ -90,35 +105,38 @@ class _MAINHomeWidgetState extends State<MAINHomeWidget> {
           },
         ),
       ),
-      appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.of(context).darkText,
-        automaticallyImplyLeading: false,
-        title: Text(
-          'Welcome',
-          style: FlutterFlowTheme.of(context).headlineMedium.override(
-                fontFamily: 'Outfit',
-                color: FlutterFlowTheme.of(context).tertiary,
-              ),
-        ),
-        actions: [
-          FlutterFlowIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30.0,
-            borderWidth: 1.0,
-            buttonSize: 60.0,
-            icon: Icon(
-              Icons.search_outlined,
-              color: FlutterFlowTheme.of(context).tertiary,
-              size: 30.0,
-            ),
-            onPressed: () async {
-              context.pushNamed('SEARCH_Jobs');
-            },
-          ),
-        ],
-        centerTitle: false,
-        elevation: 0.0,
-      ),
+      appBar:
+          valueOrDefault<bool>(currentUserDocument?.isCompany, false) == false
+              ? AppBar(
+                  backgroundColor: FlutterFlowTheme.of(context).darkText,
+                  automaticallyImplyLeading: false,
+                  title: Text(
+                    'Welcome',
+                    style: FlutterFlowTheme.of(context).headlineMedium.override(
+                          fontFamily: 'Outfit',
+                          color: FlutterFlowTheme.of(context).tertiary,
+                        ),
+                  ),
+                  actions: [
+                    FlutterFlowIconButton(
+                      borderColor: Colors.transparent,
+                      borderRadius: 30.0,
+                      borderWidth: 1.0,
+                      buttonSize: 60.0,
+                      icon: Icon(
+                        Icons.search_outlined,
+                        color: FlutterFlowTheme.of(context).tertiary,
+                        size: 30.0,
+                      ),
+                      onPressed: () async {
+                        context.pushNamed('SEARCH_Jobs');
+                      },
+                    ),
+                  ],
+                  centerTitle: false,
+                  elevation: 0.0,
+                )
+              : null,
       body: Column(
         mainAxisSize: MainAxisSize.max,
         children: [
@@ -129,8 +147,12 @@ class _MAINHomeWidgetState extends State<MAINHomeWidget> {
             Expanded(
               child: StreamBuilder<List<JobPostsRecord>>(
                 stream: queryJobPostsRecord(
-                  queryBuilder: (jobPostsRecord) =>
-                      jobPostsRecord.orderBy('timeCreated', descending: true),
+                  queryBuilder: (jobPostsRecord) => jobPostsRecord
+                      .where(
+                        'postedBy',
+                        isEqualTo: currentUserReference,
+                      )
+                      .orderBy('timeCreated', descending: true),
                 ),
                 builder: (context, snapshot) {
                   // Customize what your widget looks like when it's loading.

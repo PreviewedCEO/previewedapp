@@ -64,6 +64,8 @@ class _JobPostSubmitApplicationWidgetState
       );
     }
 
+    context.watch<FFAppState>();
+
     return StreamBuilder<JobPostsRecord>(
       stream: JobPostsRecord.getDocument(widget.jobPostDetails!),
       builder: (context, snapshot) {
@@ -848,7 +850,7 @@ class _JobPostSubmitApplicationWidgetState
                                       },
                                     );
 
-                                    context.pushNamed('MAINSavedJobs');
+                                    context.pushNamed('MAINAppliedJobs');
                                   },
                                   text: 'Submit Application',
                                   options: FFButtonOptions(

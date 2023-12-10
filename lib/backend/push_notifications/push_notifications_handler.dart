@@ -109,16 +109,17 @@ class ParameterData {
 
 final parametersBuilderMap =
     <String, Future<ParameterData> Function(Map<String, dynamic>)>{
-  'Login': ParameterData.none(),
-  'Register': ParameterData.none(),
   'CreateProfile': ParameterData.none(),
   'CompanyProfile': ParameterData.none(),
   'AddWorkExp': ParameterData.none(),
   'Onboarding': ParameterData.none(),
-  'MAINHome': ParameterData.none(),
+  'JobPosts': ParameterData.none(),
   'SEARCH_Jobs': ParameterData.none(),
-  'MAINSavedJobs': ParameterData.none(),
-  'MAIN_Candidates': ParameterData.none(),
+  'MAINAppliedJobs': (data) async => ParameterData(
+        allParams: {
+          'isCompany': getParameter<bool>(data, 'isCompany'),
+        },
+      ),
   'SEARCH_Candidates': ParameterData.none(),
   'MAIN_MyProfile': ParameterData.none(),
   'MAIN_Chat': ParameterData.none(),
@@ -159,10 +160,15 @@ final parametersBuilderMap =
   'forgotPassword': ParameterData.none(),
   'editProfile': (data) async => ParameterData(
         allParams: {
-          'userProfile': getParameter<DocumentReference>(data, 'userProfile'),
+          'candidates': await getDocumentParameter<CandidatesRecord>(
+              data, 'candidates', CandidatesRecord.fromSnapshot),
         },
       ),
-  'createJob': ParameterData.none(),
+  'createJob': (data) async => ParameterData(
+        allParams: {
+          'companyName': getParameter<DocumentReference>(data, 'companyName'),
+        },
+      ),
   'candidateDetails': (data) async => ParameterData(
         allParams: {
           'candidateDetails':
@@ -183,6 +189,21 @@ final parametersBuilderMap =
         },
       ),
   'HomePage_OLD': ParameterData.none(),
+  'Login': (data) async => ParameterData(
+        allParams: {
+          'isCompany': getParameter<bool>(data, 'isCompany'),
+        },
+      ),
+  'MAIN_Candidates_Jobs': (data) async => ParameterData(
+        allParams: {
+          'isCompany': getParameter<bool>(data, 'isCompany'),
+        },
+      ),
+  'MAINSavedJobs': (data) async => ParameterData(
+        allParams: {
+          'isCompany': getParameter<bool>(data, 'isCompany'),
+        },
+      ),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

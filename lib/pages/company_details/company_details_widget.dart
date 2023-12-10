@@ -55,6 +55,8 @@ class _CompanyDetailsWidgetState extends State<CompanyDetailsWidget> {
       );
     }
 
+    context.watch<FFAppState>();
+
     return StreamBuilder<List<CompaniesRecord>>(
       stream: queryCompaniesRecord(
         singleRecord: true,

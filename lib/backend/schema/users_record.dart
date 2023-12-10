@@ -39,31 +39,6 @@ class UsersRecord extends FirestoreRecord {
   DateTime? get createdTime => _createdTime;
   bool hasCreatedTime() => _createdTime != null;
 
-  // "photo_url" field.
-  String? _photoUrl;
-  String get photoUrl => _photoUrl ?? '';
-  bool hasPhotoUrl() => _photoUrl != null;
-
-  // "bio" field.
-  String? _bio;
-  String get bio => _bio ?? '';
-  bool hasBio() => _bio != null;
-
-  // "positionTitle" field.
-  String? _positionTitle;
-  String get positionTitle => _positionTitle ?? '';
-  bool hasPositionTitle() => _positionTitle != null;
-
-  // "experienceLevel" field.
-  String? _experienceLevel;
-  String get experienceLevel => _experienceLevel ?? '';
-  bool hasExperienceLevel() => _experienceLevel != null;
-
-  // "currentCompany" field.
-  String? _currentCompany;
-  String get currentCompany => _currentCompany ?? '';
-  bool hasCurrentCompany() => _currentCompany != null;
-
   // "uid" field.
   String? _uid;
   String get uid => _uid ?? '';
@@ -74,48 +49,37 @@ class UsersRecord extends FirestoreRecord {
   String get phoneNumber => _phoneNumber ?? '';
   bool hasPhoneNumber() => _phoneNumber != null;
 
-  // "likedPosts" field.
-  bool? _likedPosts;
-  bool get likedPosts => _likedPosts ?? false;
-  bool hasLikedPosts() => _likedPosts != null;
-
-  // "profileType" field.
-  String? _profileType;
-  String get profileType => _profileType ?? '';
-  bool hasProfileType() => _profileType != null;
-
-  // "salary" field.
-  String? _salary;
-  String get salary => _salary ?? '';
-  bool hasSalary() => _salary != null;
-
   // "company" field.
   DocumentReference? _company;
   DocumentReference? get company => _company;
   bool hasCompany() => _company != null;
 
-  // "isGuest" field.
-  bool? _isGuest;
-  bool get isGuest => _isGuest ?? false;
-  bool hasIsGuest() => _isGuest != null;
+  // "isCompany" field.
+  bool? _isCompany;
+  bool get isCompany => _isCompany ?? false;
+  bool hasIsCompany() => _isCompany != null;
+
+  // "candidates" field.
+  DocumentReference? _candidates;
+  DocumentReference? get candidates => _candidates;
+  bool hasCandidates() => _candidates != null;
+
+  // "photo_url" field.
+  String? _photoUrl;
+  String get photoUrl => _photoUrl ?? '';
+  bool hasPhotoUrl() => _photoUrl != null;
 
   void _initializeFields() {
     _displayName = snapshotData['display_name'] as String?;
     _email = snapshotData['email'] as String?;
     _password = snapshotData['password'] as String?;
     _createdTime = snapshotData['created_time'] as DateTime?;
-    _photoUrl = snapshotData['photo_url'] as String?;
-    _bio = snapshotData['bio'] as String?;
-    _positionTitle = snapshotData['positionTitle'] as String?;
-    _experienceLevel = snapshotData['experienceLevel'] as String?;
-    _currentCompany = snapshotData['currentCompany'] as String?;
     _uid = snapshotData['uid'] as String?;
     _phoneNumber = snapshotData['phone_number'] as String?;
-    _likedPosts = snapshotData['likedPosts'] as bool?;
-    _profileType = snapshotData['profileType'] as String?;
-    _salary = snapshotData['salary'] as String?;
     _company = snapshotData['company'] as DocumentReference?;
-    _isGuest = snapshotData['isGuest'] as bool?;
+    _isCompany = snapshotData['isCompany'] as bool?;
+    _candidates = snapshotData['candidates'] as DocumentReference?;
+    _photoUrl = snapshotData['photo_url'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -149,22 +113,20 @@ class UsersRecord extends FirestoreRecord {
             ParamType.DateTime,
             false,
           ),
-          'photo_url': snapshot.data['photo_url'],
-          'bio': snapshot.data['bio'],
-          'positionTitle': snapshot.data['positionTitle'],
-          'experienceLevel': snapshot.data['experienceLevel'],
-          'currentCompany': snapshot.data['currentCompany'],
           'uid': snapshot.data['uid'],
           'phone_number': snapshot.data['phone_number'],
-          'likedPosts': snapshot.data['likedPosts'],
-          'profileType': snapshot.data['profileType'],
-          'salary': snapshot.data['salary'],
           'company': convertAlgoliaParam(
             snapshot.data['company'],
             ParamType.DocumentReference,
             false,
           ),
-          'isGuest': snapshot.data['isGuest'],
+          'isCompany': snapshot.data['isCompany'],
+          'candidates': convertAlgoliaParam(
+            snapshot.data['candidates'],
+            ParamType.DocumentReference,
+            false,
+          ),
+          'photo_url': snapshot.data['photo_url'],
         },
         UsersRecord.collection.doc(snapshot.objectID),
       );
@@ -205,18 +167,12 @@ Map<String, dynamic> createUsersRecordData({
   String? email,
   String? password,
   DateTime? createdTime,
-  String? photoUrl,
-  String? bio,
-  String? positionTitle,
-  String? experienceLevel,
-  String? currentCompany,
   String? uid,
   String? phoneNumber,
-  bool? likedPosts,
-  String? profileType,
-  String? salary,
   DocumentReference? company,
-  bool? isGuest,
+  bool? isCompany,
+  DocumentReference? candidates,
+  String? photoUrl,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -224,18 +180,12 @@ Map<String, dynamic> createUsersRecordData({
       'email': email,
       'password': password,
       'created_time': createdTime,
-      'photo_url': photoUrl,
-      'bio': bio,
-      'positionTitle': positionTitle,
-      'experienceLevel': experienceLevel,
-      'currentCompany': currentCompany,
       'uid': uid,
       'phone_number': phoneNumber,
-      'likedPosts': likedPosts,
-      'profileType': profileType,
-      'salary': salary,
       'company': company,
-      'isGuest': isGuest,
+      'isCompany': isCompany,
+      'candidates': candidates,
+      'photo_url': photoUrl,
     }.withoutNulls,
   );
 
@@ -251,18 +201,12 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.email == e2?.email &&
         e1?.password == e2?.password &&
         e1?.createdTime == e2?.createdTime &&
-        e1?.photoUrl == e2?.photoUrl &&
-        e1?.bio == e2?.bio &&
-        e1?.positionTitle == e2?.positionTitle &&
-        e1?.experienceLevel == e2?.experienceLevel &&
-        e1?.currentCompany == e2?.currentCompany &&
         e1?.uid == e2?.uid &&
         e1?.phoneNumber == e2?.phoneNumber &&
-        e1?.likedPosts == e2?.likedPosts &&
-        e1?.profileType == e2?.profileType &&
-        e1?.salary == e2?.salary &&
         e1?.company == e2?.company &&
-        e1?.isGuest == e2?.isGuest;
+        e1?.isCompany == e2?.isCompany &&
+        e1?.candidates == e2?.candidates &&
+        e1?.photoUrl == e2?.photoUrl;
   }
 
   @override
@@ -271,18 +215,12 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.email,
         e?.password,
         e?.createdTime,
-        e?.photoUrl,
-        e?.bio,
-        e?.positionTitle,
-        e?.experienceLevel,
-        e?.currentCompany,
         e?.uid,
         e?.phoneNumber,
-        e?.likedPosts,
-        e?.profileType,
-        e?.salary,
         e?.company,
-        e?.isGuest
+        e?.isCompany,
+        e?.candidates,
+        e?.photoUrl
       ]);
 
   @override

@@ -78,6 +78,8 @@ class _DETAILSChatWidgetState extends State<DETAILSChatWidget> {
       );
     }
 
+    context.watch<FFAppState>();
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
