@@ -6,13 +6,12 @@ import '/backend/schema/util/firestore_util.dart';
 import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
-import '/flutter_flow/flutter_flow_util.dart';
 
 class CompaniesRecord extends FirestoreRecord {
   CompaniesRecord._(
-    DocumentReference reference,
-    Map<String, dynamic> data,
-  ) : super(reference, data) {
+    super.reference,
+    super.data,
+  ) {
     _initializeFields();
   }
 
@@ -61,6 +60,11 @@ class CompaniesRecord extends FirestoreRecord {
   String get companyvideo => _companyvideo ?? '';
   bool hasCompanyvideo() => _companyvideo != null;
 
+  // "user" field.
+  DocumentReference? _user;
+  DocumentReference? get user => _user;
+  bool hasUser() => _user != null;
+
   void _initializeFields() {
     _companyName = snapshotData['companyName'] as String?;
     _companyLogo = snapshotData['companyLogo'] as String?;
@@ -71,6 +75,7 @@ class CompaniesRecord extends FirestoreRecord {
     _companyWebSite = snapshotData['companyWebSite'] as String?;
     _companySize = snapshotData['companySize'] as String?;
     _companyvideo = snapshotData['companyvideo'] as String?;
+    _user = snapshotData['user'] as DocumentReference?;
   }
 
   static CollectionReference get collection =>
@@ -117,6 +122,7 @@ Map<String, dynamic> createCompaniesRecordData({
   String? companyWebSite,
   String? companySize,
   String? companyvideo,
+  DocumentReference? user,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -129,6 +135,7 @@ Map<String, dynamic> createCompaniesRecordData({
       'companyWebSite': companyWebSite,
       'companySize': companySize,
       'companyvideo': companyvideo,
+      'user': user,
     }.withoutNulls,
   );
 
@@ -148,7 +155,8 @@ class CompaniesRecordDocumentEquality implements Equality<CompaniesRecord> {
         e1?.companyCity == e2?.companyCity &&
         e1?.companyWebSite == e2?.companyWebSite &&
         e1?.companySize == e2?.companySize &&
-        e1?.companyvideo == e2?.companyvideo;
+        e1?.companyvideo == e2?.companyvideo &&
+        e1?.user == e2?.user;
   }
 
   @override
@@ -161,7 +169,8 @@ class CompaniesRecordDocumentEquality implements Equality<CompaniesRecord> {
         e?.companyCity,
         e?.companyWebSite,
         e?.companySize,
-        e?.companyvideo
+        e?.companyvideo,
+        e?.user
       ]);
 
   @override

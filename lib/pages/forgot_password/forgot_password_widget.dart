@@ -4,14 +4,12 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'forgot_password_model.dart';
 export 'forgot_password_model.dart';
 
 class ForgotPasswordWidget extends StatefulWidget {
-  const ForgotPasswordWidget({Key? key}) : super(key: key);
+  const ForgotPasswordWidget({super.key});
 
   @override
   _ForgotPasswordWidgetState createState() => _ForgotPasswordWidgetState();
@@ -29,6 +27,8 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
 
     _model.emailAddressController ??= TextEditingController();
     _model.emailAddressFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -66,7 +66,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
           'Forgot Password',
           style: FlutterFlowTheme.of(context).titleMedium,
         ),
-        actions: [],
+        actions: const [],
         centerTitle: false,
         elevation: 0.0,
       ),
@@ -74,7 +74,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
         mainAxisSize: MainAxisSize.max,
         children: [
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
             child: TextFormField(
               controller: _model.emailAddressController,
               focusNode: _model.emailAddressFocusNode,
@@ -92,21 +92,21 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     color: Color(0x00000000),
                     width: 2.0,
                   ),
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 errorBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     color: Color(0x00000000),
                     width: 2.0,
                   ),
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 focusedErrorBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     color: Color(0x00000000),
                     width: 2.0,
                   ),
@@ -122,7 +122,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
             ),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(20.0, 16.0, 20.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(20.0, 16.0, 20.0, 0.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               children: [
@@ -136,12 +136,12 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
             ),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
             child: FFButtonWidget(
               onPressed: () async {
                 if (_model.emailAddressController.text.isEmpty) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
+                    const SnackBar(
                       content: Text(
                         'Email required!',
                       ),
@@ -158,15 +158,15 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
               options: FFButtonOptions(
                 width: 230.0,
                 height: 50.0,
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                 color: FlutterFlowTheme.of(context).customColor2,
                 textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                       fontFamily: 'Outfit',
                       color: FlutterFlowTheme.of(context).tertiary,
                     ),
                 elevation: 3.0,
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   color: Colors.transparent,
                   width: 1.0,
                 ),

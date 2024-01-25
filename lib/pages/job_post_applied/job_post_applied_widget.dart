@@ -2,13 +2,10 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/flutter_flow_youtube_player.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'job_post_applied_model.dart';
@@ -16,10 +13,10 @@ export 'job_post_applied_model.dart';
 
 class JobPostAppliedWidget extends StatefulWidget {
   const JobPostAppliedWidget({
-    Key? key,
+    super.key,
     this.application,
     this.jobPostDetails,
-  }) : super(key: key);
+  });
 
   final AppliedJobsRecord? application;
   final DocumentReference? jobPostDetails;
@@ -37,6 +34,8 @@ class _JobPostAppliedWidgetState extends State<JobPostAppliedWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => JobPostAppliedModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -66,7 +65,7 @@ class _JobPostAppliedWidgetState extends State<JobPostAppliedWidget> {
         if (!snapshot.hasData) {
           return Scaffold(
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-            body: Center(
+            body: const Center(
               child: SizedBox(
                 width: 50.0,
                 height: 50.0,
@@ -92,47 +91,52 @@ class _JobPostAppliedWidgetState extends State<JobPostAppliedWidget> {
                     children: [
                       Stack(
                         children: [
-                          if (responsiveVisibility(
-                            context: context,
-                            desktop: false,
-                          ))
-                            Align(
-                              alignment: AlignmentDirectional(0.00, 2.58),
-                              child: FlutterFlowYoutubePlayer(
-                                url:
-                                    'https://youtu.be/8O9FCMlOl7s?si=UC5FCsNBW-0OhEmz',
-                                autoPlay: false,
-                                looping: true,
-                                mute: false,
-                                showControls: true,
-                                showFullScreen: true,
-                                strictRelatedVideos: false,
-                              ),
+                          const Align(
+                            alignment: AlignmentDirectional(0.0, 2.58),
+                            child: FlutterFlowYoutubePlayer(
+                              url:
+                                  'https://youtu.be/8O9FCMlOl7s?si=UC5FCsNBW-0OhEmz',
+                              autoPlay: false,
+                              looping: true,
+                              mute: false,
+                              showControls: true,
+                              showFullScreen: true,
+                              strictRelatedVideos: false,
                             ),
+                          ),
                           Align(
-                            alignment: AlignmentDirectional(-0.80, 1.00),
+                            alignment: const AlignmentDirectional(-0.8, 1.0),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 175.0, 0.0, 0.0),
                               child: Material(
                                 color: Colors.transparent,
                                 elevation: 3.0,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8.0),
+                                shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(10.0),
+                                    bottomRight: Radius.circular(10.0),
+                                    topLeft: Radius.circular(10.0),
+                                    topRight: Radius.circular(10.0),
+                                  ),
                                 ),
                                 child: Container(
                                   width: 60.0,
                                   height: 60.0,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     color: Color(0xFFEEEEEE),
-                                    borderRadius: BorderRadius.circular(8.0),
+                                    borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(10.0),
+                                      bottomRight: Radius.circular(10.0),
+                                      topLeft: Radius.circular(10.0),
+                                      topRight: Radius.circular(10.0),
+                                    ),
                                   ),
                                   child: Align(
                                     alignment:
-                                        AlignmentDirectional(-0.84, 0.88),
+                                        const AlignmentDirectional(-0.84, 0.88),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          2.0, 2.0, 2.0, 2.0),
+                                      padding: const EdgeInsets.all(2.0),
                                       child: ClipRRect(
                                         borderRadius:
                                             BorderRadius.circular(8.0),
@@ -154,7 +158,7 @@ class _JobPostAppliedWidgetState extends State<JobPostAppliedWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 20.0, 40.0, 20.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -167,7 +171,7 @@ class _JobPostAppliedWidgetState extends State<JobPostAppliedWidget> {
                                   child: Container(
                                     width: 44.0,
                                     height: 44.0,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       color: Color(0x66000000),
                                       shape: BoxShape.circle,
                                     ),
@@ -197,7 +201,7 @@ class _JobPostAppliedWidgetState extends State<JobPostAppliedWidget> {
                                       child: Container(
                                         width: 32.0,
                                         height: 32.0,
-                                        decoration: BoxDecoration(
+                                        decoration: const BoxDecoration(
                                           color: Color(0x66000000),
                                           shape: BoxShape.circle,
                                         ),
@@ -235,7 +239,7 @@ class _JobPostAppliedWidgetState extends State<JobPostAppliedWidget> {
                         ],
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             16.0, 16.0, 16.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -251,7 +255,7 @@ class _JobPostAppliedWidgetState extends State<JobPostAppliedWidget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             16.0, 8.0, 16.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -261,10 +265,10 @@ class _JobPostAppliedWidgetState extends State<JobPostAppliedWidget> {
                               style: FlutterFlowTheme.of(context).bodySmall,
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   8.0, 0.0, 0.0, 0.0),
                               child: Text(
-                                '\$${jobPostAppliedJobPostsRecord.salary}k',
+                                '\$${jobPostAppliedJobPostsRecord.salary}',
                                 style: FlutterFlowTheme.of(context)
                                     .bodySmall
                                     .override(
@@ -279,7 +283,7 @@ class _JobPostAppliedWidgetState extends State<JobPostAppliedWidget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             16.0, 12.0, 16.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -292,7 +296,7 @@ class _JobPostAppliedWidgetState extends State<JobPostAppliedWidget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             16.0, 8.0, 16.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -307,7 +311,7 @@ class _JobPostAppliedWidgetState extends State<JobPostAppliedWidget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             16.0, 12.0, 16.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -320,7 +324,7 @@ class _JobPostAppliedWidgetState extends State<JobPostAppliedWidget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             16.0, 8.0, 16.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -335,7 +339,7 @@ class _JobPostAppliedWidgetState extends State<JobPostAppliedWidget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             16.0, 12.0, 16.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -348,7 +352,7 @@ class _JobPostAppliedWidgetState extends State<JobPostAppliedWidget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             16.0, 8.0, 16.0, 20.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -364,91 +368,49 @@ class _JobPostAppliedWidgetState extends State<JobPostAppliedWidget> {
                       ),
                     ],
                   ),
-                  if (responsiveVisibility(
-                    context: context,
-                    desktop: false,
-                  ))
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
-                          12.0, 12.0, 12.0, 12.0),
-                      child: Container(
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: FlutterFlowTheme.of(context).lineColor,
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        child: Visibility(
-                          visible: responsiveVisibility(
-                            context: context,
-                            desktop: false,
-                          ),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                16.0, 16.0, 16.0, 16.0),
-                            child: Column(
+                  Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).lineColor,
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Text(
-                                      'Your proposal',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodySmall,
-                                    ),
-                                  ],
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 8.0, 0.0, 20.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Expanded(
-                                        child: Text(
-                                          widget.application!.coverLetter,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Text(
-                                      'Submitted',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodySmall,
-                                    ),
-                                  ],
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 4.0, 0.0, 8.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Text(
-                                        dateTimeFormat(
-                                          'relative',
-                                          widget.application!.appliedTime!,
-                                          locale: FFLocalizations.of(context)
-                                              .languageCode,
-                                        ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .headlineSmall,
-                                      ),
-                                    ],
-                                  ),
+                                Text(
+                                  'Your proposal',
+                                  style: FlutterFlowTheme.of(context).bodySmall,
                                 ),
                               ],
                             ),
-                          ),
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 8.0, 0.0, 20.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      widget.application!.coverLetter,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
+                  ),
                 ],
               ),
             ),

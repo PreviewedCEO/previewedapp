@@ -5,14 +5,12 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'onboarding_model.dart';
 export 'onboarding_model.dart';
 
 class OnboardingWidget extends StatefulWidget {
-  const OnboardingWidget({Key? key}) : super(key: key);
+  const OnboardingWidget({super.key});
 
   @override
   _OnboardingWidgetState createState() => _OnboardingWidgetState();
@@ -27,6 +25,8 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => OnboardingModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -59,24 +59,20 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              if (responsiveVisibility(
-                context: context,
-                desktop: false,
-              ))
-                Container(
-                  width: MediaQuery.sizeOf(context).width * 1.0,
-                  height: 100.0,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                  ),
+              Container(
+                width: MediaQuery.sizeOf(context).width * 1.0,
+                height: 100.0,
+                decoration: const BoxDecoration(
+                  color: Colors.white,
                 ),
+              ),
             ],
           ),
           Row(
             mainAxisSize: MainAxisSize.max,
             children: [
               Expanded(
-                child: Container(
+                child: SizedBox(
                   width: double.infinity,
                   height: MediaQuery.sizeOf(context).height * 0.75,
                   child: Stack(
@@ -93,94 +89,83 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                               color: FlutterFlowTheme.of(context)
                                   .primaryBackground,
                             ),
-                            child: Visibility(
-                              visible: responsiveVisibility(
-                                context: context,
-                                desktop: false,
-                              ),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                        width:
-                                            MediaQuery.sizeOf(context).width *
-                                                1.0,
-                                        height:
-                                            MediaQuery.sizeOf(context).height *
-                                                0.5,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .tertiary,
-                                        ),
-                                        child: Stack(
-                                          children: [
-                                            if (responsiveVisibility(
-                                              context: context,
-                                              desktop: false,
-                                            ))
-                                              Image.asset(
-                                                'assets/images/jobs_Creatives@2x.png',
-                                                width: 350.0,
-                                                height: 400.0,
-                                                fit: BoxFit.fitWidth,
-                                              ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      24.0, 0.0, 0.0, 0.0),
-                                              child: Image.asset(
-                                                'assets/images/2-removebg-preview.png',
-                                                width: 400.0,
-                                                height: 85.0,
-                                                fit: BoxFit.fitWidth,
-                                              ),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      width: MediaQuery.sizeOf(context).width *
+                                          1.0,
+                                      height:
+                                          MediaQuery.sizeOf(context).height *
+                                              0.5,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .tertiary,
+                                      ),
+                                      child: Stack(
+                                        children: [
+                                          Image.asset(
+                                            'assets/images/jobs_Creatives@2x.png',
+                                            width: 350.0,
+                                            height: 400.0,
+                                            fit: BoxFit.fitWidth,
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    24.0, 0.0, 0.0, 0.0),
+                                            child: Image.asset(
+                                              'assets/images/2-removebg-preview.png',
+                                              width: 400.0,
+                                              height: 85.0,
+                                              fit: BoxFit.fitWidth,
                                             ),
-                                          ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      20.0, 24.0, 20.0, 8.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                          'Search for Jobs',
+                                          textAlign: TextAlign.center,
+                                          style: FlutterFlowTheme.of(context)
+                                              .headlineMedium,
                                         ),
                                       ),
                                     ],
                                   ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        20.0, 24.0, 20.0, 8.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Expanded(
-                                          child: Text(
-                                            'Search for Jobs',
-                                            textAlign: TextAlign.center,
-                                            style: FlutterFlowTheme.of(context)
-                                                .headlineMedium,
-                                          ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      20.0, 0.0, 20.0, 8.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                          'Search and find jobs in your industry for companies that are ready to hire the top talent!',
+                                          textAlign: TextAlign.center,
+                                          style: FlutterFlowTheme.of(context)
+                                              .titleSmall,
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        20.0, 0.0, 20.0, 8.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Expanded(
-                                          child: Text(
-                                            'Search and find jobs in your industry for companies that are ready to hire the top talent!',
-                                            textAlign: TextAlign.center,
-                                            style: FlutterFlowTheme.of(context)
-                                                .titleSmall,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
                           Container(
@@ -218,7 +203,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                   ],
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       20.0, 24.0, 20.0, 8.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -235,7 +220,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       20.0, 0.0, 20.0, 8.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -289,7 +274,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                   ],
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       20.0, 24.0, 20.0, 8.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -306,7 +291,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       20.0, 0.0, 20.0, 8.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -328,9 +313,9 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                         ],
                       ),
                       Align(
-                        alignment: AlignmentDirectional(0.00, 0.95),
+                        alignment: const AlignmentDirectional(0.0, 0.95),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 10.0),
                           child: smooth_page_indicator.SmoothPageIndicator(
                             controller: _model.pageViewController ??=
@@ -340,7 +325,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                             onDotClicked: (i) async {
                               await _model.pageViewController!.animateToPage(
                                 i,
-                                duration: Duration(milliseconds: 500),
+                                duration: const Duration(milliseconds: 500),
                                 curve: Curves.ease,
                               );
                             },
@@ -365,13 +350,13 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
             ],
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 7.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 7.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                   child: FFButtonWidget(
                     onPressed: () async {
                       context.pushNamed('JobPosts');
@@ -381,10 +366,10 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                       width: 170.0,
                       height: 50.0,
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: Color(0xFF00015B),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      color: const Color(0xFF00015B),
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
                                 fontFamily: 'Outfit',

@@ -1,11 +1,7 @@
-import '/backend/backend.dart';
 import '/components/empty_messages/empty_messages_widget.dart';
 import '/flutter_flow/chat/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -16,10 +12,10 @@ export 'd_e_t_a_i_l_s_chat_model.dart';
 
 class DETAILSChatWidget extends StatefulWidget {
   const DETAILSChatWidget({
-    Key? key,
+    super.key,
     this.chatUser,
     this.chatRef,
-  }) : super(key: key);
+  });
 
   final UsersRecord? chatUser;
   final DocumentReference? chatRef;
@@ -58,6 +54,8 @@ class _DETAILSChatWidgetState extends State<DETAILSChatWidget> {
         setState(() => _chatInfo = info);
       }
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -107,7 +105,7 @@ class _DETAILSChatWidgetState extends State<DETAILSChatWidget> {
                 color: FlutterFlowTheme.of(context).tertiary,
               ),
         ),
-        actions: [],
+        actions: const [],
         centerTitle: false,
         elevation: 1.0,
       ),
@@ -121,7 +119,7 @@ class _DETAILSChatWidgetState extends State<DETAILSChatWidget> {
           builder: (context, snapshot) => snapshot.hasData
               ? FFChatPage(
                   chatInfo: snapshot.data!,
-                  allowImages: true,
+                  allowImages: false,
                   backgroundColor:
                       FlutterFlowTheme.of(context).primaryBackground,
                   timeDisplaySetting: TimeDisplaySetting.visibleOnTap,
@@ -141,7 +139,7 @@ class _DETAILSChatWidgetState extends State<DETAILSChatWidget> {
                   ),
                   currentUserTextStyle: GoogleFonts.getFont(
                     'DM Sans',
-                    color: Color(0xFF1E2429),
+                    color: const Color(0xFF1E2429),
                     fontWeight: FontWeight.w500,
                     fontSize: 14.0,
                     fontStyle: FontStyle.normal,
@@ -154,7 +152,7 @@ class _DETAILSChatWidgetState extends State<DETAILSChatWidget> {
                   ),
                   inputHintTextStyle: GoogleFonts.getFont(
                     'DM Sans',
-                    color: Color(0xFF95A1AC),
+                    color: const Color(0xFF95A1AC),
                     fontWeight: FontWeight.normal,
                     fontSize: 14.0,
                   ),
@@ -164,15 +162,14 @@ class _DETAILSChatWidgetState extends State<DETAILSChatWidget> {
                     fontWeight: FontWeight.normal,
                     fontSize: 14.0,
                   ),
-                  emptyChatWidget: Center(
+                  emptyChatWidget: const Center(
                     child: EmptyMessagesWidget(
-                      title: 'Start the Conversation',
-                      bodyText:
-                          'Apply to this job by introducing yourself below and the recruiter can get in touch with you about this position.',
+                      title: 'Start the conversation',
+                      bodyText: 'Connect and Learn more about each other!',
                     ),
                   ),
                 )
-              : Center(
+              : const Center(
                   child: SizedBox(
                     width: 50.0,
                     height: 50.0,

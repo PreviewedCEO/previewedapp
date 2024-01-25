@@ -1,19 +1,16 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'empty_messages_model.dart';
 export 'empty_messages_model.dart';
 
 class EmptyMessagesWidget extends StatefulWidget {
   const EmptyMessagesWidget({
-    Key? key,
+    super.key,
     this.title,
     this.bodyText,
-  }) : super(key: key);
+  });
 
   final String? title;
   final String? bodyText;
@@ -35,6 +32,8 @@ class _EmptyMessagesWidgetState extends State<EmptyMessagesWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => EmptyMessagesModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -71,7 +70,7 @@ class _EmptyMessagesWidgetState extends State<EmptyMessagesWidget> {
           ],
         ),
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
           child: Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -88,7 +87,7 @@ class _EmptyMessagesWidgetState extends State<EmptyMessagesWidget> {
           ),
         ),
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(12.0, 4.0, 12.0, 0.0),
+          padding: const EdgeInsetsDirectional.fromSTEB(12.0, 4.0, 12.0, 0.0),
           child: Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -97,7 +96,7 @@ class _EmptyMessagesWidgetState extends State<EmptyMessagesWidget> {
                 child: Text(
                   valueOrDefault<String>(
                     widget.bodyText,
-                    'Body Text',
+                    'Connect with each other and learn more!',
                   ),
                   textAlign: TextAlign.center,
                   style: FlutterFlowTheme.of(context).titleSmall,

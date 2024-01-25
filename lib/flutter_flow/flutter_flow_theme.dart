@@ -154,17 +154,17 @@ class LightModeTheme extends FlutterFlowTheme {
   late Color error = const Color(0xFFE21C3D);
   late Color info = const Color(0xFF1C4494);
 
-  late Color grayIcon = Color(0xFF57636C);
-  late Color darkText = Color(0xFF090F13);
-  late Color primary600 = Color(0xFFC3724C);
-  late Color secondary600 = Color(0xFF2CAE9F);
-  late Color dark400 = Color(0xFF262D34);
-  late Color background = Color(0xFFF1F4F8);
-  late Color grayIcon400 = Color(0xFFABB3BA);
-  late Color lineColor = Color(0xFFDBE2E7);
-  late Color dark500 = Color(0xFF1D2429);
-  late Color customColor1 = Color(0xFFFFDE59);
-  late Color customColor2 = Color(0xFF00015B);
+  late Color grayIcon = const Color(0xFF57636C);
+  late Color darkText = const Color(0xFF090F13);
+  late Color primary600 = const Color(0xFFC3724C);
+  late Color secondary600 = const Color(0xFF2CAE9F);
+  late Color dark400 = const Color(0xFF262D34);
+  late Color background = const Color(0xFFF1F4F8);
+  late Color grayIcon400 = const Color(0xFFABB3BA);
+  late Color lineColor = const Color(0xFFDBE2E7);
+  late Color dark500 = const Color(0xFF1D2429);
+  late Color customColor1 = const Color(0xFFFFDE59);
+  late Color customColor2 = const Color(0xFF00015B);
 }
 
 abstract class Typography {
@@ -337,17 +337,17 @@ class DarkModeTheme extends FlutterFlowTheme {
   late Color error = const Color(0xFFE21C3D);
   late Color info = const Color(0xFF1C4494);
 
-  late Color grayIcon = Color(0xFF57636C);
-  late Color darkText = Color(0xFF090F13);
-  late Color primary600 = Color(0xFFC3724C);
-  late Color secondary600 = Color(0xFF2CAE9F);
-  late Color dark400 = Color(0xFF262D34);
-  late Color background = Color(0xFFF1F4F8);
-  late Color grayIcon400 = Color(0xFFABB3BA);
-  late Color lineColor = Color(0xFF262D34);
-  late Color dark500 = Color(0xFF1D2429);
-  late Color customColor1 = Color(0xFF00015B);
-  late Color customColor2 = Color(0xFFFFDE59);
+  late Color grayIcon = const Color(0xFF57636C);
+  late Color darkText = const Color(0xFF090F13);
+  late Color primary600 = const Color(0xFFC3724C);
+  late Color secondary600 = const Color(0xFF2CAE9F);
+  late Color dark400 = const Color(0xFF262D34);
+  late Color background = const Color(0xFFF1F4F8);
+  late Color grayIcon400 = const Color(0xFFABB3BA);
+  late Color lineColor = const Color(0xFF262D34);
+  late Color dark500 = const Color(0xFF1D2429);
+  late Color customColor1 = const Color(0xFF00015B);
+  late Color customColor2 = const Color(0xFFFFDE59);
 }
 
 extension TextStyleHelper on TextStyle {

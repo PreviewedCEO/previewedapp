@@ -8,14 +8,13 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'add_work_exp_model.dart';
 export 'add_work_exp_model.dart';
 
 class AddWorkExpWidget extends StatefulWidget {
-  const AddWorkExpWidget({Key? key}) : super(key: key);
+  const AddWorkExpWidget({super.key});
 
   @override
   _AddWorkExpWidgetState createState() => _AddWorkExpWidgetState();
@@ -30,6 +29,8 @@ class _AddWorkExpWidgetState extends State<AddWorkExpWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => AddWorkExpModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -59,7 +60,7 @@ class _AddWorkExpWidgetState extends State<AddWorkExpWidget> {
         if (!snapshot.hasData) {
           return Scaffold(
             backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-            body: Center(
+            body: const Center(
               child: SizedBox(
                 width: 50.0,
                 height: 50.0,
@@ -77,7 +78,7 @@ class _AddWorkExpWidgetState extends State<AddWorkExpWidget> {
           backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
           appBar: AppBar(
             backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-            iconTheme: IconThemeData(color: Colors.black),
+            iconTheme: const IconThemeData(color: Colors.black),
             automaticallyImplyLeading: false,
             leading: InkWell(
               splashColor: Colors.transparent,
@@ -98,213 +99,222 @@ class _AddWorkExpWidgetState extends State<AddWorkExpWidget> {
               textAlign: TextAlign.start,
               style: FlutterFlowTheme.of(context).titleMedium,
             ),
-            actions: [],
+            actions: const [],
             centerTitle: false,
             elevation: 0.0,
           ),
           body: SafeArea(
             top: true,
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  if (responsiveVisibility(
-                    context: context,
-                    desktop: false,
-                  ))
-                    Expanded(
-                      child: Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
-                        child: StreamBuilder<List<WorkHistoryRecord>>(
-                          stream: queryWorkHistoryRecord(
-                            queryBuilder: (workHistoryRecord) =>
-                                workHistoryRecord
-                                    .where(
-                                      'user',
-                                      isEqualTo:
-                                          addWorkExpUsersRecord.reference,
-                                    )
-                                    .orderBy('endDate'),
-                          ),
-                          builder: (context, snapshot) {
-                            // Customize what your widget looks like when it's loading.
-                            if (!snapshot.hasData) {
-                              return Center(
-                                child: SizedBox(
-                                  width: 50.0,
-                                  height: 50.0,
-                                  child: SpinKitThreeBounce(
-                                    color: Color(0xFF00015B),
-                                    size: 50.0,
+                  Expanded(
+                    child: Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+                      child: StreamBuilder<List<WorkHistoryRecord>>(
+                        stream: queryWorkHistoryRecord(
+                          queryBuilder: (workHistoryRecord) => workHistoryRecord
+                              .where(
+                                'user',
+                                isEqualTo: addWorkExpUsersRecord.reference,
+                              )
+                              .orderBy('endDate'),
+                        ),
+                        builder: (context, snapshot) {
+                          // Customize what your widget looks like when it's loading.
+                          if (!snapshot.hasData) {
+                            return const Center(
+                              child: SizedBox(
+                                width: 50.0,
+                                height: 50.0,
+                                child: SpinKitThreeBounce(
+                                  color: Color(0xFF00015B),
+                                  size: 50.0,
+                                ),
+                              ),
+                            );
+                          }
+                          List<WorkHistoryRecord>
+                              listViewWorkHistoryRecordList = snapshot.data!;
+                          if (listViewWorkHistoryRecordList.isEmpty) {
+                            return Center(
+                              child: Image.asset(
+                                'assets/images/NoWorkHistory@2x.png',
+                                width: 240.0,
+                                fit: BoxFit.fitWidth,
+                              ),
+                            );
+                          }
+                          return ListView.builder(
+                            padding: EdgeInsets.zero,
+                            shrinkWrap: true,
+                            scrollDirection: Axis.vertical,
+                            itemCount: listViewWorkHistoryRecordList.length,
+                            itemBuilder: (context, listViewIndex) {
+                              final listViewWorkHistoryRecord =
+                                  listViewWorkHistoryRecordList[listViewIndex];
+                              return InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  await showModalBottomSheet(
+                                    isScrollControlled: true,
+                                    backgroundColor: const Color(0x00000000),
+                                    barrierColor: const Color(0x00000000),
+                                    context: context,
+                                    builder: (context) {
+                                      return WebViewAware(
+                                          child: Padding(
+                                        padding:
+                                            MediaQuery.viewInsetsOf(context),
+                                        child: const SizedBox(
+                                          height: 500.0,
+                                          child: WorkExpBottomSheetWidget(),
+                                        ),
+                                      ));
+                                    },
+                                  ).then((value) => safeSetState(() {}));
+                                },
+                                child: Card(
+                                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
+                                  elevation: 2.0,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                ),
-                              );
-                            }
-                            List<WorkHistoryRecord>
-                                listViewWorkHistoryRecordList = snapshot.data!;
-                            if (listViewWorkHistoryRecordList.isEmpty) {
-                              return Center(
-                                child: Image.asset(
-                                  'assets/images/NoWorkHistory@2x.png',
-                                  width: 240.0,
-                                  fit: BoxFit.fitWidth,
-                                ),
-                              );
-                            }
-                            return ListView.builder(
-                              padding: EdgeInsets.zero,
-                              shrinkWrap: true,
-                              scrollDirection: Axis.vertical,
-                              itemCount: listViewWorkHistoryRecordList.length,
-                              itemBuilder: (context, listViewIndex) {
-                                final listViewWorkHistoryRecord =
-                                    listViewWorkHistoryRecordList[
-                                        listViewIndex];
-                                return InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    await showModalBottomSheet(
-                                      isScrollControlled: true,
-                                      backgroundColor: Color(0x00000000),
-                                      barrierColor: Color(0x00000000),
-                                      context: context,
-                                      builder: (context) {
-                                        return WebViewAware(
-                                            child: Padding(
-                                          padding:
-                                              MediaQuery.viewInsetsOf(context),
-                                          child: Container(
-                                            height: 500.0,
-                                            child: WorkExpBottomSheetWidget(),
-                                          ),
-                                        ));
-                                      },
-                                    ).then((value) => safeSetState(() {}));
-                                  },
-                                  child: Card(
-                                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryBackground,
-                                    elevation: 2.0,
-                                    shape: RoundedRectangleBorder(
+                                  child: Container(
+                                    width:
+                                        MediaQuery.sizeOf(context).width * 0.9,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    child: Container(
-                                      width: MediaQuery.sizeOf(context).width *
-                                          0.9,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryBackground,
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            15.0, 10.0, 15.0, 10.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Container(
-                                                  width: 60.0,
-                                                  height: 60.0,
-                                                  decoration: BoxDecoration(
-                                                    color: Color(0xFFEEEEEE),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10.0),
-                                                  ),
-                                                  child: FlutterFlowIconButton(
-                                                    borderColor:
-                                                        Colors.transparent,
-                                                    borderRadius: 30.0,
-                                                    buttonSize: 48.0,
-                                                    icon: Icon(
-                                                      Icons
-                                                          .work_outline_rounded,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .grayIcon400,
-                                                      size: 30.0,
-                                                    ),
-                                                    onPressed: () {
-                                                      print(
-                                                          'IconButton pressed ...');
-                                                    },
-                                                  ),
+                                    child: Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          15.0, 10.0, 15.0, 10.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Container(
+                                                width: 60.0,
+                                                height: 60.0,
+                                                decoration: BoxDecoration(
+                                                  color: const Color(0xFFEEEEEE),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10.0),
                                                 ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          10.0, 0.0, 0.0, 0.0),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    4.0),
-                                                        child: Text(
+                                                child: FlutterFlowIconButton(
+                                                  borderColor:
+                                                      Colors.transparent,
+                                                  borderRadius: 30.0,
+                                                  buttonSize: 48.0,
+                                                  icon: Icon(
+                                                    Icons.work_outline_rounded,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .grayIcon400,
+                                                    size: 30.0,
+                                                  ),
+                                                  onPressed: () {
+                                                    print(
+                                                        'IconButton pressed ...');
+                                                  },
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        10.0, 0.0, 0.0, 0.0),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  4.0),
+                                                      child: Text(
+                                                        listViewWorkHistoryRecord
+                                                            .jobTitle,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleMedium,
+                                                      ),
+                                                    ),
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Text(
                                                           listViewWorkHistoryRecord
-                                                              .jobTitle,
+                                                              .companyName,
                                                           style: FlutterFlowTheme
                                                                   .of(context)
-                                                              .titleMedium,
+                                                              .titleSmall
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Outfit',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .customColor2,
+                                                                fontSize: 14.0,
+                                                              ),
                                                         ),
-                                                      ),
-                                                      Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        children: [
-                                                          Text(
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Text(
+                                                          dateTimeFormat(
+                                                            'yMMMd',
                                                             listViewWorkHistoryRecord
-                                                                .companyName,
-                                                            style: FlutterFlowTheme
+                                                                .startDate!,
+                                                            locale: FFLocalizations
                                                                     .of(context)
-                                                                .titleSmall
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Outfit',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .customColor2,
-                                                                  fontSize:
-                                                                      14.0,
-                                                                ),
+                                                                .languageCode,
                                                           ),
-                                                        ],
-                                                      ),
-                                                      Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        children: [
-                                                          Text(
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodySmall,
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      4.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          child: Text(
                                                             dateTimeFormat(
                                                               'yMMMd',
                                                               listViewWorkHistoryRecord
-                                                                  .startDate!,
+                                                                  .endDate!,
                                                               locale: FFLocalizations
                                                                       .of(context)
                                                                   .languageCode,
@@ -313,65 +323,44 @@ class _AddWorkExpWidgetState extends State<AddWorkExpWidget> {
                                                                     .of(context)
                                                                 .bodySmall,
                                                           ),
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        4.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            child: Text(
-                                                              dateTimeFormat(
-                                                                'yMMMd',
-                                                                listViewWorkHistoryRecord
-                                                                    .endDate!,
-                                                                locale: FFLocalizations.of(
-                                                                        context)
-                                                                    .languageCode,
-                                                              ),
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodySmall,
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ],
-                                                  ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
                                                 ),
-                                              ],
-                                            ),
-                                            FlutterFlowIconButton(
-                                              borderColor: Colors.transparent,
-                                              borderRadius: 30.0,
-                                              buttonSize: 48.0,
-                                              icon: Icon(
-                                                Icons.edit_outlined,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .grayIcon400,
-                                                size: 26.0,
                                               ),
-                                              onPressed: () {
-                                                print('IconButton pressed ...');
-                                              },
+                                            ],
+                                          ),
+                                          FlutterFlowIconButton(
+                                            borderColor: Colors.transparent,
+                                            borderRadius: 30.0,
+                                            buttonSize: 48.0,
+                                            icon: Icon(
+                                              Icons.edit_outlined,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .grayIcon400,
+                                              size: 26.0,
                                             ),
-                                          ],
-                                        ),
+                                            onPressed: () {
+                                              print('IconButton pressed ...');
+                                            },
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ),
-                                );
-                              },
-                            );
-                          },
-                        ),
+                                ),
+                              );
+                            },
+                          );
+                        },
                       ),
                     ),
+                  ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                     child: InkWell(
                       splashColor: Colors.transparent,
                       focusColor: Colors.transparent,
@@ -380,14 +369,14 @@ class _AddWorkExpWidgetState extends State<AddWorkExpWidget> {
                       onTap: () async {
                         await showModalBottomSheet(
                           isScrollControlled: true,
-                          backgroundColor: Color(0x00000000),
-                          barrierColor: Color(0x00000000),
+                          backgroundColor: const Color(0x00000000),
+                          barrierColor: const Color(0x00000000),
                           context: context,
                           builder: (context) {
                             return WebViewAware(
                                 child: Padding(
                               padding: MediaQuery.viewInsetsOf(context),
-                              child: Container(
+                              child: const SizedBox(
                                 height: 570.0,
                                 child: WorkExpBottomSheetWidget(),
                               ),
@@ -409,77 +398,68 @@ class _AddWorkExpWidgetState extends State<AddWorkExpWidget> {
                             color:
                                 FlutterFlowTheme.of(context).primaryBackground,
                           ),
-                          child: Visibility(
-                            visible: responsiveVisibility(
-                              context: context,
-                              desktop: false,
-                            ),
-                            child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 0.0, 16.0, 0.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Job Title',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Outfit',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .grayIcon400,
-                                            ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 4.0, 0.0, 0.0),
-                                        child: Text(
-                                          'Add Work Experience',
-                                          style: FlutterFlowTheme.of(context)
-                                              .titleMedium,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      await showModalBottomSheet(
-                                        isScrollControlled: true,
-                                        backgroundColor: Color(0x00000000),
-                                        barrierColor: Color(0x00000000),
-                                        context: context,
-                                        builder: (context) {
-                                          return WebViewAware(
-                                              child: Padding(
-                                            padding: MediaQuery.viewInsetsOf(
-                                                context),
-                                            child: WorkExpBottomSheetWidget(),
-                                          ));
-                                        },
-                                      ).then((value) => safeSetState(() {}));
-                                    },
-                                    child: Icon(
-                                      Icons.arrow_forward_ios,
-                                      color: FlutterFlowTheme.of(context)
-                                          .grayIcon400,
-                                      size: 24.0,
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                16.0, 0.0, 16.0, 0.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Job Title',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Outfit',
+                                            color: FlutterFlowTheme.of(context)
+                                                .grayIcon400,
+                                          ),
                                     ),
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 4.0, 0.0, 0.0),
+                                      child: Text(
+                                        'Add Work Experience',
+                                        style: FlutterFlowTheme.of(context)
+                                            .titleMedium,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    await showModalBottomSheet(
+                                      isScrollControlled: true,
+                                      backgroundColor: const Color(0x00000000),
+                                      barrierColor: const Color(0x00000000),
+                                      context: context,
+                                      builder: (context) {
+                                        return WebViewAware(
+                                            child: Padding(
+                                          padding:
+                                              MediaQuery.viewInsetsOf(context),
+                                          child: const WorkExpBottomSheetWidget(),
+                                        ));
+                                      },
+                                    ).then((value) => safeSetState(() {}));
+                                  },
+                                  child: Icon(
+                                    Icons.arrow_forward_ios,
+                                    color: FlutterFlowTheme.of(context)
+                                        .grayIcon400,
+                                    size: 24.0,
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
@@ -488,43 +468,39 @@ class _AddWorkExpWidgetState extends State<AddWorkExpWidget> {
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 10.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 10.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        if (responsiveVisibility(
-                          context: context,
-                          desktop: false,
-                        ))
-                          FFButtonWidget(
-                            onPressed: () async {
-                              context.pushNamed('Onboarding');
-                            },
-                            text: 'Continue',
-                            options: FFButtonOptions(
-                              width: 130.0,
-                              height: 50.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: Color(0xFF00015B),
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Outfit',
-                                    color: Colors.white,
-                                  ),
-                              elevation: 2.0,
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(12.0),
+                        FFButtonWidget(
+                          onPressed: () async {
+                            context.pushNamed('Onboarding');
+                          },
+                          text: 'Continue',
+                          options: FFButtonOptions(
+                            width: 130.0,
+                            height: 50.0,
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            color: const Color(0xFF00015B),
+                            textStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
+                                  fontFamily: 'Outfit',
+                                  color: Colors.white,
+                                ),
+                            elevation: 2.0,
+                            borderSide: const BorderSide(
+                              color: Colors.transparent,
+                              width: 1.0,
                             ),
+                            borderRadius: BorderRadius.circular(12.0),
                           ),
+                        ),
                       ],
                     ),
                   ),

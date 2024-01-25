@@ -1,46 +1,77 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/backend/firebase_storage/storage.dart';
-import '/flutter_flow/flutter_flow_drop_down.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/flutter_flow_youtube_player.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/flutter_flow/upload_data.dart';
 import 'company_profile_widget.dart' show CompanyProfileWidget;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class CompanyProfileModel extends FlutterFlowModel<CompanyProfileWidget> {
   ///  State fields for stateful widgets in this page.
 
-  bool isDataUploading1 = false;
-  FFUploadedFile uploadedLocalFile1 =
+  final formKey = GlobalKey<FormState>();
+  bool isDataUploading = false;
+  FFUploadedFile uploadedLocalFile =
       FFUploadedFile(bytes: Uint8List.fromList([]));
-  String uploadedFileUrl1 = '';
-
-  bool isDataUploading2 = false;
-  FFUploadedFile uploadedLocalFile2 =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
-  String uploadedFileUrl2 = '';
+  String uploadedFileUrl = '';
 
   // State field(s) for companyName widget.
   FocusNode? companyNameFocusNode;
   TextEditingController? companyNameController;
   String? Function(BuildContext, String?)? companyNameControllerValidator;
+  String? _companyNameControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    if (val.length < 2) {
+      return 'Minimum 2 characters required';
+    }
+
+    return null;
+  }
+
+  // State field(s) for companyVideo widget.
+  FocusNode? companyVideoFocusNode;
+  TextEditingController? companyVideoController;
+  String? Function(BuildContext, String?)? companyVideoControllerValidator;
+  String? _companyVideoControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    return null;
+  }
+
   // State field(s) for website widget.
   FocusNode? websiteFocusNode;
   TextEditingController? websiteController;
   String? Function(BuildContext, String?)? websiteControllerValidator;
+  String? _websiteControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    if (!RegExp(kTextValidatorWebsiteRegex).hasMatch(val)) {
+      return 'Please enter a valid website';
+    }
+    return null;
+  }
+
   // State field(s) for description widget.
   FocusNode? descriptionFocusNode;
   TextEditingController? descriptionController;
   String? Function(BuildContext, String?)? descriptionControllerValidator;
+  String? _descriptionControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    if (val.length < 2) {
+      return 'Minimum 2 characters required';
+    }
+
+    return null;
+  }
+
   // State field(s) for companySize widget.
   String? companySizeValue;
   FormFieldController<String>? companySizeValueController;
@@ -48,14 +79,26 @@ class CompanyProfileModel extends FlutterFlowModel<CompanyProfileWidget> {
   FocusNode? locationFocusNode;
   TextEditingController? locationController;
   String? Function(BuildContext, String?)? locationControllerValidator;
+  // Stores action output result for [Backend Call - Create Document] action in Button widget.
+  CompaniesRecord? myCompany;
 
   /// Initialization and disposal methods.
 
-  void initState(BuildContext context) {}
+  @override
+  void initState(BuildContext context) {
+    companyNameControllerValidator = _companyNameControllerValidator;
+    companyVideoControllerValidator = _companyVideoControllerValidator;
+    websiteControllerValidator = _websiteControllerValidator;
+    descriptionControllerValidator = _descriptionControllerValidator;
+  }
 
+  @override
   void dispose() {
     companyNameFocusNode?.dispose();
     companyNameController?.dispose();
+
+    companyVideoFocusNode?.dispose();
+    companyVideoController?.dispose();
 
     websiteFocusNode?.dispose();
     websiteController?.dispose();

@@ -1,10 +1,8 @@
 import 'package:provider/provider.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'auth/firebase_auth/firebase_user_provider.dart';
 import 'auth/firebase_auth/auth_util.dart';
 
@@ -13,9 +11,7 @@ import 'backend/firebase/firebase_config.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/internationalization.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'flutter_flow/nav/nav.dart';
+import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 import 'index.dart';
 
 void main() async {
@@ -30,11 +26,13 @@ void main() async {
 
   runApp(ChangeNotifierProvider(
     create: (context) => appState,
-    child: MyApp(),
+    child: const MyApp(),
   ));
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
   // This widget is the root of your application.
   @override
   State<MyApp> createState() => _MyAppState();
@@ -65,7 +63,7 @@ class _MyAppState extends State<MyApp> {
       ..listen((user) => _appStateNotifier.update(user));
     jwtTokenStream.listen((_) {});
     Future.delayed(
-      Duration(milliseconds: 1000),
+      const Duration(milliseconds: 1000),
       () => _appStateNotifier.stopShowingSplashImage(),
     );
   }
@@ -90,7 +88,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'Previewed',
-      localizationsDelegates: [
+      localizationsDelegates: const [
         FFLocalizationsDelegate(),
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -102,11 +100,11 @@ class _MyAppState extends State<MyApp> {
       ],
       theme: ThemeData(
         brightness: Brightness.light,
-        scrollbarTheme: ScrollbarThemeData(),
+        scrollbarTheme: const ScrollbarThemeData(),
       ),
       darkTheme: ThemeData(
         brightness: Brightness.dark,
-        scrollbarTheme: ScrollbarThemeData(),
+        scrollbarTheme: const ScrollbarThemeData(),
       ),
       themeMode: _themeMode,
       routerConfig: _router,
@@ -115,7 +113,7 @@ class _MyAppState extends State<MyApp> {
 }
 
 class NavBarPage extends StatefulWidget {
-  NavBarPage({Key? key, this.initialPage, this.page}) : super(key: key);
+  const NavBarPage({super.key, this.initialPage, this.page});
 
   final String? initialPage;
   final Widget? page;
@@ -139,17 +137,24 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = {
-      'MAIN_MyProfile': MAINMyProfileWidget(),
-      'MAINAppliedJobs': MAINAppliedJobsWidget(),
-      'MAIN_Chat': MAINChatWidget(),
-      'MAIN_Candidates_Jobs': MAINCandidatesJobsWidget(),
-      'MAINSavedJobs': MAINSavedJobsWidget(),
+      'MAIN_MyProfile': const MAINMyProfileWidget(),
+      'MAINAppliedJobs': const MAINAppliedJobsWidget(),
+      'MAIN_Chat': const MAINChatWidget(),
+      'MAIN_Candidates_Jobs': const MAINCandidatesJobsWidget(),
+      'MAINSavedJobs': const MAINSavedJobsWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
+    final MediaQueryData queryData = MediaQuery.of(context);
+
     return Scaffold(
-      body: _currentPage ?? tabs[_currentPageName],
-      bottomNavigationBar: BottomNavigationBar(
+      body: MediaQuery(
+          data: queryData
+              .removeViewInsets(removeBottom: true)
+              .removeViewPadding(removeBottom: true),
+          child: _currentPage ?? tabs[_currentPageName]!),
+      extendBody: true,
+      bottomNavigationBar: FloatingNavbar(
         currentIndex: currentIndex,
         onTap: (i) => setState(() {
           _currentPage = null;
@@ -157,70 +162,142 @@ class _NavBarPageState extends State<NavBarPage> {
         }),
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         selectedItemColor: FlutterFlowTheme.of(context).secondary,
-        unselectedItemColor: Color(0xFFABB3BA),
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        type: BottomNavigationBarType.fixed,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.person_outlined,
-              size: 24.0,
+        unselectedItemColor: const Color(0xFFABB3BA),
+        selectedBackgroundColor: const Color(0x00000000),
+        borderRadius: 8.0,
+        itemBorderRadius: 8.0,
+        margin: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+        padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+        width: double.infinity,
+        elevation: 0.0,
+        items: [
+          FloatingNavbarItem(
+            customWidget: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  currentIndex == 0
+                      ? Icons.person_rounded
+                      : Icons.person_outlined,
+                  color: currentIndex == 0
+                      ? FlutterFlowTheme.of(context).secondary
+                      : const Color(0xFFABB3BA),
+                  size: currentIndex == 0 ? 24.0 : 24.0,
+                ),
+                Text(
+                  ' ',
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: currentIndex == 0
+                        ? FlutterFlowTheme.of(context).secondary
+                        : const Color(0xFFABB3BA),
+                    fontSize: 11.0,
+                  ),
+                ),
+              ],
             ),
-            activeIcon: Icon(
-              Icons.person_rounded,
-              size: 24.0,
-            ),
-            label: '',
-            tooltip: '',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.done_outline,
-              size: 24.0,
+          FloatingNavbarItem(
+            customWidget: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  currentIndex == 1 ? Icons.done : Icons.done_outline,
+                  color: currentIndex == 1
+                      ? FlutterFlowTheme.of(context).secondary
+                      : const Color(0xFFABB3BA),
+                  size: currentIndex == 1 ? 24.0 : 24.0,
+                ),
+                Text(
+                  ' ',
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: currentIndex == 1
+                        ? FlutterFlowTheme.of(context).secondary
+                        : const Color(0xFFABB3BA),
+                    fontSize: 11.0,
+                  ),
+                ),
+              ],
             ),
-            activeIcon: Icon(
-              Icons.done,
-              size: 24.0,
-            ),
-            label: ' ',
-            tooltip: '',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.chat_bubble_outline,
-              size: 24.0,
+          FloatingNavbarItem(
+            customWidget: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  currentIndex == 2
+                      ? Icons.chat_bubble_rounded
+                      : Icons.chat_bubble_outline,
+                  color: currentIndex == 2
+                      ? FlutterFlowTheme.of(context).secondary
+                      : const Color(0xFFABB3BA),
+                  size: currentIndex == 2 ? 24.0 : 24.0,
+                ),
+                Text(
+                  'Chats',
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: currentIndex == 2
+                        ? FlutterFlowTheme.of(context).secondary
+                        : const Color(0xFFABB3BA),
+                    fontSize: 11.0,
+                  ),
+                ),
+              ],
             ),
-            activeIcon: Icon(
-              Icons.chat_bubble_rounded,
-              size: 24.0,
-            ),
-            label: 'Chats',
-            tooltip: '',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.recommend_outlined,
-              size: 24.0,
+          FloatingNavbarItem(
+            customWidget: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  currentIndex == 3
+                      ? Icons.recommend_sharp
+                      : Icons.recommend_outlined,
+                  color: currentIndex == 3
+                      ? FlutterFlowTheme.of(context).secondary
+                      : const Color(0xFFABB3BA),
+                  size: currentIndex == 3 ? 24.0 : 24.0,
+                ),
+                Text(
+                  ' ',
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: currentIndex == 3
+                        ? FlutterFlowTheme.of(context).secondary
+                        : const Color(0xFFABB3BA),
+                    fontSize: 11.0,
+                  ),
+                ),
+              ],
             ),
-            activeIcon: Icon(
-              Icons.recommend_sharp,
-              size: 24.0,
-            ),
-            label: ' ',
-            tooltip: '',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.favorite_border_outlined,
-              size: 24.0,
+          FloatingNavbarItem(
+            customWidget: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  currentIndex == 4
+                      ? Icons.favorite_sharp
+                      : Icons.favorite_border_outlined,
+                  color: currentIndex == 4
+                      ? FlutterFlowTheme.of(context).secondary
+                      : const Color(0xFFABB3BA),
+                  size: currentIndex == 4 ? 24.0 : 24.0,
+                ),
+                Text(
+                  ' ',
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: currentIndex == 4
+                        ? FlutterFlowTheme.of(context).secondary
+                        : const Color(0xFFABB3BA),
+                    fontSize: 11.0,
+                  ),
+                ),
+              ],
             ),
-            activeIcon: Icon(
-              Icons.favorite_sharp,
-              size: 24.0,
-            ),
-            label: ' ',
-            tooltip: '',
           )
         ],
       ),

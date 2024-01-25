@@ -10,8 +10,6 @@ export '/pages/s_e_a_r_c_h_jobs/s_e_a_r_c_h_jobs_widget.dart'
     show SEARCHJobsWidget;
 export '/pages/m_a_i_n_applied_jobs/m_a_i_n_applied_jobs_widget.dart'
     show MAINAppliedJobsWidget;
-export '/pages/s_e_a_r_c_h_candidates/s_e_a_r_c_h_candidates_widget.dart'
-    show SEARCHCandidatesWidget;
 export '/pages/m_a_i_n_my_profile/m_a_i_n_my_profile_widget.dart'
     show MAINMyProfileWidget;
 export '/pages/m_a_i_n_chat/m_a_i_n_chat_widget.dart' show MAINChatWidget;
@@ -35,10 +33,10 @@ export '/pages/job_post_details/job_post_details_widget.dart'
     show JobPostDetailsWidget;
 export '/pages/company_details/company_details_widget.dart'
     show CompanyDetailsWidget;
-export '/pages/home_page_o_l_d/home_page_o_l_d_widget.dart'
-    show HomePageOLDWidget;
 export '/pages/login/login_widget.dart' show LoginWidget;
 export '/pages/m_a_i_n_candidates_jobs/m_a_i_n_candidates_jobs_widget.dart'
     show MAINCandidatesJobsWidget;
 export '/pages/m_a_i_n_saved_jobs/m_a_i_n_saved_jobs_widget.dart'
     show MAINSavedJobsWidget;
+export '/pages/edit_company_profile/edit_company_profile_widget.dart'
+    show EditCompanyProfileWidget;

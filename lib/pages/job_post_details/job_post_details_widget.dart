@@ -5,21 +5,19 @@ import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/flutter_flow_youtube_player.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'job_post_details_model.dart';
 export 'job_post_details_model.dart';
 
 class JobPostDetailsWidget extends StatefulWidget {
   const JobPostDetailsWidget({
-    Key? key,
+    super.key,
     this.likedJob,
     this.jobPostDetails,
-  }) : super(key: key);
+  });
 
   final DocumentReference? likedJob;
   final DocumentReference? jobPostDetails;
@@ -37,6 +35,8 @@ class _JobPostDetailsWidgetState extends State<JobPostDetailsWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => JobPostDetailsModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -68,7 +68,7 @@ class _JobPostDetailsWidgetState extends State<JobPostDetailsWidget> {
         if (!snapshot.hasData) {
           return Scaffold(
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-            body: Center(
+            body: const Center(
               child: SizedBox(
                 width: 50.0,
                 height: 50.0,
@@ -101,15 +101,15 @@ class _JobPostDetailsWidgetState extends State<JobPostDetailsWidget> {
                     children: [
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 96.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 96.0),
                         child: SingleChildScrollView(
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Stack(
                                 children: [
-                                  Align(
-                                    alignment: AlignmentDirectional(0.00, 0.00),
+                                  const Align(
+                                    alignment: AlignmentDirectional(0.0, 0.0),
                                     child: FlutterFlowYoutubePlayer(
                                       url:
                                           'https://youtu.be/8O9FCMlOl7s?si=uJdKcan0Ct4syGh3',
@@ -122,37 +122,45 @@ class _JobPostDetailsWidgetState extends State<JobPostDetailsWidget> {
                                     ),
                                   ),
                                   Align(
-                                    alignment:
-                                        AlignmentDirectional(-0.80, 1.00),
+                                    alignment: const AlignmentDirectional(-0.8, 1.0),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 175.0, 0.0, 0.0),
                                       child: Material(
                                         color: Colors.transparent,
                                         elevation: 3.0,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
+                                        shape: const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.only(
+                                            bottomLeft: Radius.circular(10.0),
+                                            bottomRight: Radius.circular(10.0),
+                                            topLeft: Radius.circular(10.0),
+                                            topRight: Radius.circular(10.0),
+                                          ),
                                         ),
                                         child: Container(
                                           width: 60.0,
                                           height: 60.0,
-                                          decoration: BoxDecoration(
+                                          decoration: const BoxDecoration(
                                             color: Color(0xFFEEEEEE),
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
+                                            borderRadius: BorderRadius.only(
+                                              bottomLeft: Radius.circular(10.0),
+                                              bottomRight:
+                                                  Radius.circular(10.0),
+                                              topLeft: Radius.circular(10.0),
+                                              topRight: Radius.circular(10.0),
+                                            ),
                                           ),
                                           child: Align(
-                                            alignment: AlignmentDirectional(
+                                            alignment: const AlignmentDirectional(
                                                 -0.84, 0.88),
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(2.0, 2.0, 2.0, 2.0),
+                                              padding: const EdgeInsets.all(2.0),
                                               child: ClipRRect(
                                                 borderRadius:
                                                     BorderRadius.circular(8.0),
-                                                child: Image.asset(
-                                                  'assets/images/ROK-331842c1.png',
+                                                child: Image.network(
+                                                  jobPostDetailsJobPostsRecord!
+                                                      .companyLogo,
                                                   width: 60.0,
                                                   height: 60.0,
                                                   fit: BoxFit.cover,
@@ -165,7 +173,7 @@ class _JobPostDetailsWidgetState extends State<JobPostDetailsWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         20.0, 40.0, 20.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -179,7 +187,7 @@ class _JobPostDetailsWidgetState extends State<JobPostDetailsWidget> {
                                           child: Container(
                                             width: 44.0,
                                             height: 44.0,
-                                            decoration: BoxDecoration(
+                                            decoration: const BoxDecoration(
                                               color: Color(0x66000000),
                                               shape: BoxShape.circle,
                                             ),
@@ -204,7 +212,7 @@ class _JobPostDetailsWidgetState extends State<JobPostDetailsWidget> {
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 8.0, 0.0),
                                               child: Material(
                                                 color: Colors.transparent,
@@ -213,7 +221,7 @@ class _JobPostDetailsWidgetState extends State<JobPostDetailsWidget> {
                                                 child: Container(
                                                   width: 32.0,
                                                   height: 32.0,
-                                                  decoration: BoxDecoration(
+                                                  decoration: const BoxDecoration(
                                                     color: Color(0x66000000),
                                                     shape: BoxShape.circle,
                                                   ),
@@ -245,27 +253,24 @@ class _JobPostDetailsWidgetState extends State<JobPostDetailsWidget> {
                                               child: Container(
                                                 width: 32.0,
                                                 height: 32.0,
-                                                decoration: BoxDecoration(
+                                                decoration: const BoxDecoration(
                                                   color: Color(0x66000000),
                                                   shape: BoxShape.circle,
                                                 ),
                                                 child: ToggleIcon(
                                                   onPressed: () async {
-                                                    await jobPostDetailsJobPostsRecord!
-                                                        .reference
+                                                    await jobPostDetailsJobPostsRecord.reference
                                                         .update({
                                                       ...mapToFirestore(
                                                         {
                                                           'likedPost':
-                                                              !jobPostDetailsJobPostsRecord!
-                                                                  .likedPost,
+                                                              !jobPostDetailsJobPostsRecord.likedPost,
                                                         },
                                                       ),
                                                     });
                                                   },
                                                   value:
-                                                      jobPostDetailsJobPostsRecord!
-                                                          .likedPost,
+                                                      jobPostDetailsJobPostsRecord.likedPost,
                                                   onIcon: Icon(
                                                     Icons.favorite_rounded,
                                                     color: FlutterFlowTheme.of(
@@ -292,7 +297,7 @@ class _JobPostDetailsWidgetState extends State<JobPostDetailsWidget> {
                                 ],
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 16.0, 16.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -308,7 +313,7 @@ class _JobPostDetailsWidgetState extends State<JobPostDetailsWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 8.0, 16.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -319,7 +324,7 @@ class _JobPostDetailsWidgetState extends State<JobPostDetailsWidget> {
                                           .bodySmall,
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           8.0, 0.0, 0.0, 0.0),
                                       child: Text(
                                         '\$60k-\$70k',
@@ -338,7 +343,7 @@ class _JobPostDetailsWidgetState extends State<JobPostDetailsWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 12.0, 16.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -352,7 +357,7 @@ class _JobPostDetailsWidgetState extends State<JobPostDetailsWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 8.0, 16.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -368,7 +373,7 @@ class _JobPostDetailsWidgetState extends State<JobPostDetailsWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 12.0, 16.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -382,7 +387,7 @@ class _JobPostDetailsWidgetState extends State<JobPostDetailsWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 8.0, 16.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -398,7 +403,7 @@ class _JobPostDetailsWidgetState extends State<JobPostDetailsWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 12.0, 16.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -416,7 +421,7 @@ class _JobPostDetailsWidgetState extends State<JobPostDetailsWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 8.0, 16.0, 20.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -436,7 +441,7 @@ class _JobPostDetailsWidgetState extends State<JobPostDetailsWidget> {
                         ),
                       ),
                       Align(
-                        alignment: AlignmentDirectional(0.00, 1.00),
+                        alignment: const AlignmentDirectional(0.0, 1.0),
                         child: Container(
                           width: MediaQuery.sizeOf(context).width * 1.0,
                           height: 100.0,
@@ -444,7 +449,7 @@ class _JobPostDetailsWidgetState extends State<JobPostDetailsWidget> {
                             color: FlutterFlowTheme.of(context).customColor1,
                           ),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 36.0),
                             child: FFButtonWidget(
                               onPressed: () {
@@ -454,11 +459,11 @@ class _JobPostDetailsWidgetState extends State<JobPostDetailsWidget> {
                               options: FFButtonOptions(
                                 width: 130.0,
                                 height: 40.0,
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
-                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
-                                color: Color(0xFF00015B),
+                                color: const Color(0xFF00015B),
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleMedium
                                     .override(
@@ -467,7 +472,7 @@ class _JobPostDetailsWidgetState extends State<JobPostDetailsWidget> {
                                           FlutterFlowTheme.of(context).tertiary,
                                     ),
                                 elevation: 0.0,
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),

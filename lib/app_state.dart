@@ -32,9 +32,9 @@ class FFAppState extends ChangeNotifier {
 
   bool _isCompany = false;
   bool get isCompany => _isCompany;
-  set isCompany(bool _value) {
-    _isCompany = _value;
-    prefs.setBool('ff_isCompany', _value);
+  set isCompany(bool value) {
+    _isCompany = value;
+    prefs.setBool('ff_isCompany', value);
   }
 }
 

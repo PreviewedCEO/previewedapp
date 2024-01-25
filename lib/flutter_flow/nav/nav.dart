@@ -1,9 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:go_router/go_router.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import '/backend/backend.dart';
 
@@ -13,11 +10,7 @@ import '/backend/push_notifications/push_notifications_handler.dart'
     show PushNotificationsHandler;
 import '/index.dart';
 import '/main.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/lat_lng.dart';
-import '/flutter_flow/place.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'serialization_util.dart';
 
 export 'package:go_router/go_router.dart';
 export 'serialization_util.dart';
@@ -82,71 +75,77 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? NavBarPage() : LoginWidget(),
+          appStateNotifier.loggedIn ? const NavBarPage() : const LoginWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? NavBarPage() : LoginWidget(),
+              appStateNotifier.loggedIn ? const NavBarPage() : const LoginWidget(),
         ),
         FFRoute(
           name: 'CreateProfile',
           path: '/createProfile',
-          builder: (context, params) => CreateProfileWidget(),
+          requireAuth: true,
+          builder: (context, params) => const NavBarPage(
+            initialPage: '',
+            page: CreateProfileWidget(),
+          ),
         ),
         FFRoute(
           name: 'CompanyProfile',
           path: '/companyProfile',
-          builder: (context, params) => CompanyProfileWidget(),
+          requireAuth: true,
+          builder: (context, params) => const NavBarPage(
+            initialPage: '',
+            page: CompanyProfileWidget(),
+          ),
         ),
         FFRoute(
           name: 'AddWorkExp',
           path: '/addWorkExp',
-          builder: (context, params) => AddWorkExpWidget(),
+          builder: (context, params) => const NavBarPage(
+            initialPage: '',
+            page: AddWorkExpWidget(),
+          ),
         ),
         FFRoute(
           name: 'Onboarding',
           path: '/onboarding',
-          builder: (context, params) => OnboardingWidget(),
+          builder: (context, params) => const OnboardingWidget(),
         ),
         FFRoute(
           name: 'JobPosts',
           path: '/jobPosts',
-          builder: (context, params) => JobPostsWidget(),
+          builder: (context, params) => const JobPostsWidget(),
         ),
         FFRoute(
           name: 'SEARCH_Jobs',
           path: '/sEARCHJobs',
-          builder: (context, params) => SEARCHJobsWidget(),
+          builder: (context, params) => const SEARCHJobsWidget(),
         ),
         FFRoute(
           name: 'MAINAppliedJobs',
           path: '/mAINAppliedJobs',
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'MAINAppliedJobs')
+              ? const NavBarPage(initialPage: 'MAINAppliedJobs')
               : MAINAppliedJobsWidget(
                   isCompany: params.getParam('isCompany', ParamType.bool),
                 ),
         ),
         FFRoute(
-          name: 'SEARCH_Candidates',
-          path: '/sEARCHCandidates',
-          builder: (context, params) => SEARCHCandidatesWidget(),
-        ),
-        FFRoute(
           name: 'MAIN_MyProfile',
           path: '/mAINMyProfile',
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'MAIN_MyProfile')
-              : MAINMyProfileWidget(),
+              ? const NavBarPage(initialPage: 'MAIN_MyProfile')
+              : const MAINMyProfileWidget(),
         ),
         FFRoute(
           name: 'MAIN_Chat',
           path: '/mAINChat',
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'MAIN_Chat')
-              : MAINChatWidget(),
+              ? const NavBarPage(initialPage: 'MAIN_Chat')
+              : const MAINChatWidget(),
         ),
         FFRoute(
           name: 'DETAILS_Chat',
@@ -185,24 +184,30 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             'application':
                 getDoc(['appliedJobs'], AppliedJobsRecord.fromSnapshot),
           },
-          builder: (context, params) => JobPostAppliedWidget(
-            application: params.getParam('application', ParamType.Document),
-            jobPostDetails: params.getParam('jobPostDetails',
-                ParamType.DocumentReference, false, ['jobPosts']),
+          builder: (context, params) => NavBarPage(
+            initialPage: '',
+            page: JobPostAppliedWidget(
+              application: params.getParam('application', ParamType.Document),
+              jobPostDetails: params.getParam('jobPostDetails',
+                  ParamType.DocumentReference, false, ['jobPosts']),
+            ),
           ),
         ),
         FFRoute(
           name: 'JobPost_MyJob_Applicants',
           path: '/jobPostMyJobApplicants',
-          builder: (context, params) => JobPostMyJobApplicantsWidget(
-            jobPostDetails: params.getParam('jobPostDetails',
-                ParamType.DocumentReference, false, ['jobPosts']),
+          builder: (context, params) => NavBarPage(
+            initialPage: '',
+            page: JobPostMyJobApplicantsWidget(
+              jobPostDetails: params.getParam('jobPostDetails',
+                  ParamType.DocumentReference, false, ['jobPosts']),
+            ),
           ),
         ),
         FFRoute(
           name: 'forgotPassword',
           path: '/forgotPassword',
-          builder: (context, params) => ForgotPasswordWidget(),
+          builder: (context, params) => const ForgotPasswordWidget(),
         ),
         FFRoute(
           name: 'editProfile',
@@ -210,24 +215,33 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           asyncParams: {
             'candidates': getDoc(['candidates'], CandidatesRecord.fromSnapshot),
           },
-          builder: (context, params) => EditProfileWidget(
-            candidates: params.getParam('candidates', ParamType.Document),
+          builder: (context, params) => NavBarPage(
+            initialPage: '',
+            page: EditProfileWidget(
+              candidates: params.getParam('candidates', ParamType.Document),
+            ),
           ),
         ),
         FFRoute(
           name: 'createJob',
           path: '/createJob',
-          builder: (context, params) => CreateJobWidget(
-            companyName: params.getParam('companyName',
-                ParamType.DocumentReference, false, ['companies']),
+          builder: (context, params) => NavBarPage(
+            initialPage: '',
+            page: CreateJobWidget(
+              myCompany: params.getParam('myCompany',
+                  ParamType.DocumentReference, false, ['companies']),
+            ),
           ),
         ),
         FFRoute(
           name: 'candidateDetails',
           path: '/candidateDetails',
-          builder: (context, params) => CandidateDetailsWidget(
-            candidateDetails: params.getParam('candidateDetails',
-                ParamType.DocumentReference, false, ['users']),
+          builder: (context, params) => NavBarPage(
+            initialPage: '',
+            page: CandidateDetailsWidget(
+              candidateInfo: params.getParam('candidateInfo',
+                  ParamType.DocumentReference, false, ['candidates']),
+            ),
           ),
         ),
         FFRoute(
@@ -243,15 +257,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'companyDetails',
           path: '/companyDetails',
-          builder: (context, params) => CompanyDetailsWidget(
-            companyDetails: params.getParam('companyDetails',
-                ParamType.DocumentReference, false, ['companies']),
+          builder: (context, params) => NavBarPage(
+            initialPage: '',
+            page: CompanyDetailsWidget(
+              companyDetails: params.getParam('companyDetails',
+                  ParamType.DocumentReference, false, ['companies']),
+            ),
           ),
-        ),
-        FFRoute(
-          name: 'HomePage_OLD',
-          path: '/homePageOLD',
-          builder: (context, params) => HomePageOLDWidget(),
         ),
         FFRoute(
           name: 'Login',
@@ -264,7 +276,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'MAIN_Candidates_Jobs',
           path: '/mAINCandidatesJobs',
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'MAIN_Candidates_Jobs')
+              ? const NavBarPage(initialPage: 'MAIN_Candidates_Jobs')
               : MAINCandidatesJobsWidget(
                   isCompany: params.getParam('isCompany', ParamType.bool),
                 ),
@@ -273,10 +285,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'MAINSavedJobs',
           path: '/mAINSavedJobs',
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'MAINSavedJobs')
+              ? const NavBarPage(initialPage: 'MAINSavedJobs')
               : MAINSavedJobsWidget(
                   isCompany: params.getParam('isCompany', ParamType.bool),
                 ),
+        ),
+        FFRoute(
+          name: 'editCompanyProfile',
+          path: '/editCompanyProfile',
+          builder: (context, params) => const NavBarPage(
+            initialPage: '',
+            page: EditCompanyProfileWidget(),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],
@@ -472,13 +492,20 @@ class FFRoute {
                   key: state.pageKey,
                   child: child,
                   transitionDuration: transitionInfo.duration,
-                  transitionsBuilder: PageTransition(
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) =>
+                          PageTransition(
                     type: transitionInfo.transitionType,
                     duration: transitionInfo.duration,
                     reverseDuration: transitionInfo.duration,
                     alignment: transitionInfo.alignment,
                     child: child,
-                  ).transitionsBuilder,
+                  ).buildTransitions(
+                    context,
+                    animation,
+                    secondaryAnimation,
+                    child,
+                  ),
                 )
               : MaterialPage(key: state.pageKey, child: child);
         },
@@ -499,7 +526,7 @@ class TransitionInfo {
   final Duration duration;
   final Alignment? alignment;
 
-  static TransitionInfo appDefault() => TransitionInfo(hasTransition: false);
+  static TransitionInfo appDefault() => const TransitionInfo(hasTransition: false);
 }
 
 class RootPageContext {

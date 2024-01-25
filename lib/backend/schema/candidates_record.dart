@@ -6,13 +6,12 @@ import '/backend/schema/util/firestore_util.dart';
 import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
-import '/flutter_flow/flutter_flow_util.dart';
 
 class CandidatesRecord extends FirestoreRecord {
   CandidatesRecord._(
-    DocumentReference reference,
-    Map<String, dynamic> data,
-  ) : super(reference, data) {
+    super.reference,
+    super.data,
+  ) {
     _initializeFields();
   }
 
@@ -61,6 +60,11 @@ class CandidatesRecord extends FirestoreRecord {
   String get candidateVideo => _candidateVideo ?? '';
   bool hasCandidateVideo() => _candidateVideo != null;
 
+  // "user" field.
+  DocumentReference? _user;
+  DocumentReference? get user => _user;
+  bool hasUser() => _user != null;
+
   void _initializeFields() {
     _displayName = snapshotData['display_name'] as String?;
     _email = snapshotData['email'] as String?;
@@ -71,6 +75,7 @@ class CandidatesRecord extends FirestoreRecord {
     _phoneNumber = snapshotData['phone_number'] as String?;
     _expectedSalary = snapshotData['expectedSalary'] as String?;
     _candidateVideo = snapshotData['candidateVideo'] as String?;
+    _user = snapshotData['user'] as DocumentReference?;
   }
 
   static CollectionReference get collection =>
@@ -117,6 +122,7 @@ Map<String, dynamic> createCandidatesRecordData({
   String? phoneNumber,
   String? expectedSalary,
   String? candidateVideo,
+  DocumentReference? user,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -129,6 +135,7 @@ Map<String, dynamic> createCandidatesRecordData({
       'phone_number': phoneNumber,
       'expectedSalary': expectedSalary,
       'candidateVideo': candidateVideo,
+      'user': user,
     }.withoutNulls,
   );
 
@@ -148,7 +155,8 @@ class CandidatesRecordDocumentEquality implements Equality<CandidatesRecord> {
         e1?.experienceLevel == e2?.experienceLevel &&
         e1?.phoneNumber == e2?.phoneNumber &&
         e1?.expectedSalary == e2?.expectedSalary &&
-        e1?.candidateVideo == e2?.candidateVideo;
+        e1?.candidateVideo == e2?.candidateVideo &&
+        e1?.user == e2?.user;
   }
 
   @override
@@ -161,7 +169,8 @@ class CandidatesRecordDocumentEquality implements Equality<CandidatesRecord> {
         e?.experienceLevel,
         e?.phoneNumber,
         e?.expectedSalary,
-        e?.candidateVideo
+        e?.candidateVideo,
+        e?.user
       ]);
 
   @override

@@ -3,21 +3,17 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'work_exp_edit_model.dart';
 export 'work_exp_edit_model.dart';
 
 class WorkExpEditWidget extends StatefulWidget {
   const WorkExpEditWidget({
-    Key? key,
+    super.key,
     this.workExperience,
-  }) : super(key: key);
+  });
 
   final DocumentReference? workExperience;
 
@@ -44,6 +40,8 @@ class _WorkExpEditWidgetState extends State<WorkExpEditWidget> {
     _model.companyFocusNode ??= FocusNode();
 
     _model.textFieldFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -64,7 +62,7 @@ class _WorkExpEditWidgetState extends State<WorkExpEditWidget> {
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
-          return Center(
+          return const Center(
             child: SizedBox(
               width: 50.0,
               height: 50.0,
@@ -96,7 +94,7 @@ class _WorkExpEditWidgetState extends State<WorkExpEditWidget> {
               desktop: false,
             ),
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(10.0, 8.0, 10.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(10.0, 8.0, 10.0, 0.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -109,7 +107,7 @@ class _WorkExpEditWidgetState extends State<WorkExpEditWidget> {
                     color: FlutterFlowTheme.of(context).lineColor,
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                     child: Text(
                       'Work Experience',
                       style:
@@ -120,20 +118,20 @@ class _WorkExpEditWidgetState extends State<WorkExpEditWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(5.0, 4.0, 0.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(5.0, 4.0, 0.0, 0.0),
                     child: Text(
                       'Add Credentials below.',
                       style: FlutterFlowTheme.of(context).bodySmall,
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: TextFormField(
                             controller: _model.postitionTitleController ??=
@@ -150,55 +148,62 @@ class _WorkExpEditWidgetState extends State<WorkExpEditWidget> {
                                     fontFamily: 'Outfit',
                                     color: FlutterFlowTheme.of(context)
                                         .grayIcon400,
+                                    fontSize: 14.0,
                                   ),
-                              enabledBorder: UnderlineInputBorder(
+                              enabledBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0x00000000),
                                   width: 1.0,
                                 ),
-                                borderRadius: const BorderRadius.only(
+                                borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(4.0),
                                   topRight: Radius.circular(4.0),
                                 ),
                               ),
-                              focusedBorder: UnderlineInputBorder(
+                              focusedBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0x00000000),
                                   width: 1.0,
                                 ),
-                                borderRadius: const BorderRadius.only(
+                                borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(4.0),
                                   topRight: Radius.circular(4.0),
                                 ),
                               ),
-                              errorBorder: UnderlineInputBorder(
+                              errorBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0x00000000),
                                   width: 1.0,
                                 ),
-                                borderRadius: const BorderRadius.only(
+                                borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(4.0),
                                   topRight: Radius.circular(4.0),
                                 ),
                               ),
-                              focusedErrorBorder: UnderlineInputBorder(
+                              focusedErrorBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0x00000000),
                                   width: 1.0,
                                 ),
-                                borderRadius: const BorderRadius.only(
+                                borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(4.0),
                                   topRight: Radius.circular(4.0),
                                 ),
                               ),
                             ),
-                            style: FlutterFlowTheme.of(context).headlineSmall,
+                            style: FlutterFlowTheme.of(context)
+                                .headlineSmall
+                                .override(
+                                  fontFamily: 'Outfit',
+                                  fontSize: 14.0,
+                                ),
+                            maxLines: null,
                             validator: _model.postitionTitleControllerValidator
                                 .asValidator(context),
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: TextFormField(
                             controller: _model.companyController ??=
@@ -211,42 +216,42 @@ class _WorkExpEditWidgetState extends State<WorkExpEditWidget> {
                               labelText: 'Company',
                               labelStyle:
                                   FlutterFlowTheme.of(context).titleSmall,
-                              enabledBorder: UnderlineInputBorder(
+                              enabledBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0x00000000),
                                   width: 1.0,
                                 ),
-                                borderRadius: const BorderRadius.only(
+                                borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(4.0),
                                   topRight: Radius.circular(4.0),
                                 ),
                               ),
-                              focusedBorder: UnderlineInputBorder(
+                              focusedBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0x00000000),
                                   width: 1.0,
                                 ),
-                                borderRadius: const BorderRadius.only(
+                                borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(4.0),
                                   topRight: Radius.circular(4.0),
                                 ),
                               ),
-                              errorBorder: UnderlineInputBorder(
+                              errorBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0x00000000),
                                   width: 1.0,
                                 ),
-                                borderRadius: const BorderRadius.only(
+                                borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(4.0),
                                   topRight: Radius.circular(4.0),
                                 ),
                               ),
-                              focusedErrorBorder: UnderlineInputBorder(
+                              focusedErrorBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0x00000000),
                                   width: 1.0,
                                 ),
-                                borderRadius: const BorderRadius.only(
+                                borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(4.0),
                                   topRight: Radius.circular(4.0),
                                 ),
@@ -257,19 +262,15 @@ class _WorkExpEditWidgetState extends State<WorkExpEditWidget> {
                                 .asValidator(context),
                           ),
                         ),
-                        Divider(
-                          thickness: 1.0,
-                          color: FlutterFlowTheme.of(context).lineColor,
-                        ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: Row(
-                            mainAxisSize: MainAxisSize.max,
+                            mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 20.0, 0.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
@@ -277,7 +278,7 @@ class _WorkExpEditWidgetState extends State<WorkExpEditWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
-                                    final _datePicked1Date =
+                                    final datePicked1Date =
                                         await showDatePicker(
                                       context: context,
                                       initialDate: getCurrentTimestamp,
@@ -285,20 +286,20 @@ class _WorkExpEditWidgetState extends State<WorkExpEditWidget> {
                                       lastDate: DateTime(2050),
                                     );
 
-                                    if (_datePicked1Date != null) {
+                                    if (datePicked1Date != null) {
                                       safeSetState(() {
                                         _model.datePicked1 = DateTime(
-                                          _datePicked1Date.year,
-                                          _datePicked1Date.month,
-                                          _datePicked1Date.day,
+                                          datePicked1Date.year,
+                                          datePicked1Date.month,
+                                          datePicked1Date.day,
                                         );
                                       });
                                     }
                                   },
                                   child: Container(
                                     width:
-                                        MediaQuery.sizeOf(context).width * 0.48,
-                                    height: 50.0,
+                                        MediaQuery.sizeOf(context).width * 0.4,
+                                    height: 40.0,
                                     constraints: BoxConstraints(
                                       maxWidth:
                                           MediaQuery.sizeOf(context).width *
@@ -316,7 +317,7 @@ class _WorkExpEditWidgetState extends State<WorkExpEditWidget> {
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           16.0, 0.0, 0.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -343,7 +344,7 @@ class _WorkExpEditWidgetState extends State<WorkExpEditWidget> {
                                                         ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         3.0, 0.0, 0.0, 0.0),
                                                 child: Text(
@@ -363,7 +364,7 @@ class _WorkExpEditWidgetState extends State<WorkExpEditWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 16.0, 0.0),
                                             child: Icon(
                                               Icons.calendar_today_outlined,
@@ -385,19 +386,19 @@ class _WorkExpEditWidgetState extends State<WorkExpEditWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  final _datePicked2Date = await showDatePicker(
+                                  final datePicked2Date = await showDatePicker(
                                     context: context,
                                     initialDate: getCurrentTimestamp,
                                     firstDate: DateTime(1900),
                                     lastDate: DateTime(2050),
                                   );
 
-                                  if (_datePicked2Date != null) {
+                                  if (datePicked2Date != null) {
                                     safeSetState(() {
                                       _model.datePicked2 = DateTime(
-                                        _datePicked2Date.year,
-                                        _datePicked2Date.month,
-                                        _datePicked2Date.day,
+                                        datePicked2Date.year,
+                                        datePicked2Date.month,
+                                        datePicked2Date.day,
                                       );
                                     });
                                   }
@@ -421,7 +422,7 @@ class _WorkExpEditWidgetState extends State<WorkExpEditWidget> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         16.0, 0.0, 0.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -453,7 +454,7 @@ class _WorkExpEditWidgetState extends State<WorkExpEditWidget> {
                                               desktop: false,
                                             ))
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         3.0, 0.0, 0.0, 0.0),
                                                 child: Text(
@@ -473,7 +474,7 @@ class _WorkExpEditWidgetState extends State<WorkExpEditWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 16.0, 0.0),
                                           child: Icon(
                                             Icons.calendar_today_outlined,
@@ -491,7 +492,7 @@ class _WorkExpEditWidgetState extends State<WorkExpEditWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 15.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -509,48 +510,48 @@ class _WorkExpEditWidgetState extends State<WorkExpEditWidget> {
                                     labelText: 'What did you do here?',
                                     labelStyle:
                                         FlutterFlowTheme.of(context).titleSmall,
-                                    enabledBorder: UnderlineInputBorder(
+                                    enabledBorder: const UnderlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0x00000000),
                                         width: 1.0,
                                       ),
-                                      borderRadius: const BorderRadius.only(
+                                      borderRadius: BorderRadius.only(
                                         topLeft: Radius.circular(4.0),
                                         topRight: Radius.circular(4.0),
                                       ),
                                     ),
-                                    focusedBorder: UnderlineInputBorder(
+                                    focusedBorder: const UnderlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0x00000000),
                                         width: 1.0,
                                       ),
-                                      borderRadius: const BorderRadius.only(
+                                      borderRadius: BorderRadius.only(
                                         topLeft: Radius.circular(4.0),
                                         topRight: Radius.circular(4.0),
                                       ),
                                     ),
-                                    errorBorder: UnderlineInputBorder(
+                                    errorBorder: const UnderlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0x00000000),
                                         width: 1.0,
                                       ),
-                                      borderRadius: const BorderRadius.only(
+                                      borderRadius: BorderRadius.only(
                                         topLeft: Radius.circular(4.0),
                                         topRight: Radius.circular(4.0),
                                       ),
                                     ),
-                                    focusedErrorBorder: UnderlineInputBorder(
+                                    focusedErrorBorder: const UnderlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0x00000000),
                                         width: 1.0,
                                       ),
-                                      borderRadius: const BorderRadius.only(
+                                      borderRadius: BorderRadius.only(
                                         topLeft: Radius.circular(4.0),
                                         topRight: Radius.circular(4.0),
                                       ),
                                     ),
                                     contentPadding:
-                                        EdgeInsetsDirectional.fromSTEB(
+                                        const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 4.0, 0.0, 12.0),
                                   ),
                                   style:
@@ -564,30 +565,26 @@ class _WorkExpEditWidgetState extends State<WorkExpEditWidget> {
                             ],
                           ),
                         ),
-                        Divider(
-                          thickness: 1.0,
-                          color: FlutterFlowTheme.of(context).lineColor,
-                        ),
                         Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 12.0, 0.0, 24.0),
                               child: FFButtonWidget(
                                 onPressed: () async {
                                   await containerWorkHistoryRecord!.reference
                                       .update(createWorkHistoryRecordData(
                                     jobTitle:
-                                        containerWorkHistoryRecord?.jobTitle,
+                                        containerWorkHistoryRecord.jobTitle,
                                     companyName:
-                                        containerWorkHistoryRecord?.companyName,
+                                        containerWorkHistoryRecord.companyName,
                                     startDate: _model.datePicked1,
                                     endDate: _model.datePicked2,
                                     jobDescription: containerWorkHistoryRecord
-                                        ?.jobDescription,
+                                        .jobDescription,
                                     user: currentUserReference,
                                   ));
                                   context.pop();
@@ -596,11 +593,11 @@ class _WorkExpEditWidgetState extends State<WorkExpEditWidget> {
                                 options: FFButtonOptions(
                                   width: 270.0,
                                   height: 50.0,
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
-                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
-                                  color: Color(0xFF00015B),
+                                  color: const Color(0xFF00015B),
                                   textStyle: FlutterFlowTheme.of(context)
                                       .titleSmall
                                       .override(
@@ -609,7 +606,7 @@ class _WorkExpEditWidgetState extends State<WorkExpEditWidget> {
                                             .secondaryBackground,
                                       ),
                                   elevation: 2.0,
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     color: Colors.transparent,
                                     width: 1.0,
                                   ),

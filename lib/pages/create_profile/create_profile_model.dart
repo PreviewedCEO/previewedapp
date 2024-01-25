@@ -1,42 +1,69 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/flutter_flow/flutter_flow_drop_down.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'create_profile_widget.dart' show CreateProfileWidget;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class CreateProfileModel extends FlutterFlowModel<CreateProfileWidget> {
   ///  State fields for stateful widgets in this page.
 
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode1;
-  TextEditingController? textController1;
-  String? Function(BuildContext, String?)? textController1Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode2;
-  TextEditingController? textController2;
-  String? Function(BuildContext, String?)? textController2Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode3;
-  TextEditingController? textController3;
-  String? Function(BuildContext, String?)? textController3Validator;
+  final formKey = GlobalKey<FormState>();
+  bool isDataUploading = false;
+  FFUploadedFile uploadedLocalFile =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
+  String uploadedFileUrl = '';
+
+  // State field(s) for Name widget.
+  FocusNode? nameFocusNode;
+  TextEditingController? nameController;
+  String? Function(BuildContext, String?)? nameControllerValidator;
+  String? _nameControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    if (val.length < 2) {
+      return 'Minimum 2 characters required';
+    }
+
+    return null;
+  }
+
+  // State field(s) for Title widget.
+  FocusNode? titleFocusNode;
+  TextEditingController? titleController;
+  String? Function(BuildContext, String?)? titleControllerValidator;
+  // State field(s) for video widget.
+  FocusNode? videoFocusNode;
+  TextEditingController? videoController;
+  String? Function(BuildContext, String?)? videoControllerValidator;
+  String? _videoControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    return null;
+  }
+
   // State field(s) for DropDown widget.
   String? dropDownValue;
   FormFieldController<String>? dropDownValueController;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode4;
-  TextEditingController? textController4;
-  String? Function(BuildContext, String?)? textController4Validator;
+  // State field(s) for Skills widget.
+  FocusNode? skillsFocusNode;
+  TextEditingController? skillsController;
+  String? Function(BuildContext, String?)? skillsControllerValidator;
+  String? _skillsControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    if (val.length < 2) {
+      return 'Minimum 2 characters required';
+    }
+
+    return null;
+  }
+
   // State field(s) for salaryRange widget.
   double? salaryRangeValue;
   // Stores action output result for [Backend Call - Create Document] action in Button widget.
@@ -44,20 +71,26 @@ class CreateProfileModel extends FlutterFlowModel<CreateProfileWidget> {
 
   /// Initialization and disposal methods.
 
-  void initState(BuildContext context) {}
+  @override
+  void initState(BuildContext context) {
+    nameControllerValidator = _nameControllerValidator;
+    videoControllerValidator = _videoControllerValidator;
+    skillsControllerValidator = _skillsControllerValidator;
+  }
 
+  @override
   void dispose() {
-    textFieldFocusNode1?.dispose();
-    textController1?.dispose();
+    nameFocusNode?.dispose();
+    nameController?.dispose();
 
-    textFieldFocusNode2?.dispose();
-    textController2?.dispose();
+    titleFocusNode?.dispose();
+    titleController?.dispose();
 
-    textFieldFocusNode3?.dispose();
-    textController3?.dispose();
+    videoFocusNode?.dispose();
+    videoController?.dispose();
 
-    textFieldFocusNode4?.dispose();
-    textController4?.dispose();
+    skillsFocusNode?.dispose();
+    skillsController?.dispose();
   }
 
   /// Action blocks are added here.

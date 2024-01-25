@@ -1,22 +1,16 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'serialization_util.dart';
 import '../backend.dart';
-import '../../flutter_flow/flutter_flow_theme.dart';
 import '../../flutter_flow/flutter_flow_util.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
-import '../../index.dart';
-import '../../main.dart';
 
 final _handledMessageIds = <String?>{};
 
 class PushNotificationsHandler extends StatefulWidget {
-  const PushNotificationsHandler({Key? key, required this.child})
-      : super(key: key);
+  const PushNotificationsHandler({super.key, required this.child});
 
   final Widget child;
 
@@ -104,7 +98,7 @@ class ParameterData {
       );
 
   static Future<ParameterData> Function(Map<String, dynamic>) none() =>
-      (data) async => ParameterData();
+      (data) async => const ParameterData();
 }
 
 final parametersBuilderMap =
@@ -120,7 +114,6 @@ final parametersBuilderMap =
           'isCompany': getParameter<bool>(data, 'isCompany'),
         },
       ),
-  'SEARCH_Candidates': ParameterData.none(),
   'MAIN_MyProfile': ParameterData.none(),
   'MAIN_Chat': ParameterData.none(),
   'DETAILS_Chat': (data) async => ParameterData(
@@ -166,13 +159,13 @@ final parametersBuilderMap =
       ),
   'createJob': (data) async => ParameterData(
         allParams: {
-          'companyName': getParameter<DocumentReference>(data, 'companyName'),
+          'myCompany': getParameter<DocumentReference>(data, 'myCompany'),
         },
       ),
   'candidateDetails': (data) async => ParameterData(
         allParams: {
-          'candidateDetails':
-              getParameter<DocumentReference>(data, 'candidateDetails'),
+          'candidateInfo':
+              getParameter<DocumentReference>(data, 'candidateInfo'),
         },
       ),
   'JobPost_Details': (data) async => ParameterData(
@@ -188,7 +181,6 @@ final parametersBuilderMap =
               getParameter<DocumentReference>(data, 'companyDetails'),
         },
       ),
-  'HomePage_OLD': ParameterData.none(),
   'Login': (data) async => ParameterData(
         allParams: {
           'isCompany': getParameter<bool>(data, 'isCompany'),
@@ -204,6 +196,7 @@ final parametersBuilderMap =
           'isCompany': getParameter<bool>(data, 'isCompany'),
         },
       ),
+  'editCompanyProfile': ParameterData.none(),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

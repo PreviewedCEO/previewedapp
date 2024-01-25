@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:from_css_color/from_css_color.dart';
 import '/backend/algolia/serialization_util.dart';
 import '/backend/algolia/algolia_manager.dart';
 import 'package:collection/collection.dart';
@@ -13,9 +12,9 @@ import '/flutter_flow/flutter_flow_util.dart';
 
 class UsersRecord extends FirestoreRecord {
   UsersRecord._(
-    DocumentReference reference,
-    Map<String, dynamic> data,
-  ) : super(reference, data) {
+    super.reference,
+    super.data,
+  ) {
     _initializeFields();
   }
 
@@ -69,6 +68,16 @@ class UsersRecord extends FirestoreRecord {
   String get photoUrl => _photoUrl ?? '';
   bool hasPhotoUrl() => _photoUrl != null;
 
+  // "title" field.
+  String? _title;
+  String get title => _title ?? '';
+  bool hasTitle() => _title != null;
+
+  // "bio" field.
+  String? _bio;
+  String get bio => _bio ?? '';
+  bool hasBio() => _bio != null;
+
   void _initializeFields() {
     _displayName = snapshotData['display_name'] as String?;
     _email = snapshotData['email'] as String?;
@@ -80,6 +89,8 @@ class UsersRecord extends FirestoreRecord {
     _isCompany = snapshotData['isCompany'] as bool?;
     _candidates = snapshotData['candidates'] as DocumentReference?;
     _photoUrl = snapshotData['photo_url'] as String?;
+    _title = snapshotData['title'] as String?;
+    _bio = snapshotData['bio'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -127,6 +138,8 @@ class UsersRecord extends FirestoreRecord {
             false,
           ),
           'photo_url': snapshot.data['photo_url'],
+          'title': snapshot.data['title'],
+          'bio': snapshot.data['bio'],
         },
         UsersRecord.collection.doc(snapshot.objectID),
       );
@@ -173,6 +186,8 @@ Map<String, dynamic> createUsersRecordData({
   bool? isCompany,
   DocumentReference? candidates,
   String? photoUrl,
+  String? title,
+  String? bio,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -186,6 +201,8 @@ Map<String, dynamic> createUsersRecordData({
       'isCompany': isCompany,
       'candidates': candidates,
       'photo_url': photoUrl,
+      'title': title,
+      'bio': bio,
     }.withoutNulls,
   );
 
@@ -206,7 +223,9 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.company == e2?.company &&
         e1?.isCompany == e2?.isCompany &&
         e1?.candidates == e2?.candidates &&
-        e1?.photoUrl == e2?.photoUrl;
+        e1?.photoUrl == e2?.photoUrl &&
+        e1?.title == e2?.title &&
+        e1?.bio == e2?.bio;
   }
 
   @override
@@ -220,7 +239,9 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.company,
         e?.isCompany,
         e?.candidates,
-        e?.photoUrl
+        e?.photoUrl,
+        e?.title,
+        e?.bio
       ]);
 
   @override
