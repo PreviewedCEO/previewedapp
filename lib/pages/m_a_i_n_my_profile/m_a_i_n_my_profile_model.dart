@@ -17,12 +17,12 @@ class MAINMyProfileModel extends FlutterFlowModel<MAINMyProfileWidget> {
   FocusNode? companyFocusNode;
   TextEditingController? companyController;
   String? Function(BuildContext, String?)? companyControllerValidator;
+  // State field(s) for email widget.
+  FocusNode? emailFocusNode;
+  TextEditingController? emailController;
+  String? Function(BuildContext, String?)? emailControllerValidator;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode1;
-  TextEditingController? textController2;
-  String? Function(BuildContext, String?)? textController2Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode2;
   TextEditingController? textController3;
   String? Function(BuildContext, String?)? textController3Validator;
   // State field(s) for TabBar widget.
@@ -35,7 +35,7 @@ class MAINMyProfileModel extends FlutterFlowModel<MAINMyProfileWidget> {
   TextEditingController? nameController;
   String? Function(BuildContext, String?)? nameControllerValidator;
   // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode3;
+  FocusNode? textFieldFocusNode2;
   TextEditingController? textController5;
   String? Function(BuildContext, String?)? textController5Validator;
 
@@ -50,17 +50,17 @@ class MAINMyProfileModel extends FlutterFlowModel<MAINMyProfileWidget> {
     companyFocusNode?.dispose();
     companyController?.dispose();
 
-    textFieldFocusNode1?.dispose();
-    textController2?.dispose();
+    emailFocusNode?.dispose();
+    emailController?.dispose();
 
-    textFieldFocusNode2?.dispose();
+    textFieldFocusNode1?.dispose();
     textController3?.dispose();
 
     tabBarController2?.dispose();
     nameFocusNode?.dispose();
     nameController?.dispose();
 
-    textFieldFocusNode3?.dispose();
+    textFieldFocusNode2?.dispose();
     textController5?.dispose();
   }
 

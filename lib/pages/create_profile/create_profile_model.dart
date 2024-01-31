@@ -45,9 +45,6 @@ class CreateProfileModel extends FlutterFlowModel<CreateProfileWidget> {
     return null;
   }
 
-  // State field(s) for DropDown widget.
-  String? dropDownValue;
-  FormFieldController<String>? dropDownValueController;
   // State field(s) for Skills widget.
   FocusNode? skillsFocusNode;
   TextEditingController? skillsController;
@@ -64,6 +61,9 @@ class CreateProfileModel extends FlutterFlowModel<CreateProfileWidget> {
     return null;
   }
 
+  // State field(s) for DropDown widget.
+  String? dropDownValue;
+  FormFieldController<String>? dropDownValueController;
   // State field(s) for salaryRange widget.
   double? salaryRangeValue;
   // Stores action output result for [Backend Call - Create Document] action in Button widget.

@@ -22,11 +22,11 @@ class CreateJobModel extends FlutterFlowModel<CreateJobWidget> {
   FocusNode? preferredSkillsFocusNode;
   TextEditingController? preferredSkillsController;
   String? Function(BuildContext, String?)? preferredSkillsControllerValidator;
+  // State field(s) for salaryRange widget.
+  double? salaryRangeValue;
   // State field(s) for experienceLevel widget.
   String? experienceLevelValue;
   FormFieldController<String>? experienceLevelValueController;
-  // State field(s) for salaryRange widget.
-  double? salaryRangeValue;
   // State field(s) for PlacePicker widget.
   var placePickerValue = const FFPlace();
 

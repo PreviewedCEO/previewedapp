@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'work_exp_bottom_sheet_model.dart';
 export 'work_exp_bottom_sheet_model.dart';
@@ -17,7 +18,7 @@ class WorkExpBottomSheetWidget extends StatefulWidget {
   final DocumentReference? workExperience;
 
   @override
-  _WorkExpBottomSheetWidgetState createState() =>
+  State<WorkExpBottomSheetWidget> createState() =>
       _WorkExpBottomSheetWidgetState();
 }
 
@@ -81,8 +82,11 @@ class _WorkExpBottomSheetWidgetState extends State<WorkExpBottomSheetWidget> {
               child: Text(
                 'Work Experience',
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
-                      fontFamily: 'Outfit',
+                      fontFamily:
+                          FlutterFlowTheme.of(context).headlineMediumFamily,
                       fontWeight: FontWeight.w600,
+                      useGoogleFonts: GoogleFonts.asMap().containsKey(
+                          FlutterFlowTheme.of(context).headlineMediumFamily),
                     ),
               ),
             ),
@@ -110,8 +114,12 @@ class _WorkExpBottomSheetWidgetState extends State<WorkExpBottomSheetWidget> {
                         labelStyle: FlutterFlowTheme.of(context)
                             .headlineSmall
                             .override(
-                              fontFamily: 'Outfit',
+                              fontFamily: FlutterFlowTheme.of(context)
+                                  .headlineSmallFamily,
                               color: FlutterFlowTheme.of(context).grayIcon400,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context)
+                                      .headlineSmallFamily),
                             ),
                         enabledBorder: const UnderlineInputBorder(
                           borderSide: BorderSide(
@@ -156,9 +164,13 @@ class _WorkExpBottomSheetWidgetState extends State<WorkExpBottomSheetWidget> {
                       ),
                       style:
                           FlutterFlowTheme.of(context).headlineSmall.override(
-                                fontFamily: 'Outfit',
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .headlineSmallFamily,
                                 color: FlutterFlowTheme.of(context).darkText,
                                 fontWeight: FontWeight.w600,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .headlineSmallFamily),
                               ),
                       validator: _model.postitionTitleControllerValidator
                           .asValidator(context),
@@ -175,8 +187,12 @@ class _WorkExpBottomSheetWidgetState extends State<WorkExpBottomSheetWidget> {
                         labelStyle: FlutterFlowTheme.of(context)
                             .titleSmall
                             .override(
-                              fontFamily: 'Outfit',
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).titleSmallFamily,
                               color: FlutterFlowTheme.of(context).grayIcon400,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context)
+                                      .titleSmallFamily),
                             ),
                         enabledBorder: const UnderlineInputBorder(
                           borderSide: BorderSide(
@@ -220,9 +236,12 @@ class _WorkExpBottomSheetWidgetState extends State<WorkExpBottomSheetWidget> {
                         ),
                       ),
                       style: FlutterFlowTheme.of(context).titleSmall.override(
-                            fontFamily: 'Outfit',
+                            fontFamily:
+                                FlutterFlowTheme.of(context).titleSmallFamily,
                             color: FlutterFlowTheme.of(context).darkText,
                             fontWeight: FontWeight.w600,
+                            useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                FlutterFlowTheme.of(context).titleSmallFamily),
                           ),
                       validator: _model.companyControllerValidator
                           .asValidator(context),
@@ -300,10 +319,18 @@ class _WorkExpBottomSheetWidgetState extends State<WorkExpBottomSheetWidget> {
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
-                                                fontFamily: 'Outfit',
+                                                fontFamily:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMediumFamily,
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .grayIcon400,
+                                                useGoogleFonts: GoogleFonts
+                                                        .asMap()
+                                                    .containsKey(
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMediumFamily),
                                               ),
                                         ),
                                         Padding(
@@ -396,10 +423,18 @@ class _WorkExpBottomSheetWidgetState extends State<WorkExpBottomSheetWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Outfit',
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMediumFamily,
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .grayIcon400,
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily),
                                             ),
                                       ),
                                       Padding(
@@ -452,9 +487,14 @@ class _WorkExpBottomSheetWidgetState extends State<WorkExpBottomSheetWidget> {
                               labelStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
-                                    fontFamily: 'Outfit',
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .titleSmallFamily,
                                     color: FlutterFlowTheme.of(context)
                                         .grayIcon400,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .titleSmallFamily),
                                   ),
                               enabledBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(
@@ -500,8 +540,12 @@ class _WorkExpBottomSheetWidgetState extends State<WorkExpBottomSheetWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
-                                  fontFamily: 'Outfit',
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .titleSmallFamily,
                                   color: FlutterFlowTheme.of(context).darkText,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .titleSmallFamily),
                                 ),
                             maxLines: 4,
                             keyboardType: TextInputType.multiline,
@@ -551,8 +595,12 @@ class _WorkExpBottomSheetWidgetState extends State<WorkExpBottomSheetWidget> {
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
-                                  fontFamily: 'Outfit',
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .titleSmallFamily,
                                   color: Colors.white,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .titleSmallFamily),
                                 ),
                             elevation: 2.0,
                             borderSide: const BorderSide(

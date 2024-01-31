@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'work_exp_edit_model.dart';
 export 'work_exp_edit_model.dart';
@@ -18,7 +19,7 @@ class WorkExpEditWidget extends StatefulWidget {
   final DocumentReference? workExperience;
 
   @override
-  _WorkExpEditWidgetState createState() => _WorkExpEditWidgetState();
+  State<WorkExpEditWidget> createState() => _WorkExpEditWidgetState();
 }
 
 class _WorkExpEditWidgetState extends State<WorkExpEditWidget> {
@@ -112,8 +113,12 @@ class _WorkExpEditWidgetState extends State<WorkExpEditWidget> {
                       'Work Experience',
                       style:
                           FlutterFlowTheme.of(context).headlineMedium.override(
-                                fontFamily: 'Outfit',
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .headlineMediumFamily,
                                 fontWeight: FontWeight.w600,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .headlineMediumFamily),
                               ),
                     ),
                   ),
@@ -145,10 +150,15 @@ class _WorkExpEditWidgetState extends State<WorkExpEditWidget> {
                               labelStyle: FlutterFlowTheme.of(context)
                                   .headlineSmall
                                   .override(
-                                    fontFamily: 'Outfit',
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .headlineSmallFamily,
                                     color: FlutterFlowTheme.of(context)
                                         .grayIcon400,
                                     fontSize: 14.0,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .headlineSmallFamily),
                                   ),
                               enabledBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(
@@ -194,8 +204,12 @@ class _WorkExpEditWidgetState extends State<WorkExpEditWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .headlineSmall
                                 .override(
-                                  fontFamily: 'Outfit',
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .headlineSmallFamily,
                                   fontSize: 14.0,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .headlineSmallFamily),
                                 ),
                             maxLines: null,
                             validator: _model.postitionTitleControllerValidator
@@ -337,10 +351,19 @@ class _WorkExpEditWidgetState extends State<WorkExpEditWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium
                                                         .override(
-                                                          fontFamily: 'Outfit',
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .grayIcon400,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily),
                                                         ),
                                               ),
                                               Padding(
@@ -442,11 +465,20 @@ class _WorkExpEditWidgetState extends State<WorkExpEditWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily: 'Outfit',
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMediumFamily,
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .grayIcon400,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily),
                                                       ),
                                             ),
                                             if (responsiveVisibility(
@@ -601,9 +633,14 @@ class _WorkExpEditWidgetState extends State<WorkExpEditWidget> {
                                   textStyle: FlutterFlowTheme.of(context)
                                       .titleSmall
                                       .override(
-                                        fontFamily: 'Outfit',
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .titleSmallFamily,
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryBackground,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmallFamily),
                                       ),
                                   elevation: 2.0,
                                   borderSide: const BorderSide(

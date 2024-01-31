@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'login_model.dart';
 export 'login_model.dart';
@@ -15,12 +16,12 @@ class LoginWidget extends StatefulWidget {
   const LoginWidget({
     super.key,
     bool? isCompany,
-  })  : isCompany = isCompany ?? true;
+  }) : isCompany = isCompany ?? true;
 
   final bool isCompany;
 
   @override
-  _LoginWidgetState createState() => _LoginWidgetState();
+  State<LoginWidget> createState() => _LoginWidgetState();
 }
 
 class _LoginWidgetState extends State<LoginWidget>
@@ -159,15 +160,20 @@ class _LoginWidgetState extends State<LoginWidget>
                       alignment: const Alignment(0.0, 0),
                       child: TabBar(
                         isScrollable: true,
-                        labelColor: FlutterFlowTheme.of(context).primaryText,
+                        labelColor: FlutterFlowTheme.of(context).primary,
                         unselectedLabelColor:
-                            FlutterFlowTheme.of(context).secondaryText,
+                            FlutterFlowTheme.of(context).primary,
                         labelPadding: const EdgeInsetsDirectional.fromSTEB(
                             24.0, 0.0, 24.0, 0.0),
-                        labelStyle: FlutterFlowTheme.of(context).titleMedium,
+                        labelStyle:
+                            FlutterFlowTheme.of(context).titleMedium.override(
+                                  fontFamily: 'Epilogue',
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .titleMediumFamily),
+                                ),
                         unselectedLabelStyle: const TextStyle(),
-                        indicatorColor:
-                            FlutterFlowTheme.of(context).customColor2,
+                        indicatorColor: FlutterFlowTheme.of(context).primary,
                         indicatorWeight: 2.0,
                         tabs: const [
                           Tab(
@@ -203,15 +209,27 @@ class _LoginWidgetState extends State<LoginWidget>
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .bodySmall
                                           .override(
-                                            fontFamily: 'Outfit',
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodySmallFamily,
                                             fontSize: 12.0,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodySmallFamily),
                                           ),
                                       hintText: 'Enter your email...',
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .bodySmall
                                           .override(
-                                            fontFamily: 'Outfit',
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodySmallFamily,
                                             fontSize: 12.0,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodySmallFamily),
                                           ),
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
@@ -401,8 +419,8 @@ class _LoginWidgetState extends State<LoginWidget>
                                         },
                                         text: 'Sign In',
                                         options: FFButtonOptions(
-                                          width: 160.0,
-                                          height: 50.0,
+                                          width: 250.0,
+                                          height: 60.0,
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
@@ -410,15 +428,21 @@ class _LoginWidgetState extends State<LoginWidget>
                                               const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
-                                              .customColor2,
+                                              .primary,
                                           textStyle: FlutterFlowTheme.of(
                                                   context)
                                               .titleMedium
                                               .override(
-                                                fontFamily: 'Outfit',
+                                                fontFamily: 'Epilogue',
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .background,
+                                                        .secondary,
+                                                useGoogleFonts: GoogleFonts
+                                                        .asMap()
+                                                    .containsKey(
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .titleMediumFamily),
                                               ),
                                           elevation: 3.0,
                                           borderSide: const BorderSide(
@@ -448,11 +472,21 @@ class _LoginWidgetState extends State<LoginWidget>
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     labelText: 'Email Address',
-                                    labelStyle:
-                                        FlutterFlowTheme.of(context).bodySmall,
                                     hintText: 'Enter your email...',
-                                    hintStyle:
-                                        FlutterFlowTheme.of(context).bodySmall,
+                                    hintStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          fontWeight: FontWeight.w500,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMediumFamily),
+                                        ),
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                         color: FlutterFlowTheme.of(context)
@@ -507,11 +541,21 @@ class _LoginWidgetState extends State<LoginWidget>
                                   obscureText: !_model.passwordCreateVisibility,
                                   decoration: InputDecoration(
                                     labelText: 'Password',
-                                    labelStyle:
-                                        FlutterFlowTheme.of(context).bodySmall,
                                     hintText: 'Enter your password...',
-                                    hintStyle:
-                                        FlutterFlowTheme.of(context).bodySmall,
+                                    hintStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          fontWeight: FontWeight.w500,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMediumFamily),
+                                        ),
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                         color: FlutterFlowTheme.of(context)
@@ -565,8 +609,19 @@ class _LoginWidgetState extends State<LoginWidget>
                                       ),
                                     ),
                                   ),
-                                  style:
-                                      FlutterFlowTheme.of(context).bodyMedium,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyLarge
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .bodyLargeFamily,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        fontWeight: FontWeight.w500,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyLargeFamily),
+                                      ),
                                   validator: _model
                                       .passwordCreateControllerValidator
                                       .asValidator(context),
@@ -610,15 +665,18 @@ class _LoginWidgetState extends State<LoginWidget>
                                         0.0, 0.0, 0.0, 0.0),
                                     iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
-                                    color: FlutterFlowTheme.of(context)
-                                        .customColor2,
+                                    color: FlutterFlowTheme.of(context).primary,
                                     textStyle: FlutterFlowTheme.of(context)
                                         .titleMedium
                                         .override(
-                                          fontFamily: 'Outfit',
+                                          fontFamily: 'Epilogue',
                                           color: FlutterFlowTheme.of(context)
-                                              .background,
+                                              .secondary,
                                           fontSize: 20.0,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleMediumFamily),
                                         ),
                                     elevation: 3.0,
                                     borderSide: const BorderSide(
@@ -667,14 +725,17 @@ class _LoginWidgetState extends State<LoginWidget>
                                         0.0, 0.0, 0.0, 0.0),
                                     iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
-                                    color: FlutterFlowTheme.of(context)
-                                        .customColor2,
+                                    color: FlutterFlowTheme.of(context).primary,
                                     textStyle: FlutterFlowTheme.of(context)
                                         .titleMedium
                                         .override(
-                                          fontFamily: 'Outfit',
+                                          fontFamily: 'Epilogue',
                                           color: FlutterFlowTheme.of(context)
-                                              .background,
+                                              .secondary,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleMediumFamily),
                                         ),
                                     elevation: 3.0,
                                     borderSide: const BorderSide(

@@ -9,6 +9,7 @@ import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'company_profile_model.dart';
 export 'company_profile_model.dart';
@@ -17,7 +18,7 @@ class CompanyProfileWidget extends StatefulWidget {
   const CompanyProfileWidget({super.key});
 
   @override
-  _CompanyProfileWidgetState createState() => _CompanyProfileWidgetState();
+  State<CompanyProfileWidget> createState() => _CompanyProfileWidgetState();
 }
 
 class _CompanyProfileWidgetState extends State<CompanyProfileWidget> {
@@ -83,7 +84,7 @@ class _CompanyProfileWidgetState extends State<CompanyProfileWidget> {
         title: Text(
           'Company Profile',
           textAlign: TextAlign.start,
-          style: FlutterFlowTheme.of(context).titleMedium,
+          style: FlutterFlowTheme.of(context).titleLarge,
         ),
         actions: const [],
         centerTitle: false,
@@ -215,9 +216,14 @@ class _CompanyProfileWidgetState extends State<CompanyProfileWidget> {
                                 labelStyle: FlutterFlowTheme.of(context)
                                     .headlineSmall
                                     .override(
-                                      fontFamily: 'Outfit',
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .headlineSmallFamily,
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryText,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .headlineSmallFamily),
                                     ),
                                 enabledBorder: const UnderlineInputBorder(
                                   borderSide: BorderSide(
@@ -290,9 +296,14 @@ class _CompanyProfileWidgetState extends State<CompanyProfileWidget> {
                               labelStyle: FlutterFlowTheme.of(context)
                                   .headlineSmall
                                   .override(
-                                    fontFamily: 'Outfit',
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .headlineSmallFamily,
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryText,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .headlineSmallFamily),
                                   ),
                               enabledBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(
@@ -359,9 +370,14 @@ class _CompanyProfileWidgetState extends State<CompanyProfileWidget> {
                               labelStyle: FlutterFlowTheme.of(context)
                                   .headlineSmall
                                   .override(
-                                    fontFamily: 'Outfit',
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .headlineSmallFamily,
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryText,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .headlineSmallFamily),
                                   ),
                               enabledBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(
@@ -427,16 +443,9 @@ class _CompanyProfileWidgetState extends State<CompanyProfileWidget> {
                             controller: _model.descriptionController,
                             focusNode: _model.descriptionFocusNode,
                             obscureText: false,
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               labelText: 'A little bit about your company',
-                              labelStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Outfit',
-                                    color: FlutterFlowTheme.of(context)
-                                        .grayIcon400,
-                                  ),
-                              enabledBorder: const UnderlineInputBorder(
+                              enabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0x00000000),
                                   width: 1.0,
@@ -446,7 +455,7 @@ class _CompanyProfileWidgetState extends State<CompanyProfileWidget> {
                                   topRight: Radius.circular(4.0),
                                 ),
                               ),
-                              focusedBorder: const UnderlineInputBorder(
+                              focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0x00000000),
                                   width: 1.0,
@@ -456,7 +465,7 @@ class _CompanyProfileWidgetState extends State<CompanyProfileWidget> {
                                   topRight: Radius.circular(4.0),
                                 ),
                               ),
-                              errorBorder: const UnderlineInputBorder(
+                              errorBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0x00000000),
                                   width: 1.0,
@@ -466,7 +475,7 @@ class _CompanyProfileWidgetState extends State<CompanyProfileWidget> {
                                   topRight: Radius.circular(4.0),
                                 ),
                               ),
-                              focusedErrorBorder: const UnderlineInputBorder(
+                              focusedErrorBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0x00000000),
                                   width: 1.0,
@@ -529,9 +538,13 @@ class _CompanyProfileWidgetState extends State<CompanyProfileWidget> {
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
-                                    fontFamily: 'Outfit',
-                                    color: FlutterFlowTheme.of(context)
-                                        .grayIcon400,
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .titleSmallFamily,
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .titleSmallFamily),
                                   ),
                               icon: Icon(
                                 Icons.keyboard_arrow_down_rounded,
@@ -575,9 +588,14 @@ class _CompanyProfileWidgetState extends State<CompanyProfileWidget> {
                               labelStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
-                                    fontFamily: 'Outfit',
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .titleSmallFamily,
                                     color: FlutterFlowTheme.of(context)
                                         .grayIcon400,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .titleSmallFamily),
                                   ),
                               enabledBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(
@@ -620,12 +638,7 @@ class _CompanyProfileWidgetState extends State<CompanyProfileWidget> {
                                 ),
                               ),
                             ),
-                            style: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Outfit',
-                                  color: FlutterFlowTheme.of(context).darkText,
-                                ),
+                            style: FlutterFlowTheme.of(context).titleMedium,
                             validator: _model.locationControllerValidator
                                 .asValidator(context),
                           ),
@@ -714,26 +727,31 @@ class _CompanyProfileWidgetState extends State<CompanyProfileWidget> {
                               },
                               text: 'Continue',
                               options: FFButtonOptions(
-                                width: 130.0,
-                                height: 30.0,
+                                width: 150.0,
+                                height: 50.0,
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
-                                color: const Color(0xFF00015B),
+                                color: FlutterFlowTheme.of(context).primary,
                                 textStyle: FlutterFlowTheme.of(context)
-                                    .bodyMedium
+                                    .titleMedium
                                     .override(
-                                      fontFamily: 'Outfit',
-                                      color:
-                                          FlutterFlowTheme.of(context).tertiary,
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .titleMediumFamily,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondary,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .titleMediumFamily),
                                     ),
-                                elevation: 2.0,
+                                elevation: 1.0,
                                 borderSide: const BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),
-                                borderRadius: BorderRadius.circular(122.0),
+                                borderRadius: BorderRadius.circular(60.0),
                               ),
                             ),
                           ),

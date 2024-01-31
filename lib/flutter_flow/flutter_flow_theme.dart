@@ -8,7 +8,15 @@ import 'package:shared_preferences/shared_preferences.dart';
 const kThemeModeKey = '__theme_mode__';
 SharedPreferences? _prefs;
 
+enum DeviceSize {
+  mobile,
+  tablet,
+  desktop,
+}
+
 abstract class FlutterFlowTheme {
+  static DeviceSize deviceSize = DeviceSize.mobile;
+
   static Future initialize() async =>
       _prefs = await SharedPreferences.getInstance();
   static ThemeMode get themeMode {
@@ -25,6 +33,7 @@ abstract class FlutterFlowTheme {
       : _prefs?.setBool(kThemeModeKey, mode == ThemeMode.dark);
 
   static FlutterFlowTheme of(BuildContext context) {
+    deviceSize = getDeviceSize(context);
     return Theme.of(context).brightness == Brightness.dark
         ? DarkModeTheme()
         : LightModeTheme();
@@ -126,7 +135,22 @@ abstract class FlutterFlowTheme {
   String get bodySmallFamily => typography.bodySmallFamily;
   TextStyle get bodySmall => typography.bodySmall;
 
-  Typography get typography => ThemeTypography(this);
+  Typography get typography => {
+        DeviceSize.mobile: MobileTypography(this),
+        DeviceSize.tablet: TabletTypography(this),
+        DeviceSize.desktop: DesktopTypography(this),
+      }[deviceSize]!;
+}
+
+DeviceSize getDeviceSize(BuildContext context) {
+  final width = MediaQuery.sizeOf(context).width;
+  if (width < 479) {
+    return DeviceSize.mobile;
+  } else if (width < 991) {
+    return DeviceSize.tablet;
+  } else {
+    return DeviceSize.desktop;
+  }
 }
 
 class LightModeTheme extends FlutterFlowTheme {
@@ -137,12 +161,12 @@ class LightModeTheme extends FlutterFlowTheme {
   @Deprecated('Use tertiary instead')
   Color get tertiaryColor => tertiary;
 
-  late Color primary = const Color(0xFFEE8B60);
-  late Color secondary = const Color(0xFF39D2C0);
+  late Color primary = const Color(0xFF004AAD);
+  late Color secondary = const Color(0xFFFFDE59);
   late Color tertiary = const Color(0xFFFFFFFF);
   late Color alternate = const Color(0xFFC3724C);
-  late Color primaryText = const Color(0xFF090F13);
-  late Color secondaryText = const Color(0xFF57636C);
+  late Color primaryText = const Color(0xFF004AAD);
+  late Color secondaryText = const Color(0xFF004AAD);
   late Color primaryBackground = const Color(0xFFF1F4F8);
   late Color secondaryBackground = const Color(0xFFFFFFFF);
   late Color accent1 = const Color(0xFF616161);
@@ -200,112 +224,336 @@ abstract class Typography {
   TextStyle get bodySmall;
 }
 
-class ThemeTypography extends Typography {
-  ThemeTypography(this.theme);
+class MobileTypography extends Typography {
+  MobileTypography(this.theme);
 
   final FlutterFlowTheme theme;
 
-  String get displayLargeFamily => 'Poppins';
+  String get displayLargeFamily => 'Epilogue';
   TextStyle get displayLarge => GoogleFonts.getFont(
-        'Poppins',
+        'Epilogue',
+        color: theme.primary,
+        fontWeight: FontWeight.normal,
+        fontSize: 57.0,
+      );
+  String get displayMediumFamily => 'Epilogue';
+  TextStyle get displayMedium => GoogleFonts.getFont(
+        'Epilogue',
+        color: theme.primary,
+        fontWeight: FontWeight.normal,
+        fontSize: 45.0,
+      );
+  String get displaySmallFamily => 'Epilogue';
+  TextStyle get displaySmall => GoogleFonts.getFont(
+        'Epilogue',
+        color: theme.primary,
+        fontWeight: FontWeight.w500,
+        fontSize: 32.0,
+      );
+  String get headlineLargeFamily => 'Epilogue';
+  TextStyle get headlineLarge => GoogleFonts.getFont(
+        'Epilogue',
+        color: theme.primary,
+        fontWeight: FontWeight.normal,
+        fontSize: 32.0,
+      );
+  String get headlineMediumFamily => 'Epilogue';
+  TextStyle get headlineMedium => GoogleFonts.getFont(
+        'Epilogue',
+        color: theme.primary,
+        fontWeight: FontWeight.w500,
+        fontSize: 26.0,
+      );
+  String get headlineSmallFamily => 'Epilogue';
+  TextStyle get headlineSmall => GoogleFonts.getFont(
+        'Epilogue',
+        color: theme.primary,
+        fontWeight: FontWeight.w500,
+        fontSize: 24.0,
+      );
+  String get titleLargeFamily => 'Epilogue';
+  TextStyle get titleLarge => GoogleFonts.getFont(
+        'Epilogue',
+        color: theme.primary,
+        fontWeight: FontWeight.w500,
+        fontSize: 22.0,
+      );
+  String get titleMediumFamily => 'Epilogue';
+  TextStyle get titleMedium => GoogleFonts.getFont(
+        'Epilogue',
+        color: theme.primary,
+        fontWeight: FontWeight.w500,
+        fontSize: 20.0,
+      );
+  String get titleSmallFamily => 'Epilogue';
+  TextStyle get titleSmall => GoogleFonts.getFont(
+        'Epilogue',
+        color: theme.primary,
+        fontWeight: FontWeight.normal,
+        fontSize: 14.0,
+      );
+  String get labelLargeFamily => 'Epilogue';
+  TextStyle get labelLarge => GoogleFonts.getFont(
+        'Epilogue',
+        color: theme.primary,
+        fontWeight: FontWeight.w500,
+        fontSize: 14.0,
+      );
+  String get labelMediumFamily => 'Epilogue';
+  TextStyle get labelMedium => GoogleFonts.getFont(
+        'Epilogue',
+        color: theme.primary,
+        fontWeight: FontWeight.w500,
+        fontSize: 12.0,
+      );
+  String get labelSmallFamily => 'Epilogue';
+  TextStyle get labelSmall => GoogleFonts.getFont(
+        'Epilogue',
+        color: theme.primary,
+        fontWeight: FontWeight.w500,
+        fontSize: 11.0,
+      );
+  String get bodyLargeFamily => 'Epilogue';
+  TextStyle get bodyLarge => GoogleFonts.getFont(
+        'Epilogue',
+        color: theme.primary,
+        fontWeight: FontWeight.normal,
+        fontSize: 16.0,
+      );
+  String get bodyMediumFamily => 'Epilogue';
+  TextStyle get bodyMedium => GoogleFonts.getFont(
+        'Epilogue',
+        color: theme.primary,
+        fontWeight: FontWeight.normal,
+        fontSize: 14.0,
+      );
+  String get bodySmallFamily => 'Epilogue';
+  TextStyle get bodySmall => GoogleFonts.getFont(
+        'Epilogue',
+        color: theme.primary,
+        fontWeight: FontWeight.normal,
+        fontSize: 12.0,
+      );
+}
+
+class TabletTypography extends Typography {
+  TabletTypography(this.theme);
+
+  final FlutterFlowTheme theme;
+
+  String get displayLargeFamily => 'Epilogue';
+  TextStyle get displayLarge => GoogleFonts.getFont(
+        'Epilogue',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 57.0,
       );
-  String get displayMediumFamily => 'Poppins';
+  String get displayMediumFamily => 'Epilogue';
   TextStyle get displayMedium => GoogleFonts.getFont(
-        'Poppins',
+        'Epilogue',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 45.0,
       );
-  String get displaySmallFamily => 'Outfit';
+  String get displaySmallFamily => 'Epilogue';
   TextStyle get displaySmall => GoogleFonts.getFont(
-        'Outfit',
+        'Epilogue',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 32.0,
       );
-  String get headlineLargeFamily => 'Poppins';
+  String get headlineLargeFamily => 'Epilogue';
   TextStyle get headlineLarge => GoogleFonts.getFont(
-        'Poppins',
+        'Epilogue',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 32.0,
       );
-  String get headlineMediumFamily => 'Outfit';
+  String get headlineMediumFamily => 'Epilogue';
   TextStyle get headlineMedium => GoogleFonts.getFont(
-        'Outfit',
+        'Epilogue',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 26.0,
       );
-  String get headlineSmallFamily => 'Outfit';
+  String get headlineSmallFamily => 'Epilogue';
   TextStyle get headlineSmall => GoogleFonts.getFont(
-        'Outfit',
+        'Epilogue',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 24.0,
       );
-  String get titleLargeFamily => 'Poppins';
+  String get titleLargeFamily => 'Epilogue';
   TextStyle get titleLarge => GoogleFonts.getFont(
-        'Poppins',
+        'Epilogue',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 22.0,
       );
-  String get titleMediumFamily => 'Outfit';
+  String get titleMediumFamily => 'Epilogue';
   TextStyle get titleMedium => GoogleFonts.getFont(
-        'Outfit',
+        'Epilogue',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 20.0,
       );
-  String get titleSmallFamily => 'Outfit';
+  String get titleSmallFamily => 'Epilogue';
   TextStyle get titleSmall => GoogleFonts.getFont(
-        'Outfit',
+        'Epilogue',
         color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 14.0,
       );
-  String get labelLargeFamily => 'Poppins';
+  String get labelLargeFamily => 'Epilogue';
   TextStyle get labelLarge => GoogleFonts.getFont(
-        'Poppins',
+        'Epilogue',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 14.0,
       );
-  String get labelMediumFamily => 'Poppins';
+  String get labelMediumFamily => 'Epilogue';
   TextStyle get labelMedium => GoogleFonts.getFont(
-        'Poppins',
+        'Epilogue',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 12.0,
       );
-  String get labelSmallFamily => 'Poppins';
+  String get labelSmallFamily => 'Epilogue';
   TextStyle get labelSmall => GoogleFonts.getFont(
-        'Poppins',
+        'Epilogue',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 11.0,
       );
-  String get bodyLargeFamily => 'Poppins';
+  String get bodyLargeFamily => 'Epilogue';
   TextStyle get bodyLarge => GoogleFonts.getFont(
-        'Poppins',
+        'Epilogue',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 16.0,
       );
-  String get bodyMediumFamily => 'Outfit';
+  String get bodyMediumFamily => 'Epilogue';
   TextStyle get bodyMedium => GoogleFonts.getFont(
-        'Outfit',
+        'Epilogue',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 14.0,
       );
-  String get bodySmallFamily => 'Outfit';
+  String get bodySmallFamily => 'Epilogue';
   TextStyle get bodySmall => GoogleFonts.getFont(
-        'Outfit',
+        'Epilogue',
+        color: theme.secondaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 12.0,
+      );
+}
+
+class DesktopTypography extends Typography {
+  DesktopTypography(this.theme);
+
+  final FlutterFlowTheme theme;
+
+  String get displayLargeFamily => 'Epilogue';
+  TextStyle get displayLarge => GoogleFonts.getFont(
+        'Epilogue',
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 57.0,
+      );
+  String get displayMediumFamily => 'Epilogue';
+  TextStyle get displayMedium => GoogleFonts.getFont(
+        'Epilogue',
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 45.0,
+      );
+  String get displaySmallFamily => 'Epilogue';
+  TextStyle get displaySmall => GoogleFonts.getFont(
+        'Epilogue',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 32.0,
+      );
+  String get headlineLargeFamily => 'Epilogue';
+  TextStyle get headlineLarge => GoogleFonts.getFont(
+        'Epilogue',
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 32.0,
+      );
+  String get headlineMediumFamily => 'Epilogue';
+  TextStyle get headlineMedium => GoogleFonts.getFont(
+        'Epilogue',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 26.0,
+      );
+  String get headlineSmallFamily => 'Epilogue';
+  TextStyle get headlineSmall => GoogleFonts.getFont(
+        'Epilogue',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 24.0,
+      );
+  String get titleLargeFamily => 'Epilogue';
+  TextStyle get titleLarge => GoogleFonts.getFont(
+        'Epilogue',
+        color: theme.primary,
+        fontWeight: FontWeight.w500,
+        fontSize: 22.0,
+      );
+  String get titleMediumFamily => 'Epilogue';
+  TextStyle get titleMedium => GoogleFonts.getFont(
+        'Epilogue',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 20.0,
+      );
+  String get titleSmallFamily => 'Epilogue';
+  TextStyle get titleSmall => GoogleFonts.getFont(
+        'Epilogue',
+        color: theme.secondaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 14.0,
+      );
+  String get labelLargeFamily => 'Epilogue';
+  TextStyle get labelLarge => GoogleFonts.getFont(
+        'Epilogue',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 14.0,
+      );
+  String get labelMediumFamily => 'Epilogue';
+  TextStyle get labelMedium => GoogleFonts.getFont(
+        'Epilogue',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 12.0,
+      );
+  String get labelSmallFamily => 'Epilogue';
+  TextStyle get labelSmall => GoogleFonts.getFont(
+        'Epilogue',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 11.0,
+      );
+  String get bodyLargeFamily => 'Epilogue';
+  TextStyle get bodyLarge => GoogleFonts.getFont(
+        'Epilogue',
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 16.0,
+      );
+  String get bodyMediumFamily => 'Epilogue';
+  TextStyle get bodyMedium => GoogleFonts.getFont(
+        'Epilogue',
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 14.0,
+      );
+  String get bodySmallFamily => 'Epilogue';
+  TextStyle get bodySmall => GoogleFonts.getFont(
+        'Epilogue',
         color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 12.0,
@@ -320,12 +568,12 @@ class DarkModeTheme extends FlutterFlowTheme {
   @Deprecated('Use tertiary instead')
   Color get tertiaryColor => tertiary;
 
-  late Color primary = const Color(0xFFEE8B60);
-  late Color secondary = const Color(0xFF39D2C0);
+  late Color primary = const Color(0xFFFFDE59);
+  late Color secondary = const Color(0xFF004AAD);
   late Color tertiary = const Color(0xFFFFFFFF);
   late Color alternate = const Color(0xFFC3724C);
-  late Color primaryText = const Color(0xFFFFFFFF);
-  late Color secondaryText = const Color(0xFFABB3BA);
+  late Color primaryText = const Color(0xFFFFDE59);
+  late Color secondaryText = const Color(0xFFFFDE59);
   late Color primaryBackground = const Color(0xFF1D2429);
   late Color secondaryBackground = const Color(0xFF090F13);
   late Color accent1 = const Color(0xFFEEEEEE);

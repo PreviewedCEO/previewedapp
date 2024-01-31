@@ -1,28 +1,23 @@
-import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 's_e_a_r_c_h_jobs_widget.dart' show SEARCHJobsWidget;
 import 'package:flutter/material.dart';
+import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 
 class SEARCHJobsModel extends FlutterFlowModel<SEARCHJobsWidget> {
   ///  State fields for stateful widgets in this page.
 
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode;
-  TextEditingController? textController;
-  String? Function(BuildContext, String?)? textControllerValidator;
-  // Algolia Search Results from action on IconButton
-  List<JobPostsRecord>? algoliaSearchResults = [];
+  // State field(s) for SwipeableStack widget.
+  late CardSwiperController swipeableStackController;
 
   /// Initialization and disposal methods.
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    swipeableStackController = CardSwiperController();
+  }
 
   @override
-  void dispose() {
-    textFieldFocusNode?.dispose();
-    textController?.dispose();
-  }
+  void dispose() {}
 
   /// Action blocks are added here.
 

@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_youtube_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'job_post_applied_model.dart';
@@ -22,7 +23,7 @@ class JobPostAppliedWidget extends StatefulWidget {
   final DocumentReference? jobPostDetails;
 
   @override
-  _JobPostAppliedWidgetState createState() => _JobPostAppliedWidgetState();
+  State<JobPostAppliedWidget> createState() => _JobPostAppliedWidgetState();
 }
 
 class _JobPostAppliedWidgetState extends State<JobPostAppliedWidget> {
@@ -82,49 +83,39 @@ class _JobPostAppliedWidgetState extends State<JobPostAppliedWidget> {
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-            body: SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Stack(
-                        children: [
-                          const Align(
-                            alignment: AlignmentDirectional(0.0, 2.58),
-                            child: FlutterFlowYoutubePlayer(
-                              url:
-                                  'https://youtu.be/8O9FCMlOl7s?si=UC5FCsNBW-0OhEmz',
-                              autoPlay: false,
-                              looping: true,
-                              mute: false,
-                              showControls: true,
-                              showFullScreen: true,
-                              strictRelatedVideos: false,
+            body: SafeArea(
+              top: true,
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Stack(
+                          children: [
+                            const Align(
+                              alignment: AlignmentDirectional(0.0, 2.58),
+                              child: FlutterFlowYoutubePlayer(
+                                url:
+                                    'https://youtu.be/8O9FCMlOl7s?si=UC5FCsNBW-0OhEmz',
+                                autoPlay: false,
+                                looping: true,
+                                mute: false,
+                                showControls: true,
+                                showFullScreen: true,
+                                strictRelatedVideos: false,
+                              ),
                             ),
-                          ),
-                          Align(
-                            alignment: const AlignmentDirectional(-0.8, 1.0),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 175.0, 0.0, 0.0),
-                              child: Material(
-                                color: Colors.transparent,
-                                elevation: 3.0,
-                                shape: const RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(10.0),
-                                    bottomRight: Radius.circular(10.0),
-                                    topLeft: Radius.circular(10.0),
-                                    topRight: Radius.circular(10.0),
-                                  ),
-                                ),
-                                child: Container(
-                                  width: 60.0,
-                                  height: 60.0,
-                                  decoration: const BoxDecoration(
-                                    color: Color(0xFFEEEEEE),
+                            Align(
+                              alignment: const AlignmentDirectional(-0.8, 1.0),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 175.0, 0.0, 0.0),
+                                child: Material(
+                                  color: Colors.transparent,
+                                  elevation: 3.0,
+                                  shape: const RoundedRectangleBorder(
                                     borderRadius: BorderRadius.only(
                                       bottomLeft: Radius.circular(10.0),
                                       bottomRight: Radius.circular(10.0),
@@ -132,286 +123,418 @@ class _JobPostAppliedWidgetState extends State<JobPostAppliedWidget> {
                                       topRight: Radius.circular(10.0),
                                     ),
                                   ),
-                                  child: Align(
-                                    alignment:
-                                        const AlignmentDirectional(-0.84, 0.88),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(2.0),
-                                      child: ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                        child: Image.network(
-                                          valueOrDefault<String>(
-                                            jobPostAppliedJobPostsRecord
-                                                .companyLogo,
-                                            'https://24activenews.com/wp-content/uploads/2021/04/23-04-2021_SpaceX.jpg',
-                                          ),
-                                          width: 60.0,
-                                          height: 60.0,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                20.0, 40.0, 20.0, 0.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Material(
-                                  color: Colors.transparent,
-                                  elevation: 0.0,
-                                  shape: const CircleBorder(),
                                   child: Container(
-                                    width: 44.0,
-                                    height: 44.0,
+                                    width: 60.0,
+                                    height: 60.0,
                                     decoration: const BoxDecoration(
-                                      color: Color(0x66000000),
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: FlutterFlowIconButton(
-                                      borderColor: Colors.transparent,
-                                      borderRadius: 30.0,
-                                      buttonSize: 46.0,
-                                      icon: Icon(
-                                        Icons.chevron_left_rounded,
-                                        color: FlutterFlowTheme.of(context)
-                                            .tertiary,
-                                        size: 24.0,
+                                      color: Color(0xFFEEEEEE),
+                                      borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(10.0),
+                                        bottomRight: Radius.circular(10.0),
+                                        topLeft: Radius.circular(10.0),
+                                        topRight: Radius.circular(10.0),
                                       ),
-                                      onPressed: () async {
-                                        context.pop();
-                                      },
                                     ),
-                                  ),
-                                ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Material(
-                                      color: Colors.transparent,
-                                      elevation: 0.0,
-                                      shape: const CircleBorder(),
-                                      child: Container(
-                                        width: 32.0,
-                                        height: 32.0,
-                                        decoration: const BoxDecoration(
-                                          color: Color(0x66000000),
-                                          shape: BoxShape.circle,
-                                        ),
-                                        child: Builder(
-                                          builder: (context) =>
-                                              FlutterFlowIconButton(
-                                            borderColor: Colors.transparent,
-                                            borderRadius: 30.0,
-                                            buttonSize: 46.0,
-                                            icon: Icon(
-                                              Icons.reply_rounded,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .tertiary,
-                                              size: 16.0,
+                                    child: Align(
+                                      alignment:
+                                          const AlignmentDirectional(-0.84, 0.88),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(2.0),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: Image.network(
+                                            valueOrDefault<String>(
+                                              jobPostAppliedJobPostsRecord
+                                                  .companyLogo,
+                                              'https://24activenews.com/wp-content/uploads/2021/04/23-04-2021_SpaceX.jpg',
                                             ),
-                                            onPressed: () async {
-                                              await Share.share(
-                                                jobPostAppliedJobPostsRecord
-                                                    .jobName,
-                                                sharePositionOrigin:
-                                                    getWidgetBoundingBox(
-                                                        context),
-                                              );
-                                            },
+                                            width: 60.0,
+                                            height: 60.0,
+                                            fit: BoxFit.cover,
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ],
+                                  ),
                                 ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            16.0, 16.0, 16.0, 0.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Expanded(
-                              child: Text(
-                                jobPostAppliedJobPostsRecord.jobName,
-                                style:
-                                    FlutterFlowTheme.of(context).headlineSmall,
                               ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            16.0, 8.0, 16.0, 0.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Text(
-                              jobPostAppliedJobPostsRecord.jobCompany,
-                              style: FlutterFlowTheme.of(context).bodySmall,
                             ),
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
-                                  8.0, 0.0, 0.0, 0.0),
-                              child: Text(
-                                '\$${jobPostAppliedJobPostsRecord.salary}',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodySmall
-                                    .override(
-                                      fontFamily: 'Outfit',
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            16.0, 12.0, 16.0, 0.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Text(
-                              'Description',
-                              style: FlutterFlowTheme.of(context).bodySmall,
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            16.0, 8.0, 16.0, 0.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Expanded(
-                              child: Text(
-                                jobPostAppliedJobPostsRecord.jobDescription,
-                                style: FlutterFlowTheme.of(context).bodyMedium,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            16.0, 12.0, 16.0, 0.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Text(
-                              'Requirements',
-                              style: FlutterFlowTheme.of(context).bodySmall,
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            16.0, 8.0, 16.0, 0.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Expanded(
-                              child: Text(
-                                jobPostAppliedJobPostsRecord.jobRequirements,
-                                style: FlutterFlowTheme.of(context).bodyMedium,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            16.0, 12.0, 16.0, 0.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Text(
-                              'Preferred Skills & Expertise',
-                              style: FlutterFlowTheme.of(context).bodySmall,
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            16.0, 8.0, 16.0, 20.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Expanded(
-                              child: Text(
-                                jobPostAppliedJobPostsRecord.jobPreferredSkills,
-                                style: FlutterFlowTheme.of(context).bodyMedium,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).lineColor,
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Text(
-                                  'Your proposal',
-                                  style: FlutterFlowTheme.of(context).bodySmall,
-                                ),
-                              ],
-                            ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 8.0, 0.0, 20.0),
+                                  20.0, 40.0, 20.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Expanded(
-                                    child: Text(
-                                      widget.application!.coverLetter,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium,
+                                  Material(
+                                    color: Colors.transparent,
+                                    elevation: 0.0,
+                                    shape: const CircleBorder(),
+                                    child: Container(
+                                      width: 44.0,
+                                      height: 44.0,
+                                      decoration: const BoxDecoration(
+                                        color: Color(0x66000000),
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: FlutterFlowIconButton(
+                                        borderColor: Colors.transparent,
+                                        borderRadius: 30.0,
+                                        buttonSize: 46.0,
+                                        icon: Icon(
+                                          Icons.chevron_left_rounded,
+                                          color: FlutterFlowTheme.of(context)
+                                              .tertiary,
+                                          size: 24.0,
+                                        ),
+                                        onPressed: () async {
+                                          context.pop();
+                                        },
+                                      ),
                                     ),
+                                  ),
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Material(
+                                        color: Colors.transparent,
+                                        elevation: 0.0,
+                                        shape: const CircleBorder(),
+                                        child: Container(
+                                          width: 32.0,
+                                          height: 32.0,
+                                          decoration: const BoxDecoration(
+                                            color: Color(0x66000000),
+                                            shape: BoxShape.circle,
+                                          ),
+                                          child: Builder(
+                                            builder: (context) =>
+                                                FlutterFlowIconButton(
+                                              borderColor: Colors.transparent,
+                                              borderRadius: 30.0,
+                                              buttonSize: 46.0,
+                                              icon: Icon(
+                                                Icons.reply_rounded,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .tertiary,
+                                                size: 16.0,
+                                              ),
+                                              onPressed: () async {
+                                                await Share.share(
+                                                  jobPostAppliedJobPostsRecord
+                                                      .jobName,
+                                                  sharePositionOrigin:
+                                                      getWidgetBoundingBox(
+                                                          context),
+                                                );
+                                              },
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),
                             ),
                           ],
                         ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              16.0, 16.0, 16.0, 0.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  jobPostAppliedJobPostsRecord.jobName,
+                                  style: FlutterFlowTheme.of(context)
+                                      .headlineSmall
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .headlineSmallFamily,
+                                        fontSize: 20.0,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .headlineSmallFamily),
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              16.0, 8.0, 16.0, 0.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Text(
+                                jobPostAppliedJobPostsRecord.jobCompany,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodySmall
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodySmallFamily,
+                                      fontSize: 16.0,
+                                      fontWeight: FontWeight.w500,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodySmallFamily),
+                                    ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    8.0, 0.0, 0.0, 0.0),
+                                child: Text(
+                                  '\$${jobPostAppliedJobPostsRecord.salary}',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodySmall
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .bodySmallFamily,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w500,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .bodySmallFamily),
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              16.0, 12.0, 16.0, 0.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Text(
+                                'Description',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodySmall
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodySmallFamily,
+                                      fontSize: 16.0,
+                                      fontWeight: FontWeight.w500,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodySmallFamily),
+                                    ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              16.0, 8.0, 16.0, 0.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  jobPostAppliedJobPostsRecord.jobDescription,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .bodyMediumFamily,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w500,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMediumFamily),
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              16.0, 12.0, 16.0, 0.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Text(
+                                'Requirements',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodySmall
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodySmallFamily,
+                                      fontSize: 16.0,
+                                      fontWeight: FontWeight.w500,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodySmallFamily),
+                                    ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              16.0, 8.0, 16.0, 0.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  jobPostAppliedJobPostsRecord.jobRequirements,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .bodyMediumFamily,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w500,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMediumFamily),
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              16.0, 12.0, 16.0, 0.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Text(
+                                'Preferred Skills & Expertise',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodySmall
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodySmallFamily,
+                                      fontSize: 16.0,
+                                      fontWeight: FontWeight.w500,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodySmallFamily),
+                                    ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              16.0, 8.0, 16.0, 20.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  jobPostAppliedJobPostsRecord
+                                      .jobPreferredSkills,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .bodyMediumFamily,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w500,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMediumFamily),
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Container(
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: FlutterFlowTheme.of(context).lineColor,
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Text(
+                                    'Your proposal',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodySmall
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodySmallFamily,
+                                          fontSize: 16.0,
+                                          fontWeight: FontWeight.w500,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodySmallFamily),
+                                        ),
+                                  ),
+                                ],
+                              ),
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 8.0, 0.0, 20.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        widget.application!.coverLetter,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMediumFamily,
+                                              fontSize: 16.0,
+                                              fontWeight: FontWeight.w500,
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily),
+                                            ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

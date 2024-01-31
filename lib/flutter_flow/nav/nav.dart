@@ -104,6 +104,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'AddWorkExp',
           path: '/addWorkExp',
+          requireAuth: true,
           builder: (context, params) => const NavBarPage(
             initialPage: '',
             page: AddWorkExpWidget(),
@@ -112,21 +113,25 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'Onboarding',
           path: '/onboarding',
+          requireAuth: true,
           builder: (context, params) => const OnboardingWidget(),
         ),
         FFRoute(
           name: 'JobPosts',
           path: '/jobPosts',
+          requireAuth: true,
           builder: (context, params) => const JobPostsWidget(),
         ),
         FFRoute(
           name: 'SEARCH_Jobs',
-          path: '/sEARCHJobs',
+          path: '/searchJobs',
+          requireAuth: true,
           builder: (context, params) => const SEARCHJobsWidget(),
         ),
         FFRoute(
           name: 'MAINAppliedJobs',
-          path: '/mAINAppliedJobs',
+          path: '/mainAppliedJobs',
+          requireAuth: true,
           builder: (context, params) => params.isEmpty
               ? const NavBarPage(initialPage: 'MAINAppliedJobs')
               : MAINAppliedJobsWidget(
@@ -135,14 +140,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         ),
         FFRoute(
           name: 'MAIN_MyProfile',
-          path: '/mAINMyProfile',
+          path: '/mainMyProfile',
+          requireAuth: true,
           builder: (context, params) => params.isEmpty
               ? const NavBarPage(initialPage: 'MAIN_MyProfile')
               : const MAINMyProfileWidget(),
         ),
         FFRoute(
           name: 'MAIN_Chat',
-          path: '/mAINChat',
+          path: '/mainChat',
+          requireAuth: true,
           builder: (context, params) => params.isEmpty
               ? const NavBarPage(initialPage: 'MAIN_Chat')
               : const MAINChatWidget(),
@@ -150,6 +157,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'DETAILS_Chat',
           path: '/dETAILSChat',
+          requireAuth: true,
           asyncParams: {
             'chatUser': getDoc(['users'], UsersRecord.fromSnapshot),
           },
@@ -162,6 +170,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'JobPost_DetailsActual',
           path: '/jobPostDetailsActual',
+          requireAuth: true,
           builder: (context, params) => JobPostDetailsActualWidget(
             likedJob: params.getParam(
                 'likedJob', ParamType.DocumentReference, false, ['users']),
@@ -172,6 +181,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'JobPost_submitApplication',
           path: '/jobPostSubmitApplication',
+          requireAuth: true,
           builder: (context, params) => JobPostSubmitApplicationWidget(
             jobPostDetails: params.getParam('jobPostDetails',
                 ParamType.DocumentReference, false, ['jobPosts']),
@@ -180,6 +190,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'JobPost_Applied',
           path: '/jobPostApplied',
+          requireAuth: true,
           asyncParams: {
             'application':
                 getDoc(['appliedJobs'], AppliedJobsRecord.fromSnapshot),
@@ -196,6 +207,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'JobPost_MyJob_Applicants',
           path: '/jobPostMyJobApplicants',
+          requireAuth: true,
           builder: (context, params) => NavBarPage(
             initialPage: '',
             page: JobPostMyJobApplicantsWidget(
@@ -207,11 +219,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'forgotPassword',
           path: '/forgotPassword',
+          requireAuth: true,
           builder: (context, params) => const ForgotPasswordWidget(),
         ),
         FFRoute(
           name: 'editProfile',
           path: '/editProfile',
+          requireAuth: true,
           asyncParams: {
             'candidates': getDoc(['candidates'], CandidatesRecord.fromSnapshot),
           },
@@ -225,17 +239,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'createJob',
           path: '/createJob',
-          builder: (context, params) => NavBarPage(
-            initialPage: '',
-            page: CreateJobWidget(
-              myCompany: params.getParam('myCompany',
-                  ParamType.DocumentReference, false, ['companies']),
-            ),
+          requireAuth: true,
+          builder: (context, params) => CreateJobWidget(
+            myCompany: params.getParam(
+                'myCompany', ParamType.DocumentReference, false, ['companies']),
           ),
         ),
         FFRoute(
           name: 'candidateDetails',
           path: '/candidateDetails',
+          requireAuth: true,
           builder: (context, params) => NavBarPage(
             initialPage: '',
             page: CandidateDetailsWidget(
@@ -247,6 +260,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'JobPost_Details',
           path: '/jobPostDetails',
+          requireAuth: true,
           builder: (context, params) => JobPostDetailsWidget(
             likedJob: params.getParam(
                 'likedJob', ParamType.DocumentReference, false, ['users']),
@@ -257,6 +271,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'companyDetails',
           path: '/companyDetails',
+          requireAuth: true,
           builder: (context, params) => NavBarPage(
             initialPage: '',
             page: CompanyDetailsWidget(
@@ -274,7 +289,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         ),
         FFRoute(
           name: 'MAIN_Candidates_Jobs',
-          path: '/mAINCandidatesJobs',
+          path: '/mainCandidatesJobs',
+          requireAuth: true,
           builder: (context, params) => params.isEmpty
               ? const NavBarPage(initialPage: 'MAIN_Candidates_Jobs')
               : MAINCandidatesJobsWidget(
@@ -283,7 +299,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         ),
         FFRoute(
           name: 'MAINSavedJobs',
-          path: '/mAINSavedJobs',
+          path: '/mainSavedJobs',
+          requireAuth: true,
           builder: (context, params) => params.isEmpty
               ? const NavBarPage(initialPage: 'MAINSavedJobs')
               : MAINSavedJobsWidget(
@@ -293,6 +310,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'editCompanyProfile',
           path: '/editCompanyProfile',
+          requireAuth: true,
           builder: (context, params) => const NavBarPage(
             initialPage: '',
             page: EditCompanyProfileWidget(),

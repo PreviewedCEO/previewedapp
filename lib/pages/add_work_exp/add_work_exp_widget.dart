@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'add_work_exp_model.dart';
@@ -17,7 +18,7 @@ class AddWorkExpWidget extends StatefulWidget {
   const AddWorkExpWidget({super.key});
 
   @override
-  _AddWorkExpWidgetState createState() => _AddWorkExpWidgetState();
+  State<AddWorkExpWidget> createState() => _AddWorkExpWidgetState();
 }
 
 class _AddWorkExpWidgetState extends State<AddWorkExpWidget> {
@@ -97,7 +98,12 @@ class _AddWorkExpWidgetState extends State<AddWorkExpWidget> {
             title: Text(
               'Work History',
               textAlign: TextAlign.start,
-              style: FlutterFlowTheme.of(context).titleMedium,
+              style: FlutterFlowTheme.of(context).titleLarge.override(
+                    fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
+                    color: FlutterFlowTheme.of(context).primary,
+                    useGoogleFonts: GoogleFonts.asMap().containsKey(
+                        FlutterFlowTheme.of(context).titleLargeFamily),
+                  ),
             ),
             actions: const [],
             centerTitle: false,
@@ -170,14 +176,15 @@ class _AddWorkExpWidgetState extends State<AddWorkExpWidget> {
                                     context: context,
                                     builder: (context) {
                                       return WebViewAware(
-                                          child: Padding(
-                                        padding:
-                                            MediaQuery.viewInsetsOf(context),
-                                        child: const SizedBox(
-                                          height: 500.0,
-                                          child: WorkExpBottomSheetWidget(),
+                                        child: Padding(
+                                          padding:
+                                              MediaQuery.viewInsetsOf(context),
+                                          child: const SizedBox(
+                                            height: 500.0,
+                                            child: WorkExpBottomSheetWidget(),
+                                          ),
                                         ),
-                                      ));
+                                      );
                                     },
                                   ).then((value) => safeSetState(() {}));
                                 },
@@ -261,7 +268,19 @@ class _AddWorkExpWidgetState extends State<AddWorkExpWidget> {
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .titleMedium,
+                                                                .titleMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Epilogue',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .titleMediumFamily),
+                                                                ),
                                                       ),
                                                     ),
                                                     Row(
@@ -273,14 +292,18 @@ class _AddWorkExpWidgetState extends State<AddWorkExpWidget> {
                                                               .companyName,
                                                           style: FlutterFlowTheme
                                                                   .of(context)
-                                                              .titleSmall
+                                                              .titleMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Outfit',
+                                                                    'Epilogue',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .customColor2,
-                                                                fontSize: 14.0,
+                                                                    .primary,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .titleMediumFamily),
                                                               ),
                                                         ),
                                                       ],
@@ -300,7 +323,22 @@ class _AddWorkExpWidgetState extends State<AddWorkExpWidget> {
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
-                                                              .bodySmall,
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Epilogue',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyMediumFamily),
+                                                              ),
                                                         ),
                                                         Padding(
                                                           padding:
@@ -321,7 +359,22 @@ class _AddWorkExpWidgetState extends State<AddWorkExpWidget> {
                                                             ),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
-                                                                .bodySmall,
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Epilogue',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily),
+                                                                ),
                                                           ),
                                                         ),
                                                       ],
@@ -374,13 +427,14 @@ class _AddWorkExpWidgetState extends State<AddWorkExpWidget> {
                           context: context,
                           builder: (context) {
                             return WebViewAware(
-                                child: Padding(
-                              padding: MediaQuery.viewInsetsOf(context),
-                              child: const SizedBox(
-                                height: 570.0,
-                                child: WorkExpBottomSheetWidget(),
+                              child: Padding(
+                                padding: MediaQuery.viewInsetsOf(context),
+                                child: const SizedBox(
+                                  height: 570.0,
+                                  child: WorkExpBottomSheetWidget(),
+                                ),
                               ),
-                            ));
+                            );
                           },
                         ).then((value) => safeSetState(() {}));
                       },
@@ -415,9 +469,15 @@ class _AddWorkExpWidgetState extends State<AddWorkExpWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Outfit',
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMediumFamily,
                                             color: FlutterFlowTheme.of(context)
                                                 .grayIcon400,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMediumFamily),
                                           ),
                                     ),
                                     Padding(
@@ -426,7 +486,21 @@ class _AddWorkExpWidgetState extends State<AddWorkExpWidget> {
                                       child: Text(
                                         'Add Work Experience',
                                         style: FlutterFlowTheme.of(context)
-                                            .titleMedium,
+                                            .titleLarge
+                                            .override(
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleLargeFamily,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleLargeFamily),
+                                            ),
                                       ),
                                     ),
                                   ],
@@ -444,11 +518,12 @@ class _AddWorkExpWidgetState extends State<AddWorkExpWidget> {
                                       context: context,
                                       builder: (context) {
                                         return WebViewAware(
-                                            child: Padding(
-                                          padding:
-                                              MediaQuery.viewInsetsOf(context),
-                                          child: const WorkExpBottomSheetWidget(),
-                                        ));
+                                          child: Padding(
+                                            padding: MediaQuery.viewInsetsOf(
+                                                context),
+                                            child: const WorkExpBottomSheetWidget(),
+                                          ),
+                                        );
                                       },
                                     ).then((value) => safeSetState(() {}));
                                   },
@@ -471,34 +546,43 @@ class _AddWorkExpWidgetState extends State<AddWorkExpWidget> {
                         const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 10.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        FFButtonWidget(
-                          onPressed: () async {
-                            context.pushNamed('Onboarding');
-                          },
-                          text: 'Continue',
-                          options: FFButtonOptions(
-                            width: 130.0,
-                            height: 50.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: const Color(0xFF00015B),
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Outfit',
-                                  color: Colors.white,
-                                ),
-                            elevation: 2.0,
-                            borderSide: const BorderSide(
-                              color: Colors.transparent,
-                              width: 1.0,
+                        Align(
+                          alignment: const AlignmentDirectional(1.0, 0.0),
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              context.pushNamed('Onboarding');
+                            },
+                            text: 'Continue',
+                            options: FFButtonOptions(
+                              width: 150.0,
+                              height: 50.0,
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: FlutterFlowTheme.of(context).primary,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleMedium
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .titleMediumFamily,
+                                    color:
+                                        FlutterFlowTheme.of(context).secondary,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .titleMediumFamily),
+                                  ),
+                              elevation: 1.0,
+                              borderSide: const BorderSide(
+                                color: Colors.transparent,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(60.0),
                             ),
-                            borderRadius: BorderRadius.circular(12.0),
                           ),
                         ),
                       ],

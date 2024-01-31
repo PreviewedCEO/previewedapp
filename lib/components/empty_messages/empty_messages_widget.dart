@@ -16,7 +16,7 @@ class EmptyMessagesWidget extends StatefulWidget {
   final String? bodyText;
 
   @override
-  _EmptyMessagesWidgetState createState() => _EmptyMessagesWidgetState();
+  State<EmptyMessagesWidget> createState() => _EmptyMessagesWidgetState();
 }
 
 class _EmptyMessagesWidgetState extends State<EmptyMessagesWidget> {

@@ -11,6 +11,8 @@ import 'backend/firebase/firebase_config.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/internationalization.dart';
+import 'package:flutter/foundation.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 import 'index.dart';
 
@@ -23,6 +25,10 @@ void main() async {
 
   final appState = FFAppState(); // Initialize FFAppState
   await appState.initializePersistedState();
+
+  if (!kIsWeb) {
+    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+  }
 
   runApp(ChangeNotifierProvider(
     create: (context) => appState,
@@ -160,8 +166,8 @@ class _NavBarPageState extends State<NavBarPage> {
           _currentPage = null;
           _currentPageName = tabs.keys.toList()[i];
         }),
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-        selectedItemColor: FlutterFlowTheme.of(context).secondary,
+        backgroundColor: const Color(0xFFFFDE59),
+        selectedItemColor: const Color(0xFF004AAD),
         unselectedItemColor: const Color(0xFFABB3BA),
         selectedBackgroundColor: const Color(0x00000000),
         borderRadius: 8.0,
@@ -179,9 +185,8 @@ class _NavBarPageState extends State<NavBarPage> {
                   currentIndex == 0
                       ? Icons.person_rounded
                       : Icons.person_outlined,
-                  color: currentIndex == 0
-                      ? FlutterFlowTheme.of(context).secondary
-                      : const Color(0xFFABB3BA),
+                  color:
+                      currentIndex == 0 ? const Color(0xFF004AAD) : const Color(0xFFABB3BA),
                   size: currentIndex == 0 ? 24.0 : 24.0,
                 ),
                 Text(
@@ -189,7 +194,7 @@ class _NavBarPageState extends State<NavBarPage> {
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: currentIndex == 0
-                        ? FlutterFlowTheme.of(context).secondary
+                        ? const Color(0xFF004AAD)
                         : const Color(0xFFABB3BA),
                     fontSize: 11.0,
                   ),
@@ -203,9 +208,8 @@ class _NavBarPageState extends State<NavBarPage> {
               children: [
                 Icon(
                   currentIndex == 1 ? Icons.done : Icons.done_outline,
-                  color: currentIndex == 1
-                      ? FlutterFlowTheme.of(context).secondary
-                      : const Color(0xFFABB3BA),
+                  color:
+                      currentIndex == 1 ? const Color(0xFF004AAD) : const Color(0xFFABB3BA),
                   size: currentIndex == 1 ? 24.0 : 24.0,
                 ),
                 Text(
@@ -213,7 +217,7 @@ class _NavBarPageState extends State<NavBarPage> {
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: currentIndex == 1
-                        ? FlutterFlowTheme.of(context).secondary
+                        ? const Color(0xFF004AAD)
                         : const Color(0xFFABB3BA),
                     fontSize: 11.0,
                   ),
@@ -229,9 +233,8 @@ class _NavBarPageState extends State<NavBarPage> {
                   currentIndex == 2
                       ? Icons.chat_bubble_rounded
                       : Icons.chat_bubble_outline,
-                  color: currentIndex == 2
-                      ? FlutterFlowTheme.of(context).secondary
-                      : const Color(0xFFABB3BA),
+                  color:
+                      currentIndex == 2 ? const Color(0xFF004AAD) : const Color(0xFFABB3BA),
                   size: currentIndex == 2 ? 24.0 : 24.0,
                 ),
                 Text(
@@ -239,7 +242,7 @@ class _NavBarPageState extends State<NavBarPage> {
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: currentIndex == 2
-                        ? FlutterFlowTheme.of(context).secondary
+                        ? const Color(0xFF004AAD)
                         : const Color(0xFFABB3BA),
                     fontSize: 11.0,
                   ),
@@ -255,9 +258,8 @@ class _NavBarPageState extends State<NavBarPage> {
                   currentIndex == 3
                       ? Icons.recommend_sharp
                       : Icons.recommend_outlined,
-                  color: currentIndex == 3
-                      ? FlutterFlowTheme.of(context).secondary
-                      : const Color(0xFFABB3BA),
+                  color:
+                      currentIndex == 3 ? const Color(0xFF004AAD) : const Color(0xFFABB3BA),
                   size: currentIndex == 3 ? 24.0 : 24.0,
                 ),
                 Text(
@@ -265,7 +267,7 @@ class _NavBarPageState extends State<NavBarPage> {
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: currentIndex == 3
-                        ? FlutterFlowTheme.of(context).secondary
+                        ? const Color(0xFF004AAD)
                         : const Color(0xFFABB3BA),
                     fontSize: 11.0,
                   ),
@@ -281,9 +283,8 @@ class _NavBarPageState extends State<NavBarPage> {
                   currentIndex == 4
                       ? Icons.favorite_sharp
                       : Icons.favorite_border_outlined,
-                  color: currentIndex == 4
-                      ? FlutterFlowTheme.of(context).secondary
-                      : const Color(0xFFABB3BA),
+                  color:
+                      currentIndex == 4 ? const Color(0xFF004AAD) : const Color(0xFFABB3BA),
                   size: currentIndex == 4 ? 24.0 : 24.0,
                 ),
                 Text(
@@ -291,7 +292,7 @@ class _NavBarPageState extends State<NavBarPage> {
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: currentIndex == 4
-                        ? FlutterFlowTheme.of(context).secondary
+                        ? const Color(0xFF004AAD)
                         : const Color(0xFFABB3BA),
                     fontSize: 11.0,
                   ),

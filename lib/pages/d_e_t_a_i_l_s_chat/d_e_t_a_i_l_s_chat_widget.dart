@@ -21,7 +21,7 @@ class DETAILSChatWidget extends StatefulWidget {
   final DocumentReference? chatRef;
 
   @override
-  _DETAILSChatWidgetState createState() => _DETAILSChatWidgetState();
+  State<DETAILSChatWidget> createState() => _DETAILSChatWidgetState();
 }
 
 class _DETAILSChatWidgetState extends State<DETAILSChatWidget> {
@@ -82,16 +82,17 @@ class _DETAILSChatWidgetState extends State<DETAILSChatWidget> {
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.of(context).darkText,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         automaticallyImplyLeading: false,
         leading: FlutterFlowIconButton(
-          borderColor: Colors.transparent,
+          borderColor: FlutterFlowTheme.of(context).secondary,
           borderRadius: 30.0,
           borderWidth: 1.0,
           buttonSize: 60.0,
+          fillColor: FlutterFlowTheme.of(context).primary,
           icon: Icon(
             Icons.arrow_back_rounded,
-            color: FlutterFlowTheme.of(context).tertiary,
+            color: FlutterFlowTheme.of(context).secondary,
             size: 24.0,
           ),
           onPressed: () async {
@@ -100,10 +101,7 @@ class _DETAILSChatWidgetState extends State<DETAILSChatWidget> {
         ),
         title: Text(
           widget.chatUser!.displayName,
-          style: FlutterFlowTheme.of(context).titleSmall.override(
-                fontFamily: 'Outfit',
-                color: FlutterFlowTheme.of(context).tertiary,
-              ),
+          style: FlutterFlowTheme.of(context).titleMedium,
         ),
         actions: const [],
         centerTitle: false,
